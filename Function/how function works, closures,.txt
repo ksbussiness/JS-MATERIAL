@@ -1,0 +1,1070 @@
+How Does Function Execution Work in JavaScript?
+
+
+When JavaScript runs, it starts in the Global Execution Context (GEC).
+
+The GEC is created by default and contains:
+
+Global Object (window in browsers or global in Node.js).
+
+this keyword pointing to the global object.
+
+ Example: Global Execution Context
+
+let x = 10;
+function greet() {
+  console.log("Hello World");
+}
+
+greet();
+When the code starts:
+
+x is stored in memory.
+
+greet() function is stored in memory.
+
+The greet() function is called and creates a new Function Execution Context (FEC).
+
+.>  Function Call Creates a New Execution Context
+When you call a function, JavaScript creates a Function Execution Context (FEC) and pushes it onto the Call Stack.
+
+# FEC Contains:
+
+Variable Environment (VE): Stores variables and functions inside the function.
+
+Lexical Environment: Maintains reference to the outer scope.
+
+this Binding: Refers to the object that invoked the function.
+
+Example: Creating Function Execution Context
+
+function add(a, b) {
+  let sum = a + b;
+  return sum;
+}
+
+let result = add(5, 10);
+console.log(result); // 15
+
+
+# Execution Flow:
+--------------------- > 
+
+Global Execution Context is created.
+
+add(5, 10) is called.
+
+A new FEC is created for add().
+
+a and b are stored in the local memory.
+
+sum is calculated and returned.
+
+add() finishes and its context is popped off the call stack.
+
+Control goes back to the Global Execution Context.
+
+# Step 3: Call Stack – Keeps Track of Function Calls
+The Call Stack is a data structure that keeps track of function calls.
+
+ How It Works:
+
+When a function is called, it is pushed onto the call stack.
+
+When the function completes, it is popped off the stack.
+
+Example: Multiple Functions in Call Stack
+
+function first() {
+  console.log("First");
+  second();
+  console.log("First Done");
+}
+
+function second() {
+  console.log("Second");
+  third();
+  console.log("Second Done");
+}
+
+function third() {
+  console.log("Third");
+}
+
+first();
+
+# Call Stack Flow:
+
+first() is pushed onto the stack.
+
+second() is called inside first() – pushed onto the stack.
+
+third() is called inside second() – pushed onto the stack.
+
+third() finishes – popped off the stack.
+
+second() finishes – popped off the stack.
+
+first() finishes – popped off the stack.
+
+ Output:
+
+
+First
+Second
+Third
+Second Done
+First Done
+
+# Step 4: Memory Creation Phase (Hoisting) :
+
+Before executing the code, JavaScript goes through the Memory Creation Phase, where:
+
+Variables are assigned undefined.
+
+Function declarations are stored in memory.
+
+ Example: Hoisting in Action
+
+
+console.log(x); // undefined
+greet();        // Hello!
+
+var x = 5;
+
+function greet() {
+  console.log("Hello!");
+}
+
+ Explanation:
+
+var x is hoisted and set to undefined.
+
+greet() is hoisted with its function definition.
+
+Code execution happens after this.
+
+ Step 5: Execution Phase (Line-by-Line Execution)
+After the memory phase, JavaScript starts the execution phase, where:
+
+It assigns values to variables.
+
+Executes functions when they are called.
+
+ Example: Memory and Execution Phase
+
+var x = 10;
+function multiply(num) {
+  return num * 2;
+}
+
+let result = multiply(x);
+console.log(result); // 20
+
+# Execution Flow:
+
+x is assigned 10.
+
+multiply() is called.
+
+New Execution Context is created for multiply().
+
+num gets value 10, and returns 20.
+
+multiply() is popped off the call stack.
+
+# Step 6: Return and Pop Execution Context
+When a function completes, its execution context is popped off the stack and control returns to the calling function.
+
+ Example: Return and Pop from Stack
+
+
+function multiply(a, b) {
+  return a * b;
+}
+
+function calculate(x, y) {
+  let product = multiply(x, y);
+  console.log(product);
+}
+
+calculate(5, 4);
+
+..> Call Stack Flow:
+
+calculate(5, 4) is called.
+
+multiply(5, 4) is called inside calculate().
+
+multiply() returns 20 and is popped off the stack.
+
+calculate() prints 20 and is popped off the stack.
+
+
+20
+# Step 7: Lexical Scope and Closures
+Each function maintains a lexical scope (outer scope reference), which allows:
+
+Access to variables from parent scopes.
+
+Creation of closures.
+
+ Example: Lexical Scope and Closure
+
+function outer() {
+  let x = 10;
+
+  function inner() {
+    console.log(x); // Accesses x from outer()
+  }
+
+  return inner;
+}
+
+let closureFunc = outer();
+closureFunc(); // 10
+Explanation:
+
+inner() retains access to x from outer() due to closure.
+
+ Final Recap: Function Execution Workflow
+ 1. Global Execution Context (GEC)
+
+Created when JavaScript starts.
+
+Contains global variables and functions.
+
+ 2. Memory Creation Phase (Hoisting)
+
+Variables get undefined.
+
+Functions are stored in memory.
+
+ 3. Code Execution Phase
+
+Code runs line by line.
+
+Functions are called and pushed onto the call stack.
+
+ 4. Function Execution Context (FEC)
+
+Created when a function is invoked.
+
+Contains:
+
+Local variables
+
+Arguments
+
+Lexical environment
+
+5. Call Stack Management
+
+Functions are pushed onto the call stack when called.
+
+Popped off the stack when finished.
+
+ 6. Return and Pop
+
+Control returns to the calling function after completion.
+
+Execution context is destroyed.
+
+Complete Example with Full Workflow:
+------------------------------------- > 
+
+function greet(name) {
+  console.log("Hello, " + name);
+}
+
+function main() {
+  let user = "John";
+  greet(user);
+  console.log("Main function done");
+}
+
+main();
+
+Call Stack Flow:
+
+main() is called → Push to stack.
+
+greet() is called → Push to stack.
+
+greet() finishes → Pop from stack.
+
+main() finishes → Pop from stack.
+
+ Output:
+
+Hello, John
+
+Main function done
+
+
+What is the Use of Closures in JavaScript?
+A closure is created when a function remembers and accesses variables from its outer scope even after the outer function has finished executing.
+
+ Main Purpose of Closures:
+ Data Privacy: Closures allow private variables, which can’t be accessed directly from outside.
+ State Persistence: A closure can “remember” values between function calls.
+ Callback and Event Handling: Often used in event listeners, timers, and callbacks.
+ Encapsulation: Helps in organizing and structuring code more efficiently.
+
+ How Does a Closure Work?
+When a function is defined inside another function, it forms a closure. The inner function remembers the variables from its outer function, even after the outer function has returned.
+
+
+function outer() {
+  let x = 10; // x is in the outer function's scope
+
+  function inner() {
+    console.log(x); // inner() uses x from outer()
+  }
+
+  return inner;
+}
+
+let closureFunc = outer(); // outer() is called and returns inner()
+closureFunc(); // 10
+
+ Explanation:
+
+outer() is executed, and x is initialized to 10.
+
+inner() is returned by outer() but still remembers the variable x due to closure.
+
+When closureFunc() is called, it accesses x from the outer scope.
+
+ Call Stack and Closure Memory Flow (Step by Step)
+ Step 1: Global Execution Context (GEC) is Created
+
+Global object (window in browsers or global in Node.js) is created.
+
+closureFunc is declared but assigned undefined initially.
+
+ Step 2: outer() is Called
+
+
+let closureFunc = outer();
+New Function Execution Context (FEC) is created for outer().
+
+outer() creates x = 10 in its local memory.
+
+inner() is defined but not executed.
+
+inner is returned to closureFunc.
+
+ Step 3: Outer Context is Popped but Lexical Scope is Preserved
+Even though outer() finishes and is popped off the call stack, its lexical environment (where x = 10 exists) is preserved due to the closure.
+
+ Step 4: closureFunc() is Called
+
+closureFunc(); // 10
+A new FEC is created for inner().
+
+inner() accesses x from the outer scope, thanks to closure.
+
+console.log(x) prints 10.
+
+inner() finishes and is popped off the stack.
+
+
+javascript
+Copy
+Edit
+function outer() {
+  let x = 10;
+
+  function inner() {
+    console.log(x);
+  }
+
+  return inner;
+}
+
+let closureFunc = outer(); // Call outer() and get inner()
+closureFunc(); // Call inner()
+
+ Why Closures are Useful?
+++++++++++++++++++++++++++++++++++++++++++++++++++++++>
+
+ 1. Data Privacy with Closures
+
+function secretCounter() {
+  let count = 0;
+
+  return function () {
+    count++;
+    console.log(count);
+  };
+}
+
+let counter = secretCounter();
+counter(); // 1
+counter(); // 2
+counter(); // 3
+
+
+
+count is private and cannot be accessed directly.
+
+Only counter() can modify and access count.
+
+
+function outer(){
+    let x=10; // Lexical scope starts here
+    console.log("from outer",x)
+    function inner(){
+        console.log(x) // x is accessible here due to lexical scope
+    }
+    return inner
+    console.log("from outer after inner")
+}
+
+let sun=outer() // outer() ends, but closure keeps x alive.
+
+sun(); // 10
+
+sun=null; Now, x is no longer accessible.
+
+..> here let sun=outer() fomr this line we call the outer  function the outer function is called , and outer() returns the inner function, so now sun is a reference to the inner function.
+
+..> when use write the sun() then we get the result 10 in the out even after the outer function is executed.
+ 
+
+
+..>Lexica scope means that a function's scope is determined by where it is defined in the source code, not where it is executed.
+
+..> inner() tries to access x. Since x is not defined inside inner(), JavaScript looks up the scope chain to find x in the outer function (outer()).
+
+..> Lexical scope is static — it does not change even if the function is executed in a different context.
+
+..> A closure allows a function to remember the scope in which it was defined.
+
+..> 
+
+
+
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+Access of the objects in js:
+
+let person = {
+    name: "John",
+    age: 25,
+    city: "New York"
+};
+
+
+console.log(person.name) // john
+
+console.log(person["name"]); //john
+
+console.log(person[name]); // error
+
+console.log(person.name);
+
+console.log(person[0]); // undeined
+
+
+modifications:
+
+person.name="sachin";
+console.log(person.name)
+
+person["age"]=90
+console.log(person.age)
+
+To add new data  in to the object:
+
+..> Object.assign(person,{country:"usa"})
+console.log(person)
+
+##### : 
+Reflect.set(person, "city", "Chicago");
+console.log(person.city);  // Output: Chicago
+
+
+.> Reflect.set(target, propertyKey, value, receiver)
+
+
+let person = {
+    name: "John",
+    age: 25
+};
+
+Reflect.set(person, "city", "Chicago");
+console.log(person.city);  // Output: Chicago
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->:
+
+// # HOW JavaScript Code is Executed:
+
+..> Everything in js happens inside an executions context.
+
+
+..>it has the two components:
+
+1) memory component /variable environment
+..> every thing is stored in the key : value paris
+
+2)  Code component/ Thread of execution :
+..> here the code is executed one line at a time , line by line.
+
+..> 
+
+
+..> "js is a synchronous- single threaded language"
+
+.> which mens here only one command will execute at a time in a specify order:
+
+..> when you run the js code an execution context is created.
+
+..> a GLOBAL ECECUTION CONTEXT is created at two phases:
+
+1) MEMORY CREATION phase:
+2) CODE EXECUTION PHASE:
+
+
+
+
+
+
+var n=2;
+function square(num){
+    var ans=num*num;
+    return ans
+}
+
+var square2=square(n);
+
+var square4=square(4);
+
+here this function will go through  when runned for the first time then:
+..> first it will create the Global execution context and in side it , it  will have the 
+..> here first memeory execution phase  is made
+where memory will be created for all the variables and functions
+.> and here every thing will be stored in the key:value pairs
+where n:undefined // varible 
+square:{...} // whole function code is stored
+square2:undefined
+square4:undefined
+
+..> In phase two : code execution will be made where it will be go through line by line.
+
+..> 
+
+where n:2 // varible 
+square:{...} // whole function code is stored
+square2:undefined
+square4:undefined
+
+
+and  when the function reaches to this line :
+var square2=square(n); here it will be hit the function call so , here a new Function execution context will be created. in side the code component:
+
+..> and in side this FEC created, again the memeory creation sphase will happens and after this code execution phases will happen, 
+    and it will return the 4 in out put and after this return , this FEC will be deleted, 
+
+and next when the function reaches to this line :
+var square4 =square(4); here it will be hit the function call so , here a new Function execution context will be created. in side the code component:
+
+..> again a new FEC created, again the memeory creation sphase will happens and after this code execution phases will happen, 
+    and it will return the 16 in output and after this return , this FEC will be deleted, 
+
+..> and the First created Global execution context will also be deleted.
+
+...> this complete things will be handled by the 
+call stack.
+
+
+
+
+..> Call stack maintains the order of execution of execution contexts"
+
+call Stack
+Execution context stack
+Program stack
+control stack
+runtime stack
+machine stack
+
+
+
+// #) HOISTING IN JS
+
+console.log(x) // undefined ,first in the memory creation phase it will be made to undefined.
+
+..> in this case first it will be sotred the whole function in a variable.
+..> when getName is called then we can see the data in the  console.log()
+
+getName() // hai iam sachin reddy
+var x=220
+
+function getName(){
+    console.log("hai iam sachin reddy!")
+}
+
+console.log(getName) 
+
+var getName=()=>{
+    console.log("hai iam sachin reddy!")
+}
+
+
+var getName2=function(){
+    console.log("hai iam sachin reddy!")
+}
+
+..> iam will get the undefined only insted of getting the complete output.
+
+..> Because when we use the arrow function it will be stored has the variable insted of storing has the function so we get has  the undefined.
+
+..> var getName2 here also iam getting the undefined because it is also storing has the varibles only.
+
+
+
+// #) HOW FUNCTIONS WORK IN JS
+
+
+.> 
+
+difference between the undefined and not defined:
+
+console.log(x) // undefined
+
+here undefined means: memory is taken , it is not empty , and this is a special keyword in js.
+
+..> 
+
+
+
+
+
+
+
+
+window :this window is the global object which is created of the js along with he global execution context.
+
+and this ...> here this is also refers to the window object only.
+
+..>at a global level this points to the this===window .> true
+
+..> any thing which is not inside the function then it will be in global space.
+
+
+javascript is the loose typed language :
+
+which menas it will not attaches any variables to specific  datatypes 
+
+
+
+# Scope Chain Scope$ Lexical Environent :
+
+
+function a(){
+    console.log(x) // 10 here it 
+}
+
+var x=10
+
+a()
+
+console.log(this.x) // we get here also 10
+console.log(x)
+console.log(window.x) // we get here also 10
+
+
+ex2: 
+
+
+
+function a(){
+    c();
+    function c(){
+        console.log(x,"iam from the inside the c") // 10
+    }
+}
+
+var x=10
+
+a()
+
+
+console.log(x) //10
+
+
+
+scope: it is nothing but at where we can access the variables, functions .
+
+lexical is hierarchy /order
+
+.> lexical environment is the local memory along with the lexical environment of its parent.
+
+
+scope chain is nothing but finding for the variables in the lexical scopes, of every FEC and when this reference is pointing to others like a chain , when it comes to the global execution chain then here also but it not found then it will be null then we get the error:
+
+
+lexical enviromment = local memory + lexical environment of the parent( which means again its local memory+ its parent lexical environment )
+
+
+..> 
+
+# LET & CONST in JS Temporal Dead Zone :
+----------------------------------------------->
+
+..>  When the variables in the temporal dead zone we can not access them , it we try to access them then we get the error saying has ReferenceError : Cannot access 'a' Before initialization
+
+
+..> when we try to access the let, const before its initialization then we get the error.
+
+
+..> In same way if we try to assign the same variable names with two or more then we get the error
+
+
+console.log("hai")
+let a=10;
+let a=20;
+
+Then we get the error here saying that Syntax-error, even the first line also  will not be executed.
+
+..> 
+
+
+
+but in case of var , we can assign the two varibles. 
+
+var a=90
+
+var a =89
+
+this can be accepted.
+
+
+..> NOTE: Let and Const behaviour in the same way for the hoisting.
+
+but 
+
+let a
+
+a=10
+
+console.log(a) // 10 here it is accepted in the let , 
+
+but it is not accepted in the const variable
+
+const b
+
+b=90
+
+console.log(b) we get the error syntax error here.
+
+
+
+
+
+..> BLock in the js is nothing but the { this space is called block }  
+
+..> Blovk is nothing but waht all the variables and functions which we assecc in side this {} is nothing but the block scope.
+
+
+
+{
+    let a=10;
+    const b=20;
+     var c=30
+     
+     console.log(a,"inside the block"); //10
+     console.log(b,"inside the block"); //20
+     console.log(c,"inside the block"); //30
+}
+
+console.log(c,"outside the block")  //30
+console.log(a,"outside the block"); // reference error because here let has only the block scope
+console.log(b,"outside the block"); // reference error because here const has only the block scope so we can not access out side the block scope.
+
+
+...> SHOWDING OF THE VARIABLES:
+
+
+var c=3000
+{
+    let a=10;
+    const b=20;
+     var c=30
+     
+     console.log(a,"inside the block");
+     console.log(b,"inside the block");
+     console.log(c,"inside the block") // 30 but not the 3000
+}
+
+console.log(c) // here also the 30 , because of teh showding
+
+// here even the var is declared with teh 3000 in top and again this var c is declared with teh 30 , then we get 30 only in the declartions because , here , var c=3000, for this line in the global scope the memoery is asigend for the var c has 3000, but when the line hit the var c=30 , then in the global scope only the 3000 is changed in to teh 30. this is know has the SHOWDING of the variables.
+
+
+..> here when it comes to the let , it is different here 
+
+
+let a=3000 // this a is outside the block so 
+{
+    let a=10;
+    const b=20;
+     var c=30
+     
+     console.log(a,"inside the block , its scope is only with in the block only"); // we get 10 here 
+     console.log(b,"inside the block");
+     console.log(c,"inside the block") 
+}
+
+console.log(a) // here we get the 3000
+
+
+# CLOSURES IN JS :
+------------------------------>
+
+..> Closures is the function bundles together ith reference to its surrounding state ( the lexical Environment). 
+
+..> Closure gives you access to an outer function's scope from an inner function.
+
+..> In js closure are created every time a function is created , at the function creation time 
+
+
+..> This is because of the  closures:
+
+function x(){
+    var a=20
+    function y(){
+        console.log(a, "fomr inside")
+    }
+    return y
+}
+
+
+var z=x()
+
+console.log(z, "the function") // [Function: y] the function
+
+
+z() // 20 fomr inside
+
+
+Uses of Closures:
+
+..>Module Design Pattern 
+l
+..> Currying
+
+..> Functions like once.
+
+..> memorize.
+
+..> maintaining state in async world.
+
+..>SetTimeouts.
+
+..>Iterators
+
+
+ex:2)
+
+
+function z() {
+    const  b=900
+function x(){
+    var a=20
+    function y(){
+        console.log(a, "fomr inside",b) // 20 fomr inside 900
+    }
+ y()
+}
+x()
+}
+
+z() // 20 fomr inside
+
+
+
+--------------------------------------------==============================================================================================================================================================================================================================================>
+
+
+
+# SetTimeout +Closures:
+
+------------------------------------>
+
+here when we run this code :
+
+function x(){
+    for(var i=1;i<=5;i++){
+    setTimeout(function(){
+       
+        console.log(i);
+        
+        
+    },i*1000)
+    }
+    
+    console.log("salam sachin")
+    
+}
+
+x()
+
+we get the output has the 
+6
+6
+6
+6
+6
+
+because here the var has the global scope here , and here the i evry time is refereeing the to the same memory locationi, but not the different , so get the 6 here 
+
+
+
+AND Here when we  run this know :
+
+function x(){
+    for(let  i=1;i<=5;i++){
+    setTimeout(function(){
+       
+        console.log(i);
+        
+        
+    },i*1000)
+    }
+    
+    console.log("salam sachin")
+    
+}
+
+x()
+
+we get the out put has the :
+1
+2
+3
+4
+5
+
+
+..> Here we used the let instead of the var ,  the let has teh block scope,
+so every time when the setTimeOut inside function is runned then here the i will be referencing to the  different memory location.
+so we get the diff output.
+
+..> 
+
+
+
+
+
+function x(){
+    for(var  i=1;i<=5;i++){
+        function close(d){
+            
+          setTimeout(function(){
+       
+                console.log(d);
+        
+                 },d*1000)
+        }
+        close(i)
+    }
+    
+    console.log("salam sachin")
+    
+}
+
+x()
+
+// here in this case even we are using the var also we can able to get the output has exepected.
+
+//  because here , every time when we call the close(i) , it is creating the new reference here , but not the same reference 
+
+
+---------------------------------------------============================================================================================================---------------------------------------------==========================================================================================================================================---------------------------------------------=====================================================================================================================================================================
+
+// function Statement: or function declarations
+
+function a(){
+
+console.log("a called")
+}
+
+a();
+........................................
+
+// function Expression : these are nothing but the anonymos functions which are assigned to the variables
+
+var b = function()  {
+
+console.log("b called")
+
+}
+
+b();
+
+.> here the major difference between the function Statement and function Expression is that 
+hoisting 
+
+
+a(); // here we get the output has : a called
+
+b(); // initially undefined but , when it hit the 3 line then it will be error 
+
+function a(){
+
+console.log("a called")
+}
+
+
+
+3) var a = function()  {
+
+console.log("b called")
+
+}
+
+
+
+........................................
+
+// Anonymos function : is nothing but the a function without a name.
+
+.> Anonymos function are used when the functions are used has the values, 
+
+function () {
+
+}
+
+
+........................................
+
+// Named function expression: : this is nothing but an functions expression with an named ananoymous unctions in side it.
+
+ var a = function xyz()  {
+
+console.log("b called")
+
+}
+
+b(); // b called
+
+xyz(); // error
+
+
+........................................
+
+First class functions: the ability to use  the functions has the values and passed has the arguments to another functions  is called has the First class functions
+
+
+
+........................................
+
+
+
+
+................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................

@@ -1,0 +1,187 @@
+ASYNCHRONOUS JAVASCRIPT $$ EVENT LOOP :
+--------------------------------------------- >
+
+..> 
+
+
+function a(){
+    console.log("a");
+    
+}
+
+a();
+
+console.log("end")
+
+.> browser has the js engine in it and 
+
+.> js engine has the call stack in it 
+
+.> inside the call stack code sruns here.
+
+
+
+what is the WEB API,
+
+..> set Timeout() 
+..> DOM manipulations Apis 
+..> fetch ()
+..> local storage
+..> console.
+..> location  
+
+
+.> all these super powers are not part of teh js , but they are part of the BROWSER .
+
+..> BROWSER give access to the js engine in side teh call stack to use them and access them via the global object.(window)
+
+when we write the console.log("hai iam ok"), then internally this line calls the web api , and then this web api call the console.log functionality of teh browser
+
+
+
+console.log("start")
+
+setTimeout(function(cb){
+    console.log("callbACK..!")
+},5000);
+
+console.log("ENd...!");
+
+..> here first console.log("start") this line will be executed and by calling the web apis and , this web api will be called to the browsers console features,
+
+then an GLOBAL EXECUTION CONTEXt will be created and then , by using the the first line will be created 
+
+..> then next it will encounter the setTimeout() here it has 5000 delay , js ia syncronous then it will go to the next line insted of weighting for the this delay to complete.
+
+..> next it will encounter the console.log("ENd...!"); , then has discussed above it will be executed it in the same way.
+
+
+..> then GLOBAL EXECUTION CONTEXt will be deleted from the call stack,
+
+
+..> after the delay has completed , the setTimeout will be  giev to the CALL QUEUE ..> it will store the setTimeout, after delay has been completed then it need to be executed , but it can not executed directly ,  
+
+..> EVENT LOOP , here connects the call stack and the call back QUEUE, 
+
+..> EVENT LOOP , here will checks for the any thing is there for the execution in the call back queue , if any is there then it wll be executes them 
+
+..> EVENT loop acts has the gate keeper between the CALL-STACK and the callback Queue
+
+..> 
+
+
+
+console.log("Start");
+
+document.getElementById("btn")
+.addEventListener("click",function cb(){
+    console.log("callback");
+})
+
+console.log("ENds....!");
+
+..> here also the console.log("Start") hits then it will be executed has the same has disccued in above 
+
+..> when this hits document.getElementById("btn")
+ then this DOM api of the WEB API will be triggered, then next , it will store the  cb() in the web Api only, its been hits here like some body to call the cb() functions externally.
+ 
+ ..> here cb() function will present in side the WEB api untill thw browser is cloed or , externally deleted the funtion
+ 
+ 
+ ..> js does not wait for any thing so it will be next line here in this case console.log("ENds....!"); after executing it the GLOBAL EXECUTION CONTEXT will be deleted.
+ 
+ 
+ ..> when user click on the event listner, then cb() which is present in side the WEB APIs will go in to the CALLBACK QUEUE.
+ 
+ ..> know the cb() is present in side the callback queue which is ready to executed
+ 
+ EVENT LOOP it will continuously moniter the CALL-BACK STACK and CALL-BACK QUEUE,
+ 
+ 
+ ..> If some is there inside the call back queue to execute then EVENTLOOP  will be fetche it from the callback queue and sends it to call stcak to executes it .
+ 
+ ..> after fetching from the callback queue and , executing it via event loop, it will be deleted from the callback queue.
+ 
+ 
+ *****
+ we can get a doubt here like EVENT LOOP can directly take the fetch the cb(_) function from the WEB API instead of having the call back Queue .
+ 
+ here , CallBack Queue, is need beacuse , when user click 7-8 times continously the button then in side the 
+
+ CallBack Queue : call the cb() function calls needed to be stored like this.
+ 
+ cb(1) cb(2) cb(3) cb(4)p cb(5) cb(6) cb(7) cb(8)  , event loop fetches them from the call back queue and executes them .
+ 
+ ..> 
+ 
+ 
+ fetch(): it is an web api feature which is used to make the API Request.
+ 
+ 
+ console.log("starting");
+ 
+ setTimeout(function cbT(){
+     console.log("CB SetTimeOut");
+ },5000);
+ 
+ fetch("http://api.netflix.com")
+ .then(function cbF(){
+     console.log("CB Netflix");
+ });
+ 
+ console.log("end...");
+ 
+ .> when this line hits console.log("starting"); , in xame way has discuued it be executed 
+ 
+ ..> setTimeout(function cbT(){ , when this line hits then the cbT() will go and stores in side the WEB API , and waits for teh delay to end
+ 
+ ..>  fetch("http://api.netflix.com") , when this line hits then cbF will be stored inside the  WEB API 
+ 
+ 
+ 
+ ..> js does not waits for any thing.
+ 
+ ..>   console.log("end..."); it will executs it , 
+ 
+ 
+ .> we have the two QUESE in js :
+ 
+ 
+ MicroTaskQueue:
+ ---------------->
+ ..> the tasks which are present here have the higher priority , then the task in the  CallBackQueue.
+ 
+ ..> 
+ 
+ CallBackQueue:
+ ---------------->
+ 
+ ..> having the less priority tasks here
+ 
+ 
+ ..> so the CBF fetch function will go in to the  MicroTaskQueue
+ 
+ ..> the CBT  function will go in to the   CallBackQueue:
+ 
+ and the EVENT LOOP will continuously     moniter teh micro task queue and teh call back queue.
+ 
+ ..> so teh call stack is empty , so it take teh CBF fomr teh MicroTaskQueue and executes it and next it will take the CBT from   CallBackQueue and executes it .
+ 
+ 
+ ****** 
+ NOTE :
+ 
+..> all the call back functions which comes through the Promises will go to the 
+MicroTaskQueue and mutation observer will goes in to  the MicroTaskQueue
+
+ CallBackQueue: all other functions call back functions, setTimeout and other functionsn will go in to the CallBackQueue
+ 
+ 
+ 
+ 
+ CallBackQueue also called has the TASK QUeue.
+ 
+ 
+
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+

@@ -1,0 +1,238 @@
+
+
+Clusores in JS :
+
+..> Each and function in js has access to its outer layer  lexical environment . like access to the functions, variables, of  the parent , which are executed in some other scope , after its executions also , these functions  and variables rea accessible in child scope.
+
+..> 
+
+// Online Javascript Editor for free
+// Write, Edit and Run your Javascript code using JS Online Compiler
+
+ // This formas a closure
+// function Outer(){
+//     var a=10;
+//     function Inner(){
+//         console.log(a)
+//     }
+//     return Inner;
+
+// }
+// Outer()();
+
+
+// ..> even this alao foams the closures
+// function Outer(){
+    
+//     function Inner(){
+//         console.log(a)
+//     }
+//     var a=10;
+//     return Inner;
+
+// }
+// Outer()();
+
+
+// 
+// here also it forms a closures,  even here we used the let which is hsving teh block scope  but also, its forms the clusores.
+
+// function Outer(){
+    
+//     function Inner(){
+//         console.log(a)
+//     }
+//     let a=10;
+//     return Inner;
+
+// }
+// Outer()();
+
+// here also its form the closures
+// function Outer(b){
+    
+//     function Inner(){
+//         console.log(a,b)
+//     }
+//     let a=10;
+//     return Inner;
+
+// }
+// Outer("helloworldd")(); 10 helloworldd
+
+// function Outest(){
+//   var c= 100;
+
+// function Outer(b){
+    
+//     function Inner(){
+//         console.log(a,b,c)
+//     }
+//     let a=10;
+//     return Inner;
+
+// }
+// return Outer;
+// }
+// Outest()("hello world here..!")(); // 10 hello world here..! 100
+
+
+// function Outest(){
+//   var c= 100;
+
+// function Outer(b){
+    
+//     function Inner(){
+//         console.log(a,b,c)
+//     }
+//     //let a=10;
+//     return Inner;
+// }
+// return Outer;
+// }
+// let a=900
+
+// Outest()("hello world here..!")(); // 10 hello world here..! 100
+
+
+
+// ..> It is used for module pattern 
+
+// ..> functions currying,
+
+// ..> In some higher order function , like memoize , ones , 
+
+// ..> It helps in the data hidding , encapsulation
+
+// ..> Data hidding : 
+
+
+
+// THIS is an counter function using teh Clusore concept:
+ 
+
+
+function Counter(){
+    var count = 0;
+
+return function incrementCounter(){
+    count++;
+    console.log(count)
+}
+}
+
+var counter1=Counter()
+var counter2=Counter()
+counter2()
+counter1(); //1 
+counter1(); //2 
+
+
+
+
+
+// ..> By using the Closures, it consumes more memory.
+// ..>  The varibles are not collected the garbage , so more memory need for it  
+// ..>  more memory leakage
+
+//  .> the garbage collector is used for removing teh unused variables and methids 
+
+
+function Counter(){
+    var count=0;
+    this.incrementCounter=function(){
+        count++;
+        console.log(count);
+    }
+    this.decrementCounter=function(){
+        count--;
+        console.log(count);
+    }
+}
+
+var counter1 = new Counter();
+
+counter1.incrementCounter() // 1
+counter1.incrementCounter() // 2
+counter1.decrementCounter() // 1
+
+
+
+
+CALL BACKS FUNCTINS IN JS EVENT LISTENERS 14:
+
+...> JS is a synchronous and single-threaded language. which menas the code will be executed one line at a time 
+
+
+
+
+function x(){
+    
+}
+x(function y(){
+    
+})
+
+..> here the y function is the call back function.
+
+setTimeout(function(){
+    
+},)
+
+..> here the functions which we passsed in side the setTimeOut is called has the call back function.
+
+..> the settimeout will take the functions and attach a timer to it and stores some where.
+
+
+setTimeout(function (){
+    console.log("timer");
+    
+},5000)
+
+function x(y){
+    console.log("x")
+    y()
+    
+}
+
+x(function y(){
+    console.log("y");
+});
+
+..> js has only one Call Stack , we can call it has the MAIN THREAD,
+
+..> when we run the codes everything will go through  the call stack only.
+
+..> if we run the above code then we first x and y in to the call stack and after 5 seconds the we get the anonmous in to the call stack 
+
+
+..>> if our code has functionlit in which it takes 20-3- seconds to load or to do some functionalities , then js will stop every thing , this is called the BLOCKING THE MAIN THREAD.
+..> we can over come this by using the asynchronous functionlity in js 
+
+
+
+
+
+documnet.getElementById("clickMe").addEventListener('click',function(){
+    
+})
+
+..> here in the event listener in above the inside function is the call back functions only , which store some where, add when event occurs then this function is pushed in to the CALL STACK and executed.
+
+
+
+function add(){
+    let count=0;
+    document.getElementById("clickMe").addEventListener("click",function(){
+        console.log("Button Clicked",++count);
+        
+    });
+}
+
+add();
+
+..> this forms a closures here.
+
+..> due this closures , which are formed by the event listnere, they are heavy , they make the pages slow, 
+
+..> 

@@ -1,0 +1,976 @@
+................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+
+AARAYS IN JS:
+..................> 
+
+.> Note: Array() can be called with or without new. Both create a new Array instance.
+
+
+
+
+console.log([]) //[]
+console.log(typeof([])) // object
+
+a=new Array(1,23,4)
+
+console.log(a)
+console.log(a.length)
+console.log(typeof(a)) // object
+
+b=Array(23,45)
+console.log(b)
+console.log()
+
+
+a1=Array(2)
+
+console.log(a1) // [ <2 empty items> ]
+//..> when we define the array with the single element with the Array() construcctor then it is consdidered has its length, but not the, elements here.
+
+console.log(a1[0]) // undefined
+
+//..> here the above condition is  only for the numbers , but not with the strings.
+d1=Array("1");
+console.log(typeof(d1))
+console.log(d1);
+console.log(d1[0]);
+console.log(d1.length)
+
+
+
+a2=[1]
+console.log(a2)
+console.log(a2[0])
+console.log(a2.length)
+
+
+/// Shollow coping: 
+// ..> here modifcations are reflected on both the objects/arrays
+
+let q1=[22,33,44,55];
+let q2=q1; // shollow coping 
+
+console.log(q1);
+console.log(q2);
+
+q2[0]=9000
+
+console.log(q1);
+console.log(q2);
+
+
+NOTE : hallow copies are generally faster and more memory-efficient than deep copies because they only copy references. 
+
+
+/// Deep coping :
+
+let w1=[11,22,33,44];
+
+// ..> here modifcations are not reflected on both the objects/arrays
+
+let w2=[...w1]; // deeep coping
+
+//let w2=new Array(...w1)
+
+console.log(w1);
+console.log(w2);
+
+w2[0]=8000;
+
+console.log(w1);
+console.log(w2);
+
+
+NOTE : When you want to ensure that your data remains immutable, deep copies can help prevent unintended mutations. 
+
+...> The spread operator is used to create the new object , instead of modifying the old objects.
+
+
+ // showlow coping in objects
+
+
+ob1={
+    name:"sai",
+    age:10
+}
+
+console.log("before coping",ob1); // before coping { name: 'sai', age: 10 }
+
+ob2=ob1; /// showlow coping
+console.log("after coping",ob1) // after coping { name: 'sai', age: 10 }
+console.log("after coping",ob2) // after coping { name: 'sai', age: 10 }
+
+ob2.name="sachin"
+console.log("after coping",ob1) // after coping { name: 'sachin', age: 10 }
+console.log("after coping",ob2) // after coping { name: 'sachin', age: 10 }
+
+
+
+// Deep coping in objects:
+
+
+
+o1={
+    name:"sai",
+    age:10
+}
+
+console.log("before coping",o1); // before coping { name: 'sai', age: 10 }
+
+//o2={...o1}; /// deep coping
+
+//o2=new Object({...o1})
+
+
+console.log("after coping",o1) // after coping { name: 'sai', age: 10 }
+console.log("after coping",o2) // after coping { name: 'sai', age: 10 }
+
+o2.name="sachin"
+console.log("after coping",o1) // after coping { name: 'sachin', age: 10 }
+console.log("after coping",o2) // after coping { name: 'sachin', age: 10 }
+
+
+
+....> ARRAY OBJECTS:
+
+0 #) Array.from( ) :
+
+..> The Array.from() static method creates a new, shallow-copied Array instance from an iterable or array-like object.
+
+// syntax:
+// Array.from(arrayLike)
+// Array.from(arrayLike, mapFn)
+// Array.from(arrayLike, mapFn, thisArg)
+
+
+
+w1=Array.from("sachin")
+
+console.log(w1) //[ 's', 'a', 'c', 'h', 'i', 'n' ]
+console.log(w1[0]) //s
+console.log(w1.length)
+
+console.log(Array.from(["s", "a", "i"], (x) => x + x)); // [ 'ss', 'aa', 'ii' ]
+
+
+function f(a,b,c){
+    return Array.from(arguments)
+}
+f(11,22,33)
+
+// ..> The Array.fromAsync() static method creates a new, shallow-copied Array instance from an async iterable, iterable, or array-like object.
+
+
+ 
+1 #) Array.isArray(a1);
+
+.> The Array.isArray() static method determines whether the passed value is an Array.
+
+.> Array.isArray() checks if the passed value is an Array.
+
+
+a1=[11,22,33]
+
+console.log(Array.isArray(a1)) // true
+console.log(Array.isArray([""])) // true
+console.log(Array.isArray("[]")) // false
+console.log(Array.isArray(new Array(5))) // true
+console.log(Array.isArray(true)); // false
+
+
+
+true cases :
+---------------- >
+
+
+// all following calls return true
+Array.isArray([]);
+Array.isArray([1]);
+Array.isArray(new Array());
+Array.isArray(new Array("a", "b", "c", "d"));
+Array.isArray(new Array(3));
+// Little known fact: Array.prototype itself is an array:
+Array.isArray(Array.prototype);
+
+
+
+false cases :
+----------------->
+
+// all following calls return false
+Array.isArray();
+Array.isArray({});
+Array.isArray(null);
+Array.isArray(undefined);
+Array.isArray(17);
+Array.isArray("Array");
+Array.isArray(true);
+Array.isArray(false);
+Array.isArray(new Uint8Array(32));
+// This is not an array, because it was not created using the
+// array literal syntax or the Array constructor
+Array.isArray({ __proto__: Array.prototype });
+
+
+2 #)  Array.of() :
+
+.> The Array.of() static method creates a new Array instance from a variable number of arguments, regardless of number or type of the arguments.
+
+
+console.log(Array.of(22,44,55,"sai",true)); // [ 22, 44, 55, 'sai', true ]
+console.log(Array.of()); // []
+console.log(Array.of("")) // ['']
+console.log(Array.of("").length) // 1
+
+note: The difference between Array.of() and the Array() constructor is in the handling of single arguments: Array.of(7) creates an array with a single element, 7, whereas Array(7) creates an empty array with a length property of 7.
+
+3 #) Array.prototype.at()
+
+..> The at() method of  takes an index value and returns the item at that index, allowing for positive and negative integers. 
+
+..> Negative integers count back from the last item in the array.
+
+
+a1=[11,22,33,44,55];
+
+console.log(a1.at(0)); // 11
+
+console.log(a1.at(2)); //33
+
+console.log(a1.at(-1)) // 55
+
+console.log(a1.at(12)) // undefined
+
+
+4 #)  Array.prototype.concat()
+
+..> The concat() method of Array instances is used to merge two or more arrays. 
+..> This method does not change the existing arrays, but instead returns a new array.
+
+
+
+a1=[11,22,33,44,55];
+
+a2=[66,77,88,99,100];
+
+a3=[200,300,400,500]
+
+console.log(a1.concat(a2,a3,....an)) ;
+
+console.log(a1.concat("sai",true,[2000,1000])) ;
+
+console.log([1, , 3,"sai"].concat([4, 5])); // [1, empty, 3,'sai,' 4, 5]
+
+
+
+5 #) Array.prototype.copyWithin() :
+
+...> The copyWithin() method of Array instances shallow copies part of this array to another location in the same array and returns this array without modifying its length.
+
+syntax:
+------------- >: 
+copyWithin(target, start)
+copyWithin(target, start, end)
+
+
+
+
+
+a1=["A","B","C","D","E"]
+
+
+copyWithin(target, start, end)
+console.log(a1.copyWithin(0,3,4));  // [ 'D', 'B', 'C', 'D', 'E' ]
+
+
+copyWithin(target, start)
+console.log(a1.copyWithin(0,3)) // [ 'D', 'E', 'C', 'D', 'E' ]
+
+..> here end not specified so here , the elemets are started to move  till end. 
+..> here 3 index is D , and the target index is 0, so from the 0th index , elements are creating , like in the 0th index, we got the 'D' , and in the 1st index we got the 'E', SO HERE it is stopped because , there is not elements ,here , so it is stopped.
+
+..> 
+
+6 #) Array.prototype.entries() :
+
+..> The entries() method returns a new array iterator object that contains the key/value pairs for each index in the array. 
+
+
+
+a1=["A","B","C","D","E","F"];
+
+const res=a1.entries();
+
+// console.log(res.next().value) // [ 0, 'A' ]
+// console.log(res.next().value) // [ 1, 'B' ]
+
+for( let i=0; i<=a1.length-1;i++){
+    console.log(res.next().value)
+}
+
+
+
+.............> :
+
+for ( const [index,element] of a1.entries())
+
+{
+    console.log(index,element)
+}
+
+
+7 #) Array.prototype.every() : return boolean
+
+..> The every() method tests whether all elements in the array pass the test implemented by the provided function.
+..> if all the tests are passed then it will return the, It returns a Boolean value.
+
+..> 
+
+s1=[22,33,11,12,13,14,154]
+
+function fun(element){
+    return element<50
+}
+
+
+console.log(s1.every(fun)) // false : if have the 154;
+
+8 # Array.prototype.fill() :
+
+..> The fill() method of Array instances changes all elements within a range of indices in an array to a static value. It returns the modified array.
+
+
+a1=[22,33,11,12,13,14,15];
+
+console.log(a1.fill(0,2)) // [22, 33, 0, 0,0,  0, 0 ]
+
+console.log(a1) // // [22, 33, 0, 0,0,  0, 0 ] here it completely modifed the origin al array;
+
+console.log(a1.fill(["sai"],2,5)); // [ 22, 33, [ 'sai' ], [ 'sai' ], [ 'sai' ], 0, 0 ]
+
+console.log(a1.fill('true',)) // ['true', 'true','true', 'true',true', 'true',
+  'true'
+]
+
+9 # Array.prototype.filter() : return the modifed array
+
+..> The filter() method of Array instances creates a shallow copy of a portion of a given array, filtered down to just the elements from the given array that pass the test implemented by the provided function.
+
+
+const words = ["spray", "elite", "exuberant", "destruction", "present","sai"];
+
+function fun(element){
+    return element.length<10;
+}
+
+console.log(words.filter(fun)); // return the conditinal array
+// ..> here filter does not mofied the original array
+console.log(words) // returns original array
+
+
+..> The filter() method is an iterative method. It calls a provided callbackFn function once for each element in an array, and constructs a new array of all the values for which callbackFn returns a truthy value.
+
+
+10 # Array.prototype.find() :
+
+..> The find() method of Array instances returns the first element in the provided array that satisfies the provided testing function. 
+..> If no values satisfy the testing function, undefined is returned.
+
+..> callbackFn is invoked for every index of the array, 
+
+
+find(callbackFn)
+find(callbackFn, thisArg)
+
+
+
+
+f1=[10,20,30,40,50,40];
+
+function fun(element){
+    return element==40
+}
+
+console.log(f1.find(fun)) /// 40 
+
+
+11 # Array.prototype.findIndex() :
+
+findIndex(callbackFn)
+findIndex(callbackFn, thisArg)
+
+
+..> The findIndex() method of Array instances returns the index of the first element in an array that satisfies the provided testing function.
+..> If no elements satisfy the testing function, -1 is returned.
+
+
+
+f1=[10,20,30,40,50,40,"sai"];
+
+
+function fun (element){
+    return element==40
+}
+console.log(f1.findIndex(fun)) // 3
+
+
+
+
+12 # Array.prototype.findLast() :  // return the value ! not index
+
+findLast(callbackFn)
+findLast(callbackFn, thisArg)
+
+
+..> The findLast() method of Array instances iterates the array in reverse order and returns the value of the first element that satisfies the provided testing function. If no elements satisfy the testing function, undefined is returned.
+
+
+f1=[10,20,30,40,50,40,"sai"];
+
+
+function fun (element){
+    return element<40 // 30 / it will search from the last 
+}
+console.log(f1.findLast(fun))
+
+
+..> The findLast() method is an iterative method. It calls a provided callbackFn function once for each element in an array in descending-index order, until callbackFn returns a truthy value. 
+
+..> findLast() then returns that element and stops iterating through the array. If callbackFn never returns a truthy value, findLast() returns undefined.
+
+13 # Array.prototype.findLastIndex() :
+
+
+findLastIndex(callbackFn)
+findLastIndex(callbackFn, thisArg)
+
+..> The findLastIndex() method of Array instances iterates the array in reverse order and returns the index of the first element that satisfies the provided testing function.
+..>  If no elements satisfy the testing function, -1 is returned. 
+
+
+f1=[10,20,30,35,40,50,40,"sai"];
+
+
+function fun (element){
+    return element<40 // 30 / it will search from the last  return the index 
+}
+console.log(f1.findLastIndex(fun))
+
+
+..> if not found then it will return the -1
+
+14 # Array.prototype.flat() :
+
+
+flat()
+flat(depth)
+
+..> The flat() method creates a new array with all sub-array elements concatenated into it recursively up to the specified depth.
+
+
+
+15 # Array.prototype.flatMap() :
+
+...>  The flatMap() method of Array instances returns a new array formed by applying a given callback function to each element of the array, and then flattening the result by one level. 
+...> It is identical to a map() followed by a flat() of depth 1 .
+
+flatMap(callbackFn)
+flatMap(callbackFn, thisArg)
+
+
+16 # Array.prototype.forEach() :
+
+...> The forEach() method of Array instances executes a provided function once for each array element. 
+
+...> The forEach() method is an iterative method. It calls a provided callbackFn function once for each element in an array in ascending-index order.
+
+ forEach(callbackFn)
+ forEach(callbackFn, thisArg)
+
+..> callbackFn is invoked only for array indexes which have assigned values. It is not invoked for empty slots .
+
+..> 
+
+
+
+16 # Array.prototype.includes() :
+
+..> The includes() method of Array instances determines whether an array includes a certain value among its entries, returning true or false as appropriate.
+
+..> 
+
+
+let b1=[11,22,33];
+
+syn: includes(searchElement)
+
+console.log(b1.includes(22)); // True
+console.log(b1.includes(30)); // false
+console.log(b1.includes(true)); // false
+console.log(b1.includes(undefined)) // false 
+
+
+includes(searchElement, fromIndex);
+
+console.log(b1.includes(11,1)) // false
+
+console.log(b1.includes(22,0)) // true
+
+..> here  the second element is the index from which i need to search the element.
+
+17 #  Array.prototype.indexOf() : Return the index or else it will give the -1
+
+..> The indexOf() method of Array instances returns the first index at which a given element can be found in the array, or -1 if it is not present. 
+
+NOTE ELEMENT: The indexOf() method skips empty slots in sparse arrays. 
+
+const beasts = ["ant", "bison", "camel", "duck", "bison"];
+
+
+indexOf(searchElement)
+
+console.log(beasts.indexOf("bison"));
+// Expected output: 1
+
+
+console.log(beasts.indexOf("giraffe"));
+// Expected output: -1
+
+let b1=[11,22,33,44,55,66,77];
+
+console.log(b1.indexOf(111)) //-1 if element not found
+
+
+indexOf(searchElement, fromIndex);
+
+console.log(b1.indexOf(33,3)) // search index also
+
+
+..> console.log([1, , 3].indexOf(undefined)); // -1
+
+
+18 # Array.prototype.join() :
+
+..> The join() method of Array instances creates and returns a new string by concatenating all of the elements in this array, separated by commas or a specified separator string. 
+..> If the array has only one item, then that item will be returned without using the separator.
+
+
+
+const e = ["Fire", "Air", "Water"];
+
+console.log(e.join()); // Fire,Air,Water
+console.log(e.join("")); // FireAirWater
+console.log(e.join("-")); // Fire-Air-Water
+console.log(typeof(e.join())) // string
+
+
+ex:2 :
+
+const e=[11,22,33]
+
+console.log(e.join()); //11,22,33
+console.log(e.join("")); // 112233
+console.log(e.join("-")); // 11-22-33
+console.log(typeof(e.join())) // string
+
+...> The string conversions of all array elements are joined into one string. If an element is undefined or null, it is converted to an empty string instead of the string "null" or "undefined".
+
+
+19 # Array.prototype.keys() :
+
+..> The keys() method returns a new array iterator object that contains the keys for each index in the array.
+
+
+const q1=["sai","ram","suman"]
+
+console.log(q1.keys()) // Object [Array Iterator] {}
+
+for( let i in q1){
+    console.log(i)
+
+}
+0,1,2;
+
+
+const arr = ["a", , "c"];
+const sparseKeys = Object.keys(arr);
+const denseKeys = [...arr.keys()];
+console.log(sparseKeys); // ['0', '2']
+console.log(denseKeys); // [0, 1, 2]
+
+20 # Array.prototype.lastIndexOf() :
+
+
+....> The lastIndexOf() method of Array instances returns the last index at which a given element can be found in the array, or -1 if it is not present.
+note : The array is searched backwards, starting at fromIndex.
+
+...> 
+
+const animals=["dog","tiger","caWt","cow","cat","snake","dog"]
+
+//lastIndexOf(searchElement)
+console.log(animals.lastIndexOf("cat")); // 4
+console.log(animals.lastIndexOf("dog"));  // 6
+
+
+
+//lastIndexOf(searchElement, fromIndex)
+...> here the elements are serached from the backwards onwards , and at the same time, if we provided the index then from that index it will search from the backwards.
+
+console.log(animals.lastIndexOf("cat",2)); //3
+
+
+//NOTE : so lastIndexOf() always returns -1 when searchElement is NaN.
+
+
+21 # Array.prototype.map() : // return the new Array 
+
+...> The map() method of Array instances creates a new array populated with the results of calling a provided function on every element in the calling array. 
+
+
+NOTE : here cal bakcs are invoked only for the callbackFn is invoked only for array indexes which have assigned values. It is not invoked for empty slots in s
+
+map(callbackFn)
+map(callbackFn, thisArg)
+
+
+let a1=[11,22,33,44,55]
+
+let res1=a1.map((element) =>{
+    return element*2
+    
+} )
+console.log(res1)
+
+
+ let a1=["11",22,"33",44,55]
+
+let res=a1.map((element)=>{
+    return element*2
+    
+}) // here we are getting the number only even for the string..
+
+console.log(res) // [ 22, 44, 66, 88, 110 ]
+
+22 # Array.prototype.pop() : .> it will remove the last element and return the dleted element
+
+..> The pop() method of Array instances removes the last element from an array and returns that element. This method changes the length of the array.
+
+
+//let a1=["11",22,"33",44,55]
+// console.log(a1.pop()) // 55
+
+// let a1=[]
+// console.log(a1.pop()) // undefined
+
+let a1=[""]
+console.log(a1.pop(),"sai") // ""
+
+
+23 # Array.prototype.push() : original array only modified.
+
+...> The push() method of Array instances adds the specified elements to the end of an array and returns the new length of the array.
+
+
+let a1=[11,22,33,44];
+
+console.log(a1) // [ 11, 22, 33, 44 ]
+console.log(a1.push(66)) // 5 returns the length
+console.log(a1) /// [ 11, 22, 33, 44, 66 ]
+
+
+console.log(a1.push(100,200,300,400)) //9
+console.log(a1) // [ 11,  22,  33,44,66,100,200,300,400]
+
+
+const s1=[11,22,33];
+
+const s2=[44,55,66];
+
+console.log(s1.push(...s2) ) // merging two arrays // [ 11, 22, 33, 44, 55, 66 ]
+
+console.log(s1)
+
+24 # Array.prototype.reduce() :
+
+
+
+25 # Array.prototype.reverse() : here the same array is modifed 
+
+..> The reverse() method of Array instances reverses an array in place and returns the reference to the same array, the first array element now becoming the last, and the last array element becoming the first.
+
+
+const a1=[1,2,3,4,5];
+
+console.log(a1.reverse()) // [ 5, 4, 3, 2, 1 ]
+
+
+
+
+..> // The reverse() method returns reference to the original array, so mutating the returned array will mutate the original array as well.
+
+const num=[22,33,44,55]
+
+const res=num.reverse(); /// [ 55, 44, 33, 22 ]
+console.log(res)
+res[0]=9000;
+
+console.log(res) // [ 9000, 44, 33, 22 ]
+console.log(num) // [ 9000, 44, 33, 22 ]
+
+
+26 # Array.prototype.shift() : // deleted the first element and return the deleted element.
+
+..> The shift() method of Array instances removes the first element from an array and returns that removed element. This method changes the length of the array.
+
+
+const num=[22,33,44,55]
+ 
+const res=num.shift();
+
+console.log(res) // 22
+console.log(num) // [ 33, 44, 55 ]
+
+
+
+..> it will return the undefied if the array is the empty:
+
+const num=[]
+const res=num.shift();
+
+console.log(res) // undefined
+
+
+27 #  Array.prototype.slice()
+
+
+
+syntax: slice(start)
+syntax: slice(start, end)
+
+const animals = ["ant", "bison", "camel", "duck", "elephant"];
+
+console.log(animals.slice(2));
+// Expected output: Array ["camel", "duck", "elephant"]
+
+console.log(animals.slice(2, 4));
+// Expected output: Array ["camel", "duck"]
+
+console.log(animals.slice(1, 5));
+// Expected output: Array ["bison", "camel", "duck", "elephant"]
+
+console.log(animals.slice(-2));
+// Expected output: Array ["duck", "elephant"]
+
+console.log(animals.slice(2, -1));
+// Expected output: Array ["camel", "duck"]
+
+console.log(animals.slice());
+// Expected output: Array ["ant", "bison", "camel", "duck", "elephant"]
+
+
+
+28 # Array.prototype.some() :
+
+some(callbackFn)
+some(callbackFn, thisArg)
+ 
+..> The some() method tests whether at least one element in the array passes the test implemented by the provided function.
+..>  It returns true if, in the array, it finds an element for which the provided function returns true; otherwise it returns false. 
+..> It doesn't modify the array.
+
+const s1=[11,22,33,44,55]
+
+function fun(element)
+{
+   return element>844 
+}
+
+console.log(s1.some((fun))) // false , 
+
+..> It calls a provided callbackFn function once for each element in an array, until the callbackFn returns a truthy value. 
+..> If such an element is found, some() immediately returns true and stops iterating through the array. Otherwise, if callbackFn returns a falsy.
+
+29 # Array.prototype.sort() :
+
+
+..> The sort() method of Array instances sorts the elements of an array in place and returns the reference to the same array, now sorted. 
+..> The default sort order is ascending.
+
+
+30 # Array.prototype.splice() :
+
+..> he splice() method of Array instances changes the contents of an array by removing or replacing existing elements and/or adding new elements .
+
+
+splice(start)
+splice(start, deleteCount)
+splice(start, deleteCount, item1)
+splice(start, deleteCount, item1, item2)
+splice(start, deleteCount, item1, item2, /* …, */ itemN)
+
+splice(indexStart, no Of elements to delete , item1, item2, item3 );
+
+const d1=["sai", "sanju",11,22,33,44,55];
+
+d1.splice(1,0,"raina")
+console.log(d1)//[ 'sai','raina','sanju',11,22,33,44, 55]
+
+d1.splice(0,1)
+console.log(d1) //[ 'raina','sanju', 11, 22, 33, 44, 55 ]
+
+d1.splice(1,0,true,"undefined")
+console.log(d1)//['raina',true,'undefined','sanju',11,22,33,44,55]
+
+d1.splice(0,5);
+console.log(d1) // [ 22, 33, 44, 55 ]
+
+
+
+31 # Array.prototype.toLocaleString() :
+
+...> The toLocaleString() method of Array instances returns a string representing the elements of the array. The elements are converted to strings using their toLocaleString methods and these strings are separated by a locale-specific string.
+
+
+const s1= new Date()
+
+console.log(s1) // 2025-03-31T13:42:32.973Z
+
+let l1=s1.toLocaleString("en", { timeZone: "UTC" });
+console.log(l1) // 3/31/2025, 1:42:32 PM
+
+let l2=s1.toLocaleString("en");
+console.log(l2) // 3/31/2025, 1:42:32 PM
+
+let l3=s1.toLocaleString("en");
+console.log(l3.split(","));//[ '3/31/2025','1:42:32 PM']
+
+let l4=s1.toLocaleString("en");
+console.log(l4.split(",")[0]) // 3/31/2025
+
+let l5=s1.toLocaleString("en");
+console.log(typeof(l5.split(",")[0])) // string
+
+
+32 # Array.prototype.toReversed() : Creates the new array , instead of modifying the existing array.
+
+...> The toReversed() method  It returns a new array with the elements in reversed order.
+
+const f1=[11,22,33,44,55];
+
+console.log(f1) // [ 11, 22, 33, 44, 55 ]
+console.log(f1.toReversed()) // [ 55, 44, 33, 22, 11 ]
+console.log(f1) // [ 11, 22, 33, 44, 55 ]
+
+NOTE : The return value of toReversed() is never sparse. Empty slots become undefined in the returned array.
+
+console.log([1, , 3].toReversed()); // [3, undefined, 1]
+console.log([1, , 3, 4].toReversed()); // [4, 3, undefined, 1]
+
+33 # Array.prototype.toSorted() : Creates the new array , insted of modifing the existing array
+
+...> 
+
+const months = ["Mar", "Jan", "Feb", "Dec"];
+const sortedMonths = months.toSorted();
+console.log(sortedMonths); // ['Dec', 'Feb', 'Jan', 'Mar']
+console.log(months); // ['Mar', 'Jan', 'Feb', 'Dec']
+
+const values = [1, 10, 21, 2];
+const sortedValues = values.toSorted((a, b) => a - b);
+console.log(sortedValues); // [1, 2, 10, 21]
+console.log(values); // [1, 10, 21, 2]
+
+
+
+NOTE : Empty slots are sorted as if they have the value undefined. They are always sorted to the end of the array.
+
+
+console.log(["a", "c", , "b"].toSorted()); // ['a', 'b', 'c', undefined]
+console.log([, undefined, "a", "b"].toSorted()); // ["a", "b", undefined, undefined]
+
+
+34 # Array.prototype.toSpliced() :
+
+...> The toSpliced() method of Array instances is the copying version of the splice() method. It returns a new array with some elements removed and/or replaced at a given index.
+
+synt : toSpliced(start, skipCount, item1, item2, /* …, */ itemN) 
+
+
+const f1=[11,22,33,44,55];
+
+console.log(f1.toSpliced(0,0,"sai"))//['sai',11,22,33,44,55]
+
+console.log(f1) // [ 11, 22, 33, 44, 55 ]
+
+console.log(f1.toSpliced(0,1)) // [ 22, 33, 44, 55 ]
+
+console.log(f1) // [ 11,22, 33, 44, 55 ]
+
+34 # Array.prototype.toString() :
+
+...> The toString() method of Array instances returns a string representing the specified array and its elements. 
+
+...> A string representing the elements of the array. 
+
+...> returns A string representing the elements of the array.
+
+const f1=[11,22,"abc","44","55"];
+
+
+console.log(typeof(f1[0].toString())) // string
+
+console.log(typeof(f1)) // object
+
+console.log(typeof(f1[0])) // number
+
+
+
+const matrix = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+];
+
+console.log(matrix.toString()); // 1,2,3,4,5,6,7,8,9
+
+
+
+
+35 # Array.prototype.unshift() :
+
+...> The unshift() method of Array instances adds the specified elements to the beginning of an array and returns the new length of the array. 
+
+
+
+unshift()
+unshift(element1)
+unshift(element1, element2)
+unshift(element1, element2, /* …, */ elementN)
+
+
+const d1=[11,22,33,44,55];
+
+console.log(d1.unshift(100))//Return the lenght of the modified array
+
+console.log(d1) // [ 100, 11, 22, 33, 44, 55 ]
+
+console.log(d1.unshift(200,300,400,500))
+console.log(d1)// [200,300,400,500,100,11,22,33,44,55]
+
+
+
+
+36 : Array.prototype.values()
+
+
+....> The values() method of Array instances returns a new array iterator object that iterates the value of each item in the array.
+ 
+
+const array1 = ["a", "b", "c"];
+const i = array1.values();
+
+console.log(i) // Object [Array Iterator] {}
+
+
+...............................................>..............................................................>........................................................ ....................................................>..............................................;;;;;;;;;;;;sssssss................................ >............... -..............................................................................................,,,,,,,,,,...............................................................

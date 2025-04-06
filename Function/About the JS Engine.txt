@@ -1,0 +1,120 @@
+/ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+..> JS ENGINE : 
+
+JS Runtime Environment :it has every thing to run the js code:
+
+..> it has the JS Engine , APIs,  CallBackQueue, EventLoop , MicrotaskQueue.
+
+..> Browser executes the js code because , it has the JS Runtime Environment.
+
+
+
+NODEJS has the JS Runtime Environment.
+
+different browsers use the different js engines ,
+
+..> google /nodejs :v8
+..> micrisoft edge: chakra
+..> firefox : SpiderMonkey
+ 
+ ***
+ .> Even we can create  our own js .but we need to follow the ECMA Script Standards.
+ 
+ JS Engine , it is not a MACHINE .
+ 
+JS ENGINE ARCHTECTURE:
+
+ js engine is nothing but the code only .
+ 
+ .> it will go through the 
+ CODE
+ PARSING
+ COMPILATION
+ EXECUTION
+ 
+ 
+ in this PARSING the code will be , converted in to the 
+ AST ..> Abstacrt syntax TREE
+ 
+ for this line :
+ 
+ let a="sachin reddy "
+ 
+ the AST , we can seee here like this 
+ .> :https://astexplorer.net/
+ 
+ 
+ 
+ {
+  "type": "Program",
+  "start": 0,
+  "end": 194,
+  "body": [
+    {
+      "type": "VariableDeclaration",
+      "start": 180,
+      "end": 194,
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "start": 184,
+          "end": 194,
+          "id": {
+            "type": "Identifier",
+            "start": 184,
+            "end": 185,
+            "name": "a"
+          },
+          "init": {
+            "type": "Literal",
+            "start": 186,
+            "end": 194,
+            "value": "sachin",
+            "raw": "\"sachin\""
+          }
+        }
+      ],
+      "kind": "let"
+    }
+  ],
+  "sourceType": "module"
+}
+
+...................................................
+ next code goes to the compilation:
+ 
+ .> JS have teh JIT Compiler:
+ js uses both the COMPILER, INTERPRETTER.
+ 
+ After teh PARSING, we get the AST
+ .> ast code given to the Interpretter, while interpretter working on the ast code , Compiler comes in to the play, where, it will Optimise the code
+
+
+ 
+ 
+ 
+ we have the Interpretter:
+ .> code executes line by line. Code Fastly executed.
+ 
+ WE HAVE THE COMPILER :
+ .> code executeds whole has at a time . Slow execution
+ 
+ 
+ next the code goes to the EXECUTION Stage:
+ .> here two things happen
+ 1) Memory Creation, 
+ 2) CALL-Stack
+ 
+ 
+ ..> It will has the Garbage Collections.also in the JS Engine.
+ Garbage Collections uses the Mark And Sweep Algorithm.
+ 
+ .> In lining.
+ .> Copy elision.
+ .> inline caching.
+ 
+ 
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+

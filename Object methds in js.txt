@@ -1,0 +1,1541 @@
+.> JavaScript is a cross-platform, object-oriented scripting language used to make webpages interactive
+
+..> There are also more advanced server side versions of JavaScript such as Node.js, which allow you to add more functionality to a website than downloading files
+
+..> Client-side JavaScript extends the core language by supplying objects to control a browser and its Document Object Model (DOM). For example, client-side extensions allow an application to place elements on an HTML form and respond to user events such as mouse clicks, form input, and page navigation.
+
+..> Server-side JavaScript extends the core language by supplying objects relevant to running JavaScript on a server. For example, server-side extensions allow an application to communicate with a database, provide continuity of information from one invocation to another of the application, or perform file manipulations on a server.
+
+..> JavaScript supports a runtime system
+
+..> JavaScript has a prototype-based object model instead of the more common class-based object model. The prototype-based model provides dynamic inheritance; that is, what is inherited can vary for individual objects. JavaScript also supports functions without any special declarative requirements. Functions can be properties of objects, executing as loosely typed methods.
+
+..> (Note that you may need to wrap the object literal in parentheses if the object appears where a statement is expected, so as not to have the literal be confused with a block statement.)
+
+
+..> Objects created with initializers are called plain objects, because they are instances of Object, but not any other object type.
+
+..> Using the Object.create() method
+Objects can also be created using the Object.create() method. This method can be very useful, because it allows you to choose the prototype object for the object you want to create, without having to define a constructor function.
+
+...> Like JavaScript variables, property names are case sensitive
+
+...> we can aces the keys data by using the dot notation and bracket notation.
+
+...> 
+
+
+
+const myObj={}
+myObj.type="Dot syntax for a key named type";
+
+myObj["name lastname"]="this name has a space"
+
+
+myObj[{}]="This key is object anotherObj";
+'This key is object anotherObj'
+
+
+console.log(myObj)
+
+console.log(myObj."")
+ Unexpected stringUnderstand this errorAI
+console.log(myObj.type))
+ Uncaught SyntaxError: Unexpected token ')'Understand this errorAI
+console.log(myObj[0]))
+ Uncaught SyntaxError: Unexpected token ')'
+
+
+console.log(Object.values(myObj))
+here iam getting the array of all values.
+
+[object Object]: 'This key is object anotherObj' : we get this in the hwen we console.log(myObj)
+
+
+
+str="myStrings"
+
+myObj[str]="this is iam sachin";
+
+console.log(myObj);
+
+{type: 'Dot syntax for a key named type', name lastname: 'this name has a space', "": 'this key has the string empyty', [object Object]: 'This key is object anotherObj', myStrings: 'this is iam sachin'}
+
+
+console.log(myObj.str); // undefined
+
+console.log(myObj[str]); // 'This key is in variable str'
+
+
+console.log(myObj[0]); // undefined
+
+
+
+const myObj= {
+
+type: 'Dot syntax for a key named type', 
+name lastname: 'this name has a space', 
+"": 'this key has the string empyty', 
+[object Object]: 'This key is object anotherObj', 
+myStrings: 'this is iam sachin'
+
+}
+
+console.log(myObj.name lastname);
+Uncaught SyntaxError: missing ) after argument list
+
+NOTE: when we assign the object has the key in the javascript: then internally the JavaScript calls the toString() method for that Obj, and use the resulting string as the new key.
+
+...> 
+
+
+
+let propertyName = "make";
+myCar[propertyName] = "Ford";
+
+// access different properties by changing the contents of the variable
+propertyName = "model";
+myCar[propertyName] = "Mustang";
+
+console.log(myCar); 
+
+
+console.log(Object.keys(myObj));
+['type', 'name lastname', '', '[object Object]', 'myStrings'] // return an array of keys
+
+
+
+console.log(Object.keys(myObj));
+['type', 'name lastname', '', '[object Object]', 'myStrings'] // return an array of values
+
+
+
+// Creates a new object, myObj, with two properties, a and b.
+const myObj = new Object();
+myObj.a = 5;
+myObj.b = 12;
+
+
+
+
+// Removes the a property, leaving myObj with only the b property.
+delete myObj.a;
+
+console.log("a" in myObj); // false
+
+console.log("b" in myObj); // true
+
+
+...> All objects in JavaScript inherit from at least one other object.
+
+. The object being inherited from is known as the prototype, and the inherited properties can be found in the prototype object of the constructor.
+
+
+
+..> A getter is a function associated with a property{ keys}  that gets the value of a specific property. 
+
+..>  A setter is a function associated with a property that sets the value of a specific property.
+
+const myObj={ a:7 ,get b() {return this.a+1 } , set c(x) {this.a=x/2} } ; 
+
+console.log(myObj);
+
+{a: 7, b:8}
+
+myObj.c=50; //for setter 
+
+console.log(myObj.a); // 25
+
+console.log(myObj); // {a: 25, b:27 }
+
+..> Getters and setters can also be added to an object at any time after creation using the Object.defineProperties() method.
+
+const myObj = { a: 0 };
+
+Object.defineProperties(myObj, {
+
+  b: {
+
+    get() {
+      return this.a + 1;
+    },
+  },
+
+  c: {
+
+    set(x) {
+      this.a = x / 2;
+    },
+
+  },
+});
+
+myObj.c = 10; 
+console.log(myObj.b); 
+
+COMPARING THE JS OBJECTS: 
+
+In JavaScript, objects are a reference type. Two distinct objects are never equal, even if they have the same properties.
+
+// Two variables, two distinct objects with the same properties
+const fruit = { name: "apple" };
+const anotherFruit = { name: "apple" };
+
+fruit == anotherFruit; // return false
+fruit === anotherFruit; // return false
+
+ 
+
+const fruit = { name: "apple" };
+const anotherFruit = fruit; 
+
+// Here fruit and anotherFruit are pointing to same object
+fruit == anotherFruit; // return true
+fruit === anotherFruit; // true
+
+
+console.log(Object()); // return a empty object: {}
+console.log(Object(null)); // return a empty object: {}
+console.log(Object(undefined)); // return a empty object: {}
+
+console.log(Object(1)); // return Number {1}
+console.log(Object("sai")); // String {'sai'} 
+returns :
+{
+
+0:"s",
+1:"a",
+2:"i"
+
+}
+
+$$$$$$$$$$$$$$$$ :
+
+When Object() is constructed but new.target is not the Object constructor itself, the behavior is slightly different — it initializes a new object with new.target.prototype as its prototype. Any argument value is ignored. This may happen, for example, when Object() is implicitly called via super() in the constructor of a class that extends Object. In this case, even if you pass a number to super(), the this value inside the constructor does not become a Number instance.
+
+const o = new Object(undefined);
+console.log(o); // returns {}
+
+const o = new Object(null);
+console.log(o); // returns {}
+
+const numberObj = new Number(1);
+console.log(numberObj); // returns Number {1}
+
+
+console.log(Object.keys(numberObj)); // returns empty array []
+console.log(typeof numberObj); // returns object
+
+
+########### Static methods :
+
+
+1) Object.assign(target, source1, source2, /* …, */ sourceN)
+
+The Object.assign() static method copies all enumerable own properties from one or more source objects to a target object. It returns the modified target object.
+
+
+const m1={a:1}
+
+console.log(m1); object
+
+const m2={b:2};
+
+const res=Object.assign(m1,m2);
+
+console.log(res); object {a: 1, b: 2}
+
+console.log(res==m1); // returns true
+
+console.log(res==m2); // return false
+
+
+const res=Object.assign("sai",m1,m2,m3);
+
+console.log(typeof(res)); //object
+
+console.log(res); // String {'sai', a: 1, b: 2, c: 3}0: "s"1: "a"2: "i"a: 1b: 2c: 3
+
+console.log(typeof(res)); //object
+
+console.log(Object.keys(res)); // ['0', '1', '2', 'a', 'b', 'c']
+
+const res=Object.assign(null,m1,m2,m3); // ERROR 
+
+const res=Object.assign(undefined,m1,m2,m3); // ERROR
+
+
+Merging objects :
+------------------- >
+
+const o1 = { a: 1 };
+const o2 = { b: 2 };
+const o3 = { c: 3 };
+
+const obj = Object.assign(o1, o2, o3);
+console.log(obj); // { a: 1, b: 2, c: 3 }
+console.log(o1); // { a: 1, b: 2, c: 3 }, target object itself is changed.
+console.log(o2); // {  b: 2},
+console.log(o3); // {  c: 3},
+
+
+...> All JavaScript objects inherit properties and methods from a prototype.
+
+
+Prototype Inheritance :
+------------------------- >
+
+All JavaScript objects inherit properties and methods from a prototype:
+
+Date objects inherit from Date.prototype
+Array objects inherit from Array.prototype
+Person objects inherit from Person.prototype
+
+
+The Object.prototype is on the top of the prototype inheritance chain:
+
+Date objects, Array objects, and Person objects inherit from Object.prototype.
+
+The JavaScript prototype property allows you to add new properties to object constructors:
+
+function Car(name,model,year){
+    this.name=name;
+    this.model=model;
+    this.year=year
+}
+
+Car.prototype.owner="sai";
+
+const res= new Car("kia","suv",2099)
+console.log(res);
+console.log(res.owner)
+
+
+2) Object.create() :
+
+The Object.create() static method creates a new object, using an existing object as the prototype of the newly created object.
+
+const person={
+    ishuman:false,
+    printIntro:function(){
+        console.log(`my name is ${this.name} and is iam human:${this.ishuman}`);
+	my name is sai and is iam human:true
+        
+    }
+};
+
+console.log(person) // { ishuman: false, printIntro: [Function: printIntro] }
+console.log(typeof(person)) // object
+
+const me=Object.create(person);
+
+//here person is the: "The object which should be the prototype of the newly-created object."
+
+me.name="sai";
+me.ishuman=true;
+
+me.printIntro();
+
+
+console.log(me) // { name: 'sai', ishuman: true }
+
+console.log(typeof(me)); // object
+
+console.log(Object.keys(me)) // [ 'name', 'ishuman' ]
+
+
+--------------------------- >:
+
+const m1={
+    
+name:"aa",
+roll:33,
+male:true
+}
+
+const res= Object.create(m1);
+
+res.school="vjit"
+
+console.log(m1); // { name: 'aa', roll: 33, male: true }
+console.log(res) // { school: 'vjit' }
+
+console.log(typeof(res)) //object
+console.log(Object.keys(res)) // return [ 'school' ]
+console.log(Object.values(res)) // return [ 'vjit' ]
+
+
+o = Object.create(null);
+
+console.log(o) // {}No properties
+
+console.log(typeof(o)) //object
+
+
+
+const p1=Object.create({name:"sai"});
+
+console.log(p1);
+
+ {}[[Prototype]]: Object name: "sai"[[Prototype]]: Objectconstructor:
+
+console.log(Object.keys(p1)); // return  []
+
+
+const o2 = Object.create(
+  {},
+  {
+    p: {
+      value: 42,
+      writable: true,
+      enumerable: true,
+      configurable: true,
+    },
+  },
+);
+
+$$$$$$$$$$$$ : To specify a property with the same attributes as in an initializer, explicitly specify writable, enumerable and configurable.
+
+console.log(o2) // { p: 42 }
+console.log(typeof(o2)); // object
+console.log(Object.keys(o2)); // [ 'p' ]
+console.log(Object.values(o2)); // [ 42 ]
+
+
+3) Object.defineProperties() :
+
+...> The Object.defineProperties() static method defines new or modifies existing properties directly on an object, returning the object.
+
+Object.defineProperties(obj, props)
+
+
+
+
+const obj1={}
+
+Object.defineProperties(obj1,{
+    
+    p1:{
+        value:11,
+        writable:true
+    },
+    p2:{
+        
+    }
+})
+
+console.log(obj1)
+console.log(obj1.p1)
+console.log(Object.keys(obj1));
+
+ex:2
+
+
+
+const m1={};
+
+Object.defineProperties(m1,{
+    p1:{
+        value:"sai",
+writable:true
+
+    },
+    p2:{
+        value:123
+    }
+    
+})
+
+console.log(m1);
+
+{p1: 'sai', p2: 123}
+[[Prototype]]: Object
+
+
+console.log(typeof(m1)) // object
+console.log(Object.keys(m1)) // []
+console.log(Object.values(m1)) // []
+
+
+
+
+
+differen between the the Object.defineProperties and Object.defineProperty with ia simple exmaple :
+
+
+oth Object.defineProperty and Object.defineProperties in JavaScript are methods used to define or modify properties of an object. The difference lies in the number of properties they handle at once:
+
+Object.defineProperty: This method is used to define a single property on an object.
+
+Object.defineProperties: This method allows defining multiple properties at once.
+
+
+
+let obj1 = {};
+Object.defineProperty(obj1, 'name', {
+    value: 'Alice',
+    writable: true,
+    enumerable: true,
+    configurable: true
+});
+console.log(obj1.name); // Output: Alice
+
+
+
+
+let obj2 = {};
+Object.defineProperties(obj2, {
+    name: {
+        value: 'Bob',
+        writable: true,
+        enumerable: true,
+        configurable: true
+    },
+    age: {
+        value: 25,
+        writable: true,
+        enumerable: true,
+        configurable: true
+    }
+});
+console.log(obj2.name); // Output: Bob
+console.log(obj2.age);  // Output: 25
+
+
+
+3) Object.value():
+
+
+
+// Array-like object with random key ordering
+// When using numeric keys, the values are returned in the keys' numerical order
+const arrayLikeObj2 = { 100: "a", 2: "b", 7: "c" };
+console.log(Object.values(arrayLikeObj2)); // ['b', 'c', 'a']
+
+
+
+4) Object.seal()
+
+..> The Object.seal() static method seals an object.
+
+..> A sealed object has a fixed set of properties: new properties cannot be added, existing properties cannot be removed, their enumerability and configurability cannot be changed, and its prototype cannot be re-assigned. Values of existing properties can still be changed as long as they are writable.
+
+
+const object1 = {
+  property1: 42,
+};
+
+Object.seal(object1);
+object1.property1 = 33;
+console.log(object1.property1);
+// Expected output: 33
+
+delete object1.property1; // Cannot delete when sealed // false
+console.log(object1.property1);
+// Expected output: 33
+
+
+..>  Private properties cannot be added or removed from the object, whether the object is sealed or not.
+
+
+
+Object.seal(1);
+// 1  
+
+
+5) Object.keys()
+
+..> The Object.keys() static method returns an array of a given object's own enumerable string-keyed property names.
+
+An array of strings representing the given object's own enumerable string-keyed property keys.
+
+
+
+const object = { a: 1, b: 2, c: 3 };
+
+for (const property in object) {
+  console.log(`${property}: ${object[property]}`);
+}
+
+// Expected output:
+// "a: 1"
+// "b: 2"
+// "c: 3"
+
+const object = { a: 1, b: 2, c: 3 };
+
+for (let i in object) {
+ // console.log(`${property}: ${object[property]}`);
+ 
+ console.log(i)
+ console.log(object[i])
+
+
+
+
+===================== >
+
+6) Object.preventExtensions() :
+
+..> The Object.preventExtensions() static method prevents new properties from ever being added to an object (i.e. prevents future extensions to the object). It also prevents the object's prototype from being re-assigned.
+
+
+
+const obj1={}
+
+Object.preventExtensions(obj1);
+
+Object.defineProperty(obj1,"name",{
+    value:"sai"
+});
+
+console.log(obj1) /// error 
+
+..> Note that the properties of a non-extensible object, in general, may still be deleted. Attempting to add new properties to a non-extensible object will fail, either silently or, in strict mode, throwing a TypeError.
+
+
+..> 
+Object.preventExtensions() only prevents addition of own properties. Properties can still be added to the object prototype.
+
+
+$$$$$$$ : 
+This method makes the [[Prototype]] of the target immutable; any [[Prototype]] re-assignment will throw a TypeError. This behavior is specific to the internal [[Prototype]] property; other properties of the target object will remain mutable.
+
+
+// Object.preventExtensions returns the object
+// being made non-extensible.
+const obj = {};
+const obj2 = Object.preventExtensions(obj);
+obj === obj2; // true
+
+// Objects are extensible by default.
+const empty = {};
+Object.isExtensible(empty); // true
+
+// They can be made un-extensible
+Object.preventExtensions(empty);
+Object.isExtensible(empty); // false
+
+
+
+Object.preventExtensions(1);
+// 1    
+
+
+7) Object.is():
+----------------------- >
+syntax: Object.is(value1, value2)
+
+..> The Object.is() static method determines whether two values are the same value.
+
+
+console.log(Object.is("kk",1))
+
+console.log(Object.is("kk",1))
+
+console.log(Object.is("kk",true))
+
+console.log(Object.is(1==1,true)) // true
+
+
+console.log(Object.is("1", 1));
+// Expected output: false
+
+console.log(Object.is(NaN, NaN));
+// Expected output: true
+
+console.log(Object.is(-0, 0));
+// Expected output: false
+
+const obj = {};
+console.log(Object.is(obj, {}));
+// Expected output: false
+
+console.log(Object.is(undefined,undefined))
+
+console.log(Object.is(null,null))
+
+
+ The === operator (and the == operator) treats the number values -0 and +0 as equal, but treats NaN as not equal to each other.
+
+// Case 1: Evaluation result is the same as using ===
+Object.is(25, 25); // true
+Object.is("foo", "foo"); // true
+Object.is("foo", "bar"); // false
+Object.is(null, null); // true
+Object.is(undefined, undefined); // true
+Object.is(window, window); // true
+Object.is([], []); // false
+const foo = { a: 1 };
+const bar = { a: 1 };
+const sameFoo = foo;
+Object.is(foo, foo); // true
+Object.is(foo, bar); // false
+Object.is(foo, sameFoo); // true
+
+// Case 2: Signed zero
+Object.is(0, -0); // false
+Object.is(+0, -0); // false
+Object.is(-0, -0); // true
+
+// Case 3: NaN
+Object.is(NaN, 0 / 0); // true
+Object.is(NaN, Number.NaN); // true
+
+
+8) Object.isExtensible() :
+
+The Object.isExtensible() static method determines if an object is extensible (whether it can have new properties added to it).
+
+
+
+const object1 = {};
+
+console.log(Object.isExtensible(object1));
+// Expected output: true
+
+Object.preventExtensions(object1);
+
+console.log(Object.isExtensible(object1));
+// Expected output: false
+
+
+Object.isExtensible(obj) :
+
+Objects are extensible by default: they can have new properties added to them, and their [[Prototype]] can be re-assigned. An object can be marked as non-extensible using one of Object.preventExtensions(), Object.seal(), Object.freeze(), or Reflect.preventExtensions().
+
+
+
+// New objects are extensible.
+const empty = {};
+Object.isExtensible(empty); // true
+
+// They can be made un-extensible
+Object.preventExtensions(empty);
+Object.isExtensible(empty); // false
+
+// Sealed objects are by definition non-extensible.
+const sealed = Object.seal({});
+Object.isExtensible(sealed); // false
+
+// Frozen objects are also by definition non-extensible.
+const frozen = Object.freeze({});
+Object.isExtensible(frozen); // false
+
+
+Object.isExtensible(1);
+// false     
+
+
+
+9) Object.entries() :
+
+================================= >
+
+
+...> The Object.entries() static method returns an array of a given object's own enumerable string-keyed property key-value pairs.
+
+const object1 = {
+  a: "somestring",
+  b: 42,
+};
+
+console.log(object1)
+console.log(Object.entries(object1))
+for (const [key, value] of Object.entries(object1)) {
+  console.log(`${key}: ${value}`);
+}
+
+// Expected output:
+// "a: somestring"
+// "b: 42"
+
+...> Object.entries(obj)
+
+
+...> An array of the given object's own enumerable string-keyed property key-value pairs. Each key-value pair is an array with two elements: the first element is the property key (which is always a string), and the second element is the property value.
+
+
+const obj = { foo: "bar", baz: 42 };
+console.log(Object.entries(obj)); // [ ['foo', 'bar'], ['baz', 42] ]
+
+const arrayLike = { 0: "a", 1: "b", 2: "c" };
+console.log(Object.entries(arrayLike)); // [ ['0', 'a'], ['1', 'b'], ['2', 'c'] ]
+
+const randomKeyOrder = { 100: "a", 2: "b", 7: "c" };
+console.log(Object.entries(randomKeyOrder)); // [ ['2', 'b'], ['7', 'c'], ['100', 'a'] ]
+
+// getFoo is a non-enumerable property
+const myObj = Object.create(
+  {},
+  {
+    getFoo: {
+      value() {
+        return this.foo;
+      },
+    },
+  },
+);
+myObj.foo = "bar";
+console.log(Object.entries(myObj)); // [ ['foo', 'bar'] ]
+
+
+--- >
+
+
+// Strings have indices as enumerable own properties
+console.log(Object.entries("foo")); // [ ['0', 'f'], ['1', 'o'], ['2', 'o'] ]
+
+// Other primitives except undefined and null have no own properties
+console.log(Object.entries(100)); // []
+
+
+
+const obj = { foo: "bar", baz: 42 };
+const map = new Map(Object.entries(obj));
+console.log(map); // Map(2) {"foo" => "bar", "baz" => 42}
+
+
+10) Object.freeze() :
+
+The Object.freeze() static method freezes an object. Freezing an object prevents extensions and makes existing properties non-writable and non-configurable. A frozen object can no longer be changed: new properties cannot be added, existing properties cannot be removed, their enumerability, configurability, writability, or value cannot be changed, and the object's prototype cannot be re-assigned. freeze() returns the same object that was passed in.
+
+
+const obj = {
+  prop: 42,
+};
+
+Object.freeze(obj);
+
+obj.prop = 33;
+// Throws an error in strict mode
+
+console.log(obj.prop);
+// Expected output: 42
+
+
+..> . Note that values that are objects can still be modified, unless they are also frozen. As an object, an array can be frozen; after doing so, its elements cannot be altered and no elements can be added to or removed from the array.
+
+..> Private properties cannot be added or removed from the object, whether the object is frozen or not.
+
+
+const a = [0];
+Object.freeze(a); // The array cannot be modified now.
+
+a[0] = 1; // fails silently
+
+
+...> However, it is not necessarily constant. The following example shows that a frozen object is not constant (freeze is shallow).
+
+
+...> The result of calling Object.freeze(object) only applies to the immediate properties of object itself and will prevent future property addition, removal or value re-assignment operations only on object. If the value of those properties are objects themselves, those objects are not frozen and may be the target of property addition, removal or value re-assignment operations.
+
+
+const employee = {
+  name: "Mayank",
+  designation: "Developer",
+  address: {
+    street: "Rohini",
+    city: "Delhi",
+  },
+};
+
+Object.freeze(employee);
+
+employee.name = "Dummy"; // fails silently in non-strict mode
+employee.address.city = "Noida"; // attributes of child object can be modified
+
+console.log(employee.address.city); // "Noida"
+
+
+11)  Object.isFrozen() :
+
+..> The Object.isFrozen() static method determines if an object is frozen.
+
+const object1 = {
+  property1: 42,
+};
+
+console.log(Object.isFrozen(object1));
+// Expected output: false
+
+Object.freeze(object1);
+
+console.log(Object.isFrozen(object1));
+// Expected output: true
+
+..> A Boolean indicating whether or not the given object is frozen.
+
+
+An object is frozen if and only if it is not extensible, all its properties are non-configurable, and all its data properties (that is, properties which are not accessor properties with getter or setter components) are non-writable.
+
+// A new object is extensible, so it is not frozen.
+Object.isFrozen({}); // false
+
+// An empty object which is not extensible
+// is vacuously frozen.
+const vacuouslyFrozen = Object.preventExtensions({});
+Object.isFrozen(vacuouslyFrozen); // true
+
+// A new object with one property is also extensible,
+// ergo not frozen.
+const oneProp = { p: 42 };
+Object.isFrozen(oneProp); // false
+
+// Preventing extensions to the object still doesn't
+// make it frozen, because the property is still
+// configurable (and writable).
+Object.preventExtensions(oneProp);
+Object.isFrozen(oneProp); // false
+
+// Deleting that property makes the object vacuously frozen.
+delete oneProp.p;
+Object.isFrozen(oneProp); // true
+
+// A non-extensible object with a non-writable
+// but still configurable property is not frozen.
+const nonWritable = { e: "plep" };
+Object.preventExtensions(nonWritable);
+Object.defineProperty(nonWritable, "e", {
+  writable: false,
+}); // make non-writable
+Object.isFrozen(nonWritable); // false
+
+// Changing that property to non-configurable
+// then makes the object frozen.
+Object.defineProperty(nonWritable, "e", {
+  configurable: false,
+}); // make non-configurable
+Object.isFrozen(nonWritable); // true
+
+// A non-extensible object with a non-configurable
+// but still writable property also isn't frozen.
+const nonConfigurable = { release: "the kraken!" };
+Object.preventExtensions(nonConfigurable);
+Object.defineProperty(nonConfigurable, "release", {
+  configurable: false,
+});
+Object.isFrozen(nonConfigurable); // false
+
+// Changing that property to non-writable
+// then makes the object frozen.
+Object.defineProperty(nonConfigurable, "release", {
+  writable: false,
+});
+Object.isFrozen(nonConfigurable); // true
+
+// A non-extensible object with a configurable
+// accessor property isn't frozen.
+const accessor = {
+  get food() {
+    return "yum";
+  },
+};
+Object.preventExtensions(accessor);
+Object.isFrozen(accessor); // false
+
+// When we make that property non-configurable it becomes frozen.
+Object.defineProperty(accessor, "food", {
+  configurable: false,
+});
+Object.isFrozen(accessor); // true
+
+// But the easiest way for an object to be frozen
+// is if Object.freeze has been called on it.
+const frozen = { 1: 81 };
+Object.isFrozen(frozen); // false
+Object.freeze(frozen);
+Object.isFrozen(frozen); // true
+
+// By definition, a frozen object is non-extensible.
+Object.isExtensible(frozen); // false
+
+// Also by definition, a frozen object is sealed.
+Object.isSealed(frozen); // true
+
+
+
+Object.isFrozen(1);
+// true   
+
+
+12 )  Object.isFrozen() :
+================================ >
+
+The Object.isSealed() static method determines if an object is sealed.
+
+
+const object1 = {
+  property1: 42,
+};
+
+console.log(Object.isSealed(object1));
+// Expected output: false
+
+Object.seal(object1);
+
+console.log(Object.isSealed(object1));
+// Expected output: true
+
+
+An object is sealed if it is not extensible and if all its properties are non-configurable and
+
+(but not necessarily non-writable).
+
+
+// Objects aren't sealed by default.
+const empty = {};
+Object.isSealed(empty); // false
+
+// If you make an empty object non-extensible,
+// it is vacuously sealed.
+Object.preventExtensions(empty);
+Object.isSealed(empty); // true
+
+// The same is not true of a non-empty object,
+// unless its properties are all non-configurable.
+const hasProp = { fee: "fie foe fum" };
+Object.preventExtensions(hasProp);
+Object.isSealed(hasProp); // false
+
+// But make them all non-configurable
+// and the object becomes sealed.
+Object.defineProperty(hasProp, "fee", {
+  configurable: false,
+});
+Object.isSealed(hasProp); // true
+
+// The easiest way to seal an object, of course,
+// is Object.seal.
+const sealed = {};
+Object.seal(sealed);
+Object.isSealed(sealed); // true
+
+// A sealed object is, by definition, non-extensible.
+Object.isExtensible(sealed); // false
+
+// A sealed object might be frozen,
+// but it doesn't have to be.
+Object.isFrozen(sealed); // true
+// (all properties also non-writable)
+
+const s2 = Object.seal({ p: 3 });
+Object.isFrozen(s2); // false
+// ('p' is still writable)
+
+const s3 = Object.seal({
+  get p() {
+    return 0;
+  },
+});
+Object.isFrozen(s3); // true
+// (only configurability matters for accessor properties)
+
+
+Object.isSealed(1);
+// true 
+
+========================================== ====================== >
+
+13) Object.fromEntries() :
+----------------------------- >
+
+..> The Object.fromEntries() static method transforms a list of key-value pairs into an object.
+
+const entries = new Map([
+  ["foo", "bar"],
+  ["baz", 42],
+]);
+
+const obj = Object.fromEntries(entries);
+
+console.log(obj);
+
+...> 
+Object.fromEntries(iterable)
+
+
+An iterable, such as an Array or Map, containing a list of objects. Each object should have two properties:
+
+
+const res= new Map([
+    
+    ["a",1],
+    ["b",2]
+    ])
+    
+const obj=Object.fromEntries(res);
+
+console.log(obj)
+
+
+const arr = [
+  ["0", "a"],
+  ["1", "b"],
+  ["2", "c"],
+];
+const obj = Object.fromEntries(arr);
+console.log(obj); // { 0: "a", 1: "b", 2: "c" }
+
+
+
+
+const object1 = { a: 1, b: 2, c: 3 };
+
+const object2 = Object.fromEntries(
+  Object.entries(object1).map(([key, val]) => [key, val * 2]),
+);
+
+console.log(object2);
+// { a: 2, b: 4, c: 6 }
+
+
+14 ) Object.getOwnPropertyDescriptor() :
+
+...> The Object.getOwnPropertyDescriptor() static method returns an object describing the configuration of a specific property on a given object (that is, one directly present on an object and not in the object's prototype chain)
+
+
+const object1 = {
+  property1: 42,
+};
+
+const descriptor1 = Object.getOwnPropertyDescriptor(object1, "property1");
+
+console.log(descriptor1);
+// Expected output: true
+
+
+console.log(descriptor1.configurable);
+// Expected output: true
+
+console.log(descriptor1.value);
+// Expected output: 42
+
+
+
+ Object { value: 42, writable: true, enumerable: true, configurable: true }
+ 42
+
+Object.getOwnPropertyDescriptor(obj, prop)
+
+
+15) Object.getOwnPropertyDescriptors() :
+
+
+The Object.getOwnPropertyDescriptors() static method returns all own property descriptors of a given object.
+
+..> here insted of gettig for a single key descritions , i will get the all the object keys descriotion
+
+const des1=Object.getOwnPropertyDescriptors(obj);
+
+console.log(des1)
+
+{
+  a: { value: 1, writable: true, enumerable: true, configurable: true },
+  b: { value: 2, writable: true, enumerable: true, configurable: true }
+}
+
+
+The object for which to get all own property descriptors.
+
+..> An object containing all own property descriptors of an object. Might be an empty object, if there are no properties.
+
+
+
+16) Object.getOwnPropertyNames() :
+
+....> The Object.getOwnPropertyNames() static method returns an array of all properties (including non-enumerable properties except for those which use Symbol) found directly in a given object.
+
+
+
+
+const object1 = {
+  a: 1,
+  b: 2,
+  c: 3,
+  123:"achin"
+};
+
+console.log(Object.getOwnPropertyNames(object1));
+// Expected output:  Array ["123", "a", "b", "c"]
+
+
+Object.getOwnPropertyNames(obj)
+
+An array of strings that corresponds to the properties found directly in the given object.
+
+here: if i have the numbers in keys place then it will be added in the ascending order and in the first and follewed by the same string insertions:
+
+
+Object.getOwnPropertyNames("foo");
+// ["0", "1", "2", "length"]  (ES2015 code)
+
+
+
+
+17) Object.getOwnPropertySymbols() :
+
+
+
+18) Object.getPrototypeOf() :
+
+...> The Object.getPrototypeOf() static method returns the prototype (i.e. the value of the internal [[Prototype]] property) of the specified object.
+
+
+
+const prototype1 = {};
+const object1 = Object.create(prototype1);
+
+console.log(Object.getPrototypeOf(object1) === prototype1);
+// Expected output: true
+
+
+const prototype1 = null;
+const object1 = Object.create(prototype1);
+
+console.log(Object.getPrototypeOf(object1) === prototype1);
+// Expected output: true
+
+
+...> The prototype of the given object, which may be null.
+
+
+console.log(Object.getPrototypeOf("foo")) // {}
+// String.prototype  
+
+
+
+19) Object.hasOwn() :
+
+....> The Object.hasOwn() static method returns true if the specified object has the indicated property as its own property.
+
+NOTE:  If the property is inherited, or does not exist, the method returns false.
+
+
+
+
+
+const object1 = {
+  prop: "exists",
+};
+
+console.log(Object.hasOwn(object1, "prop"));
+// Expected output: true
+
+console.log(Object.hasOwn(object1, "toString"));
+// Expected output: false
+
+console.log(Object.hasOwn(object1, "undeclaredPropertyValue"));
+// Expected output: false
+
+# Object.hasOwn(obj, prop)
+
+..> The String name or Symbol of the property to test.
+
+..> true if the specified object has directly defined the specified property. Otherwise false.
+
+$$$$$$$$$$
+The Object.hasOwn() method returns true if the specified property is a direct property of the object — even if the property value is null or undefined.
+
+...> The method returns false if the property is inherited, or has not been declared at all. Unlike the in operator, this method does not check for the specified property in the object's prototype chain.
+
+const example = {};
+example.prop = "exists";
+
+// `hasOwn` will only return true for direct properties:
+Object.hasOwn(example, "prop"); // true
+Object.hasOwn(example, "toString"); // false
+Object.hasOwn(example, "hasOwnProperty"); // false
+
+// The `in` operator will return true for direct or inherited properties:
+"prop" in example; // true
+"toString" in example; // true
+"hasOwnProperty" in example; // true
+
+
+...> const fruits = ["Apple", "Banana", "Watermelon", "Orange"];
+Object.hasOwn(fruits, 3); // true ('Orange')
+Object.hasOwn(fruits, 4); // false - not defined
+
+
+
+20) Object.groupBy() :
+
+21) Object.hasOwnProperty():
+
+ 
+
+..> The hasOwnProperty() method of Object instances returns a boolean indicating whether this object has the specified property as its own property or not.
+..> The hasOwnProperty() method returns true if the specified property is a direct property of the object — even if the value is null or undefined. 
+..> The method returns false if the property is inherited, or has not been declared at all.
+
+
+const object1 = {};
+object1.p1 = 42
+
+console.log(object1.hasOwnProperty("p1")) // true
+console.log(object1.hasOwnProperty(" ")) // false
+console.log(object1.hasOwnProperty({})) // false
+console.log(object1.hasOwnProperty("tostring")) // false
+ 
+
+
+const example = {};
+example.prop = "exists";
+
+// `hasOwnProperty` will only return true for direct properties:
+example.hasOwnProperty("prop"); // true
+example.hasOwnProperty("toString"); // false
+example.hasOwnProperty("hasOwnProperty"); // false
+
+// The `in` operator will return true for direct or inherited properties:
+"prop" in example; // true
+"toString" in example; // true
+"hasOwnProperty" in example; // true
+
+
+22) Object.prototype.isPrototypeOf():
+
+..> The isPrototypeOf() method of Object instances checks if this object exists in another object's prototype chain.
+
+..> The object whose prototype chain will be searched.
+
+
+
+
+23) Object.prototype.propertyIsEnumerable()
+
+..> The propertyIsEnumerable() method of Object instances returns a boolean indicating whether the specified property is this object's enumerable own property.
+
+
+
+
+let animal = {
+  eats: true,
+};
+
+let dog = Object.create(animal); 
+dog.barks = true;
+
+
+console.log(dog)
+
+console.log(dog.eats); // true
+
+console.log(Object.prototype.isPrototypeOf(animal)
+)
+
+
+# 24 toString() :
+
+..> The toString() method of Object instances returns a string representing this object.
+
+
+a1=[11,22,33,44,55];
+
+console.log(a1) // [ 11, 22, 33, 44, 55 ]
+console.log(a1.toString()) // 11,22,33,44,55
+console.log(typeof(a1.toString())) // string
+console.log(a1.toString()[2]) //,
+console.log(a1.toString().length) // 14
+
+
+
+======================================================================================================================================================================================================================================> 
+
+..> When you create an object in JavaScript, it automatically inherits properties and methods from a prototype.
+
+.> Think of a prototype as a blueprint that JavaScript uses to attach extra functionality to your object.
+
+.> Whenever you create an object using {}, JavaScript links that object to Object.prototype by default.
+
+.> Object.prototype is a special object that contains common methods and properties available to all objects.
+
+When Do You Use Prototypes? :
+
+.> If you want all objects created from a constructor to have a method.
+
+function Car(make, model) {
+  this.make = make;
+  this.model = model;
+}
+
+// Add a method to Car's prototype
+Car.prototype.start = function () {
+  console.log(this.make + " " + this.model + " is starting...");
+};
+
+
+let myCar = new Car("Toyota", "Corolla");
+myCar.start(); // Toyota Corolla is starting...
+
+
+
+ex: 
+
+let animal = {
+  eats: true,
+};
+
+..> animal is created as a plain object.
+
+..> very object in JavaScript has an internal property called [[Prototype]]
+
+..> Since animal is a regular object, its prototype points to Object.prototype.
+
+
+let dog = Object.create(animal); 
+dog.barks = true;
+
+
+..> Object.create(animal) creates a new object (dog) with its [[Prototype]] set to animal.
+
+
+..> dog gets an empty object with no own properties initially, but it inherits from animal.
+
+Then, dog.barks is added as its own property.
+
+..> dog -> [[Prototype]] -> animal -> [[Prototype]] -> Object.prototype
+
+
+console.log(dog.eats); // true
+
+.> JavaScript first looks for eats in the dog object.
+
+.> It doesn’t find eats in dog, so it goes up the prototype chain to animal.
+
+.> animal has eats: true, so it returns true.
+
+console.log(dog.barks); // true
+
+.> barks is found directly in the dog object.
+
+
+animal’s Prototype:
+
+animal is created with Object.prototype as its prototype.
+
+dog’s Prototype:
+
+dog is created with animal as its prototype.
+
+When dog is created, it does NOT get a new prototype.
+
+It simply links its [[Prototype]] to animal — no new prototype is created.
+
+Only the dog object itself is created, and its prototype chain is established.
+
+
+note: Prototypes allow you to define methods once and have them inherited by all instances.
+
+
+# ) The main purpose of prototype in JavaScript is to allow objects to inherit properties and methods from other objects.
+
+..> When an object doesn’t have a certain property or method, JavaScript looks for it in the object’s [[Prototype]] chain. This mechanism is called prototype inheritance.
+
+..> Instead of creating a copy of methods for each object, the methods are stored in the prototype, saving memory.
+
+
+Why is Prototype Important? :
+
+# Memory Efficiency:
+
+..> Instead of creating a copy of methods for each object, the methods are stored in the prototype, saving memory.
+
+# Code Reusability:
+
+..> Define methods once in the prototype, and all instances can reuse them.
+
+#  Inheritance Mechanism:
+
+..> Allows objects to inherit functionality without manual duplication.
+
+
+
+..> Adding Methods via Prototype :
+
+
+.> A common use case is adding methods to a constructor’s prototype so that all instances share them.
+
+.> 
+
+function Person(name) {
+  this.name = name;
+}
+
+// Adding a method to the prototype
+Person.prototype.sayHello = function () {
+  console.log("Hello, " + this.name);
+};
+
+let john = new Person("John");
+let alice = new Person("Alice");
+
+john.sayHello(); // Hello, John
+alice.sayHello(); // Hello, Alice
+
+
+
+
+..> Object.create() can be used to create objects with a specific prototype.
+
+
+.> An instance is an individual object created from a constructor function or a class.
+
+
+
+
+What Happens Without Prototypes?
+If you define the method inside the constructor, a new copy is created for every instance.
+
+
+function Person(name) {
+  this.name = name;
+
+  // Method inside constructor
+  this.sayHello = function () {
+    console.log("Hello, " + this.name);
+  };
+}
+
+let john = new Person("John");
+let alice = new Person("Alice");
+
+console.log(john.sayHello === alice.sayHello); // false (different copies)
+
+
+
+1. enumerable (Can We Loop Over the Property?) :
+
+..> If enumerable is true (default), the property is visible when using:
+
+for...in loop
+
+Object.keys()
+
+JSON.stringify()
+
+
+ 2. configurable (Can We Delete or Modify Property?)
+
+.> If configurable is true (default), you can:
+
+Delete the property.
+
+Change the property’s attributes (writable, enumerable, configurable).
+
+.> If configurable is false, you cannot:
+
+Delete the property.
+
+Change its attributes.
+
+
+3. writable (Can We Change the Value?)
+
+.> If writable is true (default), you can change the property’s value.
+
+.> If writable is false, you cannot change the value.
+
+
+

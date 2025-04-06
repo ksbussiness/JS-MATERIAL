@@ -1,0 +1,50 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+de-Structuring in the  array :
+
+........>  // OBJECT DE-STRUCTURING
+
+const obj={
+    
+    "name":"sachin",
+    "age":90,
+    "roll":"19911A04L4",
+    "ADD":"H-NO:1-32, NKD,TS,IND"
+}
+
+let {name}=obj 
+console.log(name) //sachin
+
+
+........>  // STRING DE-STRUCTRUING
+
+const p="TSNKDIND"
+
+let d=[a,b,c]=p
+console.log(c); // N
+
+
+
+........> //ARRAY DESTRUCTURING :
+
+const arr=["ind","usa","canada","ak","ireland"];
+
+const res=[f1,f2]=arr
+console.log(f2) // usa
+
+// NOTE : WE CAN Skipp the array destucturing.
+const res1=[f1,,f2]=arr
+console.log(f2) // canada
+
+
+const numbers = [10, 20, 30, 40, 50, 60, 70];
+
+........>  //DESTRUCTURING with the rest parameter :
+
+const res2=[a,b, ...rest] = numbers
+
+console.log(a) //10
+console.log(b) //20
+console.log(typeof(rest)) // object
+
+console.log(...rest) // 30,40,50,60,70

@@ -1,0 +1,52 @@
+// TYPE COERCION IN JS :
+
+// num+num= adding
+console.log(2+4) // 6
+console.log(2+4.5) //6.5
+
+
+//  number + string == concat
+console.log(2+"2") // 22
+console.log(4+"sai") //4sai
+
+
+//string+string==concat
+console.log("2"+"5") // 25
+console.log("3"+"4.5") //34.5
+console.log("sai"+"res") // saires
+
+//num-num =sub
+console.log(4-2) //2
+console.log(2-5) // -3
+
+
+// num-ALPHA string== NaN
+console.log(3-"sai") //NaN
+
+
+// num- Num string =sub
+console.log(2-"3") // -1
+console.log(5-"3") // 2
+
+
+// al string -al string =NaN
+console.log("sai"-"sai"); //NaN
+
+
+//num-string * num-string = multi 
+console.log("2"*"4") //8
+console.log("2"*5) //10
+
+console.log("sai"*3) //NaN
+console.log("sai"*"sai") //NaN
+
+
+console.log("6"/"3")  // 2
+console.log("sai"/"a") // NaN
+
+console.log("6"/2.5) // 2.4 
+
+console.log([6,9,12]/3) // NaN
+
+console.log([12]/3) // 4
+

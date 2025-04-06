@@ -1,0 +1,116 @@
+STRIGN METHODSX IN JS :
+----------------------- -------------------- >
+
+const a= new String("hai iam ok");
+
+console.log(typeof(a)) //object
+console.log(a) // [String: 'hai iam ok']
+
+const b= String("hai iam ok");
+
+console.log(typeof(b)) // string
+console.log(b) // hai iam ok
+
+
+
+const p="sachin";
+console.log(p.at(-1)) // n
+console.log(p.at(0)) /// s
+
+console.log(p.blink(0))
+
+
+// takes teh index value
+console.log(p.charAt(2))
+console.log(p.charAt(-1)) // value not support empty
+console.log(p.charAt()) // if no value is  given then takes the first 0
+
+console.log(p.charAt(20)) // index out of range so returns the empty string.
+
+
+
+3 # String.prototype.concat() :
+
+..> it is used to concat teh string here , and A new string containing the combined text of the strings is provided.
+
+concat(str1)
+concat(str1, str2)
+concat(str1, str2, /* …, */ strN)
+
+const a="india";
+const b="usa";
+
+console.log(a.concat(", ",b)); // india, usa
+console.log(b.concat(", ",a)); // usa, india
+console.log(a.concat(" ",b ," hai")) // india usa ha
+
+
+"".concat({}); // "[object Object]"
+"".concat([]); // ""
+"".concat(null); // "null"
+"".concat(true); // "true"
+"".concat(4, 5); // "45"
+
+
+4) # String.prototype.endsWith() :
+
+....> The endsWith() method of String values determines whether a string ends with the characters of this string, returning true or false as appropriate.
+
+endsWith(searchString)
+endsWith(searchString, endPosition)
+
+const r="this is india";
+
+console.log(r.endsWith("dia")); // true
+console.log(r.endsWith("india")); // true
+
+
+
+5) # String.prototype.includes() :
+
+...> The includes() method of String values performs a case-sensitive search to determine whether a given string may be found within this string, returning true or false as appropriate. 
+
+
+includes(searchString)
+includes(searchString, position)
+
+
+const r1="Iam sachin coming fomr the api";
+const l="Iam"
+
+console.log(r1.includes(l)) // true
+console.log(r1.includes(l,3)) //false
+
+const p="IAM"
+console.log(r1.includes(p)) // false , case is different
+console.log(r1.includes(p,3)) //false
+
+6) # String.prototype.indexOf() :
+
+...> The indexOf() method of String values searches this string and returns the index of the first occurrence of the specified substring. It takes an optional starting position and returns the first occurrence of the specified substring at an index greater than or equal to the specified number.
+
+indexOf(searchString)
+indexOf(searchString, position)
+
+
+..> Return value
+The index of the first occurrence of searchString found, or -1 if not found.
+
+
+const r1="Iam sachin coming fomr the api";
+
+
+// cases sensitive , a ,A are different
+console.log(r1.indexOf("sachin")) //4 
+console.log(r1.indexOf("api")) //27
+
+console.log(r1.indexOf("sachin",5)) // -1 , if the index not found for a particular sub-string not found
+
+console.log(r1.indexOf("Api")) //27
+
+7) # String.prototype.lastIndexOf() :
+
+...> The lastIndexOf() method of String values searches this string and returns the index of the last occurrence of the specified substring. 
+
+lastIndexOf(searchString)
+lastIndexOf(searchString, position)

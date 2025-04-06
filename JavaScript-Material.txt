@@ -1,0 +1,1513 @@
+...> The this keyword refers to the object that the function is a property of.
+
+...> call() : 
+This method invokes a method (function) by specifying the owner object.
+
+..> Currying is a functional programming technique where a function with multiple arguments is transformed into a sequence of functions, each taking a single argument.
+
+ex:
+1) function add(a, b, c) {
+  return a + b + c;
+}
+
+console.log(add(1, 2, 3)); // Output: 6
+
+2) 
+
+function curriedAdd(a) {
+  return function(b) {
+    return function(c) {
+      return a + b + c;
+    };
+  };
+}
+
+console.log(curriedAdd(1)(2)(3)); // Output: 6
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+....>
+A callback is a function that will be executed after another function gets executed. In javascript, functions are treated as first-class citizens, they can be used as an argument of another function, can be returned by another function.
+
+...>Memoization is a form  caching where the return value of a function is cached based on its parameters. If the parameter of that function is not changed, the cached version of the function is returned.
+
+...> Contructor functions are used to create the objects in javascripts.
+
+
+function Person(name,age,gender){
+
+  this.name = name;
+  this.age = age;
+  this.gender = gender;
+}
+
+
+var person1 = new Person("Vivek", 76, "male");
+console.log(person1);
+
+var person2 = new Person("Courtney", 34, "female");
+console.log(person2);
+
+
+
+Whenever we want to create a new object of the type Person, We need to create it using the new keyword.
++++++++++++++++++++++++++++++++
+
+
+
+
+
+BOM: It allows users to interact with the browser. A browser's initial object is a window. As a result, you may call all of the window's functions directly or by referencing the window. The document, history, screen, navigator, location, and other attributes are available in the window object.
+
+..> it is a programming interface js tool for working with the web browsers.
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+.> keeping the script tag at the end of the body tag is good.
+
+..>were we can   script tag where to keep  in html code
+
+..> what attributes we can keep in script tag.
+
+..>asyn tag then differ keyword.
+
+..> can we create any custom element. yes,
+
+..> html/css  noerrors
+
+..> difference bt the inline and block elements.
+
+..> images we can give height /  display properties of the image inline/block
+
+
+..> types of the inline elements {replaced inline elements, non-replaced inline elements }
+
+
+..> replaced inline elements are which comes from the source. video/audio we can give the height and width.
+
+
+..> non-replaced inline elements: span, anchor ,vol tag talic.
+
+..> inline elemets does not follow the box-model.
+
+..>
+
+javascript:
+
+type of function is function , ,array is object.
+
+function is not a data type.
+
+class is a function behind the scenes.
+
+
+..> create a promise and resolve when a button is clicked.
+
+..>Promise.resolve() creates new promise
+
+..> create a promise without new promise.
+
+..> how do we make a file module.
+
+..> modules in javascript
+
+
+
+..> asyn function : here they stop the execution where ever they encounter the await keyword.
+
+..> and when ever the promise is fulliled then the function will start execution from where ever it stopped execution.
+
+..> module scope.
+
+..> global scope  ..> module scope ..> function scope
+
+..>
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Arrow functions: Were introduced in the ES6 version of javascript. They provide us with a new and shorter syntax for declaring functions. Arrow functions can only be used as a function expression.
+
+
+
+.> These are declared without the function keyword
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+rest oprator: it provides  way of handling the parameters of a function.
+
+..> Any number of arguments arguments will be converted into an array using the rest parameter.
+
+...> 
+REST PArameter should always be used at the last parameter of a function.
+
+function randomFun2(a,b,...args){
+
+}
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+SPREAD OPERATOR: 
+
+The spread operator is used to expand or spread elements of an iterable (like an array or a string) or properties of an object into individual elements or properties.
+
+
+
+DIFFerences between rest parameter and spread operator:
+
+...> Rest parameter is used to take a variable number of arguments and turns them into an array while the spread operator takes an array or an object and spreads it.
+
+...> Rest parameter is used in function declaration whereas the spread operator is used in function calls.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+GENERATORS:
+
+ generator functions are a special class of functions.
+
+They can be stopped midway and then continue from where they had stopped.
+
+Generator functions are declared with the function* keyword instead of the normal function keyword:
+
+function* genFUN(){
+
+}
+
+
+
+
+
+function* numberGenerator() {
+  let i = 1;
+  while (i <= 5) {
+    yield i;  // pauses and returns a value
+    i++;
+  }
+}
+
+
+const gen = numberGenerator();
+
+console.log(gen.next().value); //1
+
+console.log(gen.next().value); //2
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+Why do we the use callbacks?
+A callback function is a method that is sent as an input to another function.
+
+ Callbacks are a technique of ensuring that a particular code does not run until another code has completed its execution.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Object Destructuring?
+Object destructuring is a new way to extract elements from an object or an array.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Temporal Dead Zone?
+
+...> Temporal Dead Zone is a behaviour that occurs with variables declared using let and const keywords. It is a behaviour where we try to access a variable before it is initialized.
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++:
+
+
+What Are Deferred Scripts ?
+
+...> Deferred scripts are those that are set to be executed after the HTML document has been fully parsed. 
+
+
+ <script src="script.js" defer></script>
+
+...> This ensures that the scripts run after the entire DOM is available.
+
+....> When the browser encounters a <script> tag with the defer attribute, it starts downloading the script in parallel with the parsing of the HTML document. This means that the script is fetched without blocking the HTML parsing.
+
+....>
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++:
+
+...> JavaScript (JS) is the most popular lightweight scripting and compiled programming language.
+
+
+...> JavaScript is a client-side scripting language and Java is object Oriented Programming language.
+
+...>  It is a light-weighted programming language (“scripting language”) for developing interactive web pages. It can insert dynamic text into the HTML elements. 
+
+...> JavaScript is a client-side scripting language and does not depend on the server to execute.
+
+..> Yes, JavaScript supports automatic type conversion.
+
+
+
+...> To change the style/class of an element there are two possible ways. 
+
+1) document.getElementById("myText").style.fontSize = "16px";
+
+2) 
+document.getElementById("myText").className = "class";
+
+
+
+..> to read a file we use 
+
+readFile( Path, Options, Callback)
+
+
+..> to write some content in file:
+
+writeFile( Path, Data, Callback)
+
+
+
+...> The variable typing is the type of variable used to store a number and using that same variable to assign a “string”.
+
+ex:
+
+
+Geeks = 42;
+Geeks = "GeeksforGeeks";
+
+
+cgpow: 5000+
+
+
+innerHTML : only content in BW the elements
+
+innerText: Gives you entire code including the tags.
+
+
+
+...> EVENT- BUBBLING: in JS;
+Consider a situation an element is present inside another element and both of them handle an event. When an event occurs in bubbling, the innermost element handles the event first, then the outer,
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++:++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++:
+
+
+Classes in JavaScript are a blueprint for creating objects.
+
+...> Unlike functions classes in JavaScript are not hoisted. The constructor method is used to initialize. 
+
+...> The constructor method in JavaScript is a special method used for initializing objects created with a class.
+
+...> 
+
+EX:
+
+class emp {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+
+    }
+}
+const emp1 = new emp("Geek1", "25 years");
+console.log(emp1.name);
+console.log(emp1.age);
+
+
+..> Objects are instances of classes.
+
+
+
+
+
+
+class expression
+The class expression is another way of creating classes in JavaScript and they can be named or unnamed.
+
+
+
+named class expressions:
++++++++++++++++++++++++++++++
+
+const Website = class Geek {
+    constructor(name) {
+        this.name = name;
+    }
+    websiteName() {
+        return this.name;
+    }
+};
+
+const x = new Website("GeeksforGeeks");
+console.log(x.websiteName());
+
+
+
+Unnamed class expression:
+++++++++++++++++++++++++++++
+
+const Website = class {
+    constructor(name) {
+        this.name = name;
+    }
+    returnName() {
+        return this.name;
+    }
+};
+
+console.log(new Website("GeeksforGeeks").returnName());
+
+
+
+Object: An object is the collection of related data or functionality in the form of key.
+
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+JavaScript Static methods are defined directly on the classes, not on the instances of the class.
+
+..> Static methods can be of any name. A class can contain more than one static method.
+
+..> In JavaScript, the static keyword is used to define static methods .
+
+..> static method belongs to to class rather then instances of the class,   
+
+
+
+ex:
+
+class GeeksforGeeks {
+
+       static example1() {
+
+                return "static method 1"
+                        }
+}
+
+console.log( GeeksforGeeks.example1());
+
+
+
+
+// using className.functionName
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+..>  prototype is an object that is associated with every function and object by default. 
+
+
+function Person(name, job, yearOfBirth){   
+    this.name= name;
+    this.job= job;
+    this.yearOfBirth= yearOfBirth;
+}
+
+// this will show Person's prototype property.
+console.log(Person.prototype);
+
+
+..> he prototype is used to share properties and methods among instances 
+
+..> This allows for efficient memory usage
+
+
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+
+Person.prototype.greet = function() {
+  console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+};
+
+
+
+const alice = new Person('Alice', 30);
+const bob = new Person('Bob', 25);      
+
+alice.greet(); // Output: Hello, my name is Alice and I am 30 years old.
+bob.greet();   // Output: Hello, my name is Bob and I am 25 years old.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+An Object is a unique entity that contains properties and methods.
+...>
+
+
+let person = {
+    first_name: 'Mukul',
+    last_name: 'Latiyan',
+ 
+    //method
+
+    getFunction: function () {
+        return (`The name of the person is ${person.first_name} ${person.last_name}`)
+    },
+
+
+}
+
+console.log(person.getFunction());
+
+
+
+Encapsulation: The process of wrapping properties and functions within a single unit is known as encapsulation. 
+
+class person {
+    constructor(name, id) {
+        this.name = name;
+        this.id = id;
+    }
+        getDetails() {
+             console.log(`Name is ${this.name}`)
+                    }
+}
+ 
+let person1 = new person('Mukul', 21);
+
+person1.getDetails();
+
+Inheritance: It is a concept in which some properties and methods of an Object are being used by another Object.
+
+
+
+
+// Inheritance example
+class person {
+    constructor(name) {
+        this.name = name;
+    }
+    // method to return the string
+    toString() {
+        return (`Name of person: ${this.name}`);
+    }
+}
+class student extends person {
+    constructor(name, id) {
+        // super keyword for calling the above 
+        // class constructor
+        super(name);
+        this.id = id;
+    }
+    toString() {
+        return (`${super.toString()},
+        Student ID: ${this.id}`);
+    }
+}
+let student1 = new student('Mukul', 22);
+console.log(student1.toString());
+
+
+
+
+The Person and Student objects both have the same method (i.e toString()), this is called Method Overriding.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+1) JavaScript engine in web browsers or Node.js. JavaScript uses a garbage collector to manage memory and ensure that developers do not need to manually allocate or deallocate memory.
+
+...> 
+
+
+Stack: It is a data structure used to store static data. Static data refers to data whose size is known by the engine during compile time
+
+Heap: It is used to store objects and functions in JavaScript. The engine doesn’t allocate a fixed amount of memory. Instead, it allocates more space as required.
+
+
+
+
+Garbage collectors: it are used in releasing memory. Once the engine recognizes that a variable, object, or function is not needed anymore, it releases the memory it occupied. 
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+ADVANCE JSVASCRIPT CODES:
+++++++++++++++++++++++++
+
+HOW JAVASCRIPT WORKS:
+
+
+..> first js code will br checked by the PARSER line by line then if we get nay error then it will throw an error , if not then code will be converted into AST{ Abstract syntax code }.
+
+..> then after that AST will be converted in to MACHINE CODE .
+
+..>after conversion the that byte code file will be running , then we get the output in console.
+
+
+
+
+EXECUTION STACK IN JAVASCRIPT:
+++++++++++++++++++++++++++++++++
+
+EXECUTION CONTEXT: THE ENVIRONMENT IN WHICH OUR CODE IS EXECUTED AND IS EVALUATED.
+
+..> JS ENgine creates the " GLOBAL execution context " before it starts to execute any code.
+
+...>a new execution context gets created every time a function is executed.
+
+ ..> the global execution context just like any other execution context, except that its gets created by default. It is asscociated with global object . 
+
+EXECUTION STACK:it is also know has the calling stack, it is  a stack with the LIFO{ LAST IN FIRST OUT}, STRUCTURE WHICH IS USED TO STORE ALL THE EXECUTION CONTEXT CREATED DURING THE CODE EXECUTION.
+
+
+
+
+EXECUTION CONTEXT OBJECT has two phases:
+
+1) creation phase :
+
+
+variables objects are created ,  scope chains are created ,  'this' variable
+
+2) execution phase:
+
+current execution context run line by line.
+
+
+ variable object: 
+
+for each function ( function declarations) a property is created in the variable object. which is pointing to that function.
+
+..>for each variable( variable declarations) a property is created in the variable object.
+which is then set to undefined.
+
+Arguments objects are created that were passed into the function.
+
+
+hoisting: in a js is a mechanism where varibales, function declarations are moved to the top of their scope before the code execution. 
+
+
+SCOPE CHAIN:
+The scope chain is used to resolve the value of variable names in javascript.
+
+Scope chain in javascript is lexically defined, which means 
+
+
+
+scope chain refers to the hierarchical structure of variables accessibility.
+
+
+..>when resolving a variable, javascript starts from the innermost scope and moves outward , up through the scope chain until it finds the variable or reaches the global scope.
+
+..>
+
+ STRICT MODE IN JAVASCRIPT:
++++++++++++++++++++++++++++++
+The statement "use-strict" instructus the browser to use the strict mode, which is a safer feature of the JS.
+
+
+<script>
+"use strict"
+
+
+</script>
+
+,..> Assigning a value to an undeclared variable will throw an error.
+
+
+..> Strict mode prevents function parameters from having the same 
+
+
+THIS KEYWORD IN JAVASCRIPT:
+++++++++++++++++++++++++++++++++++
+
+..> The javascript this keyword refers to the object it belongs to.
+
+..> It has the different values depending on where it is used.
+
+..>
+
+..> If we use the this {alone} , then it refers to the Global object. i.e ..> window
+
+..> In a regular function, this refers to the global object.
+
+..> In a method, this refers to the owner object.
+
+..>In a function in strict mode this is undefined.
+
+
+
+Types in javascript:
+++++++++++++++++++++++++ 
+
+..> NUMBER, STRING , BOOLEAN , UNDEFINED , NULL , SYMBOL , 
+
+..> And all other are OBJECT.
+
+..> In javascript everything is object.
+
+...>
+
+
+non primitive data type is : objective,
+
+primitive data  type is : 
+
+
+..> The Array.isArray() is a method which determines whether an object is an Array or not.
+
+
+...> this function returns TRUE if  arrya or false.
+
+
+..> 
+
+
+PASS BY VALUE $ PASS BY REFERENCE:
+++++++++++++++++++++++++++++++++++++
+
+let a=5;
+
+let b=a;
+console.log(a)  ///5
+
+console.log(b)  // 5
+pass by value { here both a, b are independent} and having different memory location.
+here we are only passing the value but not the reference or memory.
+
+
+
+
+
+
+pass by reference: instead of passing the value we are passing the regerence of the firOBJ1 to the Second OB2
+..> in this case the changes will be applied on the both the objects
+
+let obj1 = { name: "Alice" };
+
+let obj2 = obj1;
+
+console.log(obj1); // Output: { name: "Alice" }
+console.log(obj2); // Output: { name: "Alice" }
+
+obj2.name = "Bob"; // Changing `obj2` affects `obj1` because they share the same reference
+console.log(obj1); // Output: { name: "Bob" }
+console.log(obj2); // Output: { name: "Bob" }
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
++++++++ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Event Loop in js:
+++++++++++++++++++
+
+
+
+
+Global exexcution context(GEC):
+This is the default execution context in which JS code start its execution when the file first loads in the browser.
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Callbacks are just the name of a convention for using javascript functions.
+
+There isn't a special thing called a 'Callback' in the JavaScript Language,its just a convention.Instead of immediately returning some result like most function, Funtions that use callbacks takes some time to produce a result.
+ 
+
+
+
+...> 
+
+..>
+
+
+
+
+               
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+error handling  in async /wait:
+syntax:
+use the try { 
+\
+
+}.catch(){
+
+}
+
+
+ex:
+
+async function getData(){
+     
+     try{
+    const rollnodata =await pob1;
+    console.log(rollnodata);
+    
+    const biodatas=await getBiodata(rollnodata[1]);
+    console.log(biodatas);
+    return biodatas;
+    }catch(err){
+   
+   	console.log(err)
+
+    }
+     
+}
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++
+
+..> The fetch API.
+
+...> The fetch API provides a fetch() method defined on the window object, which you can use to perform requests.
+
+..> This method returns a promise that you can use to retrieve the response of the request.
+
+
+..> converting the json form data in to the javascript object is done by .json() method.
+
+..>
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+interview question:
+
+
+
+..> How would you create a cookie? in javascript
+
+..> How would you access the  cookie data? in javascript?
+
+
+...> implement the memorizationwith the example.
+
+
+console.log(document.cookie);
+
+
+What is Currying in JavaScript?
+
+as:
+Currying is a technique in functional programming where a function with multiple arguments is transformed into a series of functions, each taking a single argument.
+
+Non-Curried Function:
++++++++++++++++++++++++++++
+
+function add(a, b, c) {
+    return a + b + c;
+}
+
+console.log(add(1, 2, 3)); // Output: 6
+
+
+
+
+function add(a){
+	return function(b) {
+		return function(c){
+			return a+b+c;
+		};
+	};
+};
+
+console.log(add(1)(2)(3));
+
+	
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+what are the object prototypes.?
+
+Prototypes: It is a mechanism by which object  inherit properties, methods  from the other objects.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+What is memoization?
+
+
+Memoization is a technique used in programming to optimize functions by storing the results of expensive function calls and reusing those results when the same inputs given again.
+
+
+function memoize(fn) {
+
+    const cache = {}; 
+
+// Object to store results
+
+    return function(a, b) {
+        // Create a unique key for the arguments
+        const key = `${a},${b}`;
+        // If the result is already in the cache, return it
+        if (cache[key]) {
+            return cache[key];
+        }
+        // Otherwise, compute the result and store it in the cache
+        const result = fn(a, b);
+        cache[key] = result;
+        return result;
+    };
+}
+
+function add(a, b) {
+    return a + b;
+}
+
+// Create a memoized version of the add function
+const memoizedAdd = memoize(add);
+
+console.log(memoizedAdd(2, 3)); // Output: 5 (calculated and cached)
+console.log(memoizedAdd(2, 3)); // Output: 5 (retrieved from cache)
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+OOPs in JavaScript:
+
+
+functional programing: here we write every thing in functions
+
+..> here in the functional programing functions are pure functions
+
+
+
+..> we can do any type of the programming in the js. like procedure programming , functional programming, object programming.
+
+
+..> Encapsulation  : encapsulating means wrapping the complete details in a place.
+
+
+const user={
+
+    firstName:'Anurag',
+    lastName:'Singh',
+    age:20,
+    getAgeYear: function(){
+        return new Date().getFullYear()-user.age
+    
+    }
+}
+console.log("sai")
+function getAgeYear(age){
+    return new Date().getFullYear()-age
+
+}
+
+user.age { we get only 20 which we required } but here we are encapsulating the required details
+
+.>
+
+
+
+
+
+
+ABSTARCTION : hiding implementation details and showing only importance details.
+
+
+Factory functions:
+====================
+
+This is the concept in js where we can create the default object structure,
+
+AND we can add the users to it.and get the details of each user,
+... 
+
+
+
+function createUser(firstName,lastName,age){
+    const user={
+        firstName,
+        lastName,
+        age,
+        getAgeYear (){
+            return new Date().getFullYear()-user.age
+        },   
+    }
+    return user
+}
+
+const user1=createUser('sachin','reddy',20)
+
+const user2=createUser('sai','reddy',20)
+
+const user3=createUser('ram','hanuman','20')
+
+
+..> This is a keyword in the javascript which refers to the object in the javascript.
+
+..> 
+
+
+
+Classes in javaScript:
+==========================
+
+class CreateUser{
+
+}
+
+
+class is basically a function 
+
+
+
+CONSTRUCTOR:
+
+Constructor functins are usd to create the object.
+
+
+function Car(make, model, year) {
+    this.make = make;
+    this.model = model;
+    this.year = year;
+
+    this.getDetails = function() {
+        return `${this.year} ${this.make} ${this.model}`;
+    };
+}
+
+
+
+..> const myCar = new Car('Toyota', 'Camry', 2021);
+console.log(myCar.getDetails());
+
+
+
+..> here new car will create a new object and assigns the properties and methods to it.
+
+..> For adding the new property to the  Car
+
+..>Car.prototype.company="Audi";
+
+EVENTS IN JAVASCRIPT:
+==============================
+
+
+
+..> we can click on  any thing on the javascript .
+
+..>
+onclick:
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++
++++++++++++++++++++++++++++
+
+
+...> The Object.keys() function in JavaScript is used to get all the keys (or property names) of an object and returns them as an array.
+
+
+..> 
+const person = {
+  name: "John",
+  age: 30,
+  job: "Developer"
+};
+
+const keys = Object.keys(person);
+console.log(keys); // Output: ["name", "age", "job"],
+
+
+
+
+
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+PROMIES, ASYNC, AWAIT, CALLBACK-HELL, 
+
+JavaScript Single-Threaded Behavior :
+
+..> JavaScript is single-threaded, meaning it has a single call stack that executes one operation at a time.
+
+..> The call stack is a data structure used to manage the execution of functions in a program.
+
+..> If a task takes too long to complete, the entire execution thread is blocked, and the browser becomes unresponsive.
+
+
+Synchronous Behavior:
+
+..> Each operation is added to the call stack and executed in sequence.
+
+..> The program waits for each task to complete before moving to the next one.
+
+
+..> 
+
+
+
+Operations are executed line-by-line and one at a time.
+The next line of code waits for the current one to finish.
+
+.> Can block the main thread, causing performance issues for time-consuming tasks.
+
+
+
+..>THE synchronous-request  blocks the client until operation completes.
+
+i.e: Browser is unresponsive .
+
+In such  case,javascript engine of the browser is blocked.
+
+
+ex:
+
+
+const fun2=()=>{
+    console.log("Fun2 is starting")
+}
+
+const fun1=()=>{
+    console.log("Fun1 is starting..")
+    fun2()
+    console.log("Fun1 is ending...")
+}
+
+fun1()
+
+// here in the fun1 , after 1st console, and next after completing of fun2 execution only , we are getting the 2nd cosole in fun1, this is Synchronous.
+
+output:
+Fun1 is starting..
+Fun2 is starting
+Fun1 is ending...
+
+
+
+Asynchronous Behavior:
+
+..> IN Asynchronous tasks , allowed the main thread to continue executing other code. 
+
+Allows non-blocking execution, meaning the program can continue executing other tasks while waiting for some operations to complete.
+
+Handled via callbacks, Promises, or async/await.
+
+
+
+...> THE ASynchronos-request doesn't block the client.
+
+i.e: Browser is responsive.
+
+At that time,user can perform another operation also.
+
+
+
+
+const fun2=()=>{
+    setTimeout( ()=>{
+        console.log("Fun2 is starting")
+        
+    },3000 );
+}
+
+const fun1=()=>{
+    console.log("Fun1 is starting..")
+    fun2()
+    console.log("Fun1 is ending...")
+}
+
+fun1()
+
+// here waiting for the other function execution in not happening.
+
+
+output:
+Fun1 is starting..
+Fun1 is ending...
+Fun2 is starting
+
+
+
+
+
+
+===========================================================>===================================================>===================================================>===========================================>
+
+
+
+
+..> A Promise is basically an object which represents the completion (or failure) of an asynchronous operation along with its result. 
+
+
+The promise constructor takes only one argument which is a callback function
+The callback function takes two arguments, resolve and reject
+Perform operations inside the callback function and if everything went well then call resolve.
+If desired operations do not go well then call reject.
+
+..> Promise method is invoked when a promise is either resolved or rejected.
+
+...>
+
+let promise = new Promise(function (resolve, reject) {
+    resolve('Geeks For Geeks');
+})
+
+promise
+    .then(function (successMessage) {
+        //success handler function is invoked 
+        console.log(successMessage);
+    })
+    .catch(function (errorMessage) {
+        console.log(errorMessage);
+    }); 
+
+
+PROMISES in JavaScript:
+
+..> A promise is an object that keep track about whether a certain event has happened already or not.
+
+..>Promises are used to handle asynchronous operations in javascript.
+..> They are easy to manage when dealing with multiple asynchronous operations where callbacks can create callback hell leading to unmanageable code.
+
+..>
+
+
+A promise has 3 states:
+
+pending:
+resolve:
+reject:
+
+..> in order to create the new promise we use the new keyword:
+
+..> The methods promise.then(), promise.catch(), and promise.finally() are used to associate further action with a promise that become settled.
+
+..> 
+
+
+
+
+
+
+..> Async and Await in JavaScript are powerful keywords used to handle asynchronous operations with promises.
+
+..> Async functions implicitly return promises, while Await pauses the execution until the promise is resolved.
+
+..> Async functions always return a promise.
+
+..> The await keyword is used to wait for a promise to resolve. It can only be used within an async block.
+
+..> The word  ASYNCin "Asynchronous" means "Takes some time".
+
+ASYNC / AWAIT
+
+..> There's a special syntax to work with promises in a more comfortable fashion, called "async/await". It's surprisingly easy to understand and use.
+
+..> The word "async" before a function means one simple thing: a function always returns a promise.
+
+..> so the async keyword is added to functions to tell them to return a promise rather than directly returning the value.
+
+..> we can use await when calling any function that returns a promise, including web API functions.
+
+
+..>The keyword await makes javascript wait until that promise settles and returns its result.
+
+
+..> 
+It is not mandatory to use async and await keywords to handle asynchronous operations with Promises in JavaScript.
+
+
+..> we can use the then and catch block for handing the  asynchronous operations.
+
+..> we can also us ethe async and await  to handle the asynchronous operations.
+
+
+Handling use the THEN AND CATCH BLOCKS:
+==============================================>
+
+const fetchData = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("Data fetched successfully");
+        }, 2000);
+    });
+};
+
+// Handling with then and catch
+fetchData()
+    .then((data) => {
+        console.log(data); // Output: Data fetched successfully
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+
+
+
+
+Handling use the ASYNC AND AWAIT BLOCKS:
+==============================================>
+
+const fetchData = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("Data fetched successfully");
+        }, 2000);
+    });
+};
+
+const main = async () => {
+    try {
+        const data = await fetchData();
+        console.log(data); // Output: Data fetched successfully
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+main();
+
+
+==============================================>==============================================>==============================================>==============================================>
+
+callback-hell :
+
+Callback hell refers to a situation in programming , especially in JavaScript, where multiple nested callbacks (functions passed as arguments to other functions) make the code hard to read and maintain.
+
+
+call back-hell:
+=============================================>=======================>=>
+
+console.log("Start Baking");
+
+// Nested callbacks
+setTimeout(() => {
+    console.log("Step 1: Mix ingredients");
+    setTimeout(() => {
+        console.log("Step 2: Preheat the oven");
+        setTimeout(() => {
+            console.log("Step 3: Bake the cake");
+            setTimeout(() => {
+                console.log("Step 4: Decorate the cake");
+                console.log("Cake is ready!");
+            }, 1000);
+        }, 1000);
+    }, 1000);
+}, 1000);
+
+
+
+Solving Callback Hell with Promises
+=============================================>=======================>=>
+
+console.log("Start Baking");
+
+// Helper function that returns a Promise
+const step = (message) =>
+    new Promise((resolve) => {
+        setTimeout(() => {
+            console.log(message);
+            resolve();
+        }, 1000);
+    });
+
+// Sequential execution with Promises
+step("Step 1: Mix ingredients")
+    .then(() => step("Step 2: Preheat the oven"))
+    .then(() => step("Step 3: Bake the cake"))
+    .then(() => step("Step 4: Decorate the cake"))
+    .then(() => console.log("Cake is ready!"));
+
+
+Solving Callback Hell with Promises with Async , Await :
+=============================================>=======================>=>
+
+
+console.log("Start Baking");
+
+// Helper function that returns a Promise
+const step = (message) =>
+    new Promise((resolve) => {
+        setTimeout(() => {
+            console.log(message);
+            resolve();
+        }, 1000);
+    });
+
+// Sequential execution with async/await
+const bakeCake = async () => {
+    await step("Step 1: Mix ingredients");
+    await step("Step 2: Preheat the oven");
+    await step("Step 3: Bake the cake");
+    await step("Step 4: Decorate the cake");
+    console.log("Cake is ready!");
+};
+
+bakeCake();
+
+
+
+
+=============================================>=======================>=>=============================================>=======================>=>=============================================>=======================>=>
+
+
+..> When working with an array of promises in JavaScript, you typically handle them using either Promise.all, Promise.allSettled, Promise.any, or Promise.race
+..> 
+
+
+# PROMISE.ALL:
+
+Promise.all
+========================>
+
+Purpose: Wait for all promises to resolve, or reject if any one of them rejects.
+
+Use case: When you need all the promises to be successful before proceeding
+
+
+
+const p = [
+    Promise.resolve(10),
+    Promise.resolve(20),
+    Promise.resolve(30)
+];
+
+Promise.all(p)
+    .then(results => {
+        console.log('All resolved:', results); // [10, 20, 30]
+    })
+    .catch(error => {
+        console.error('At least one promise rejected:', error);
+    });
+
+
+
+
+# Promise.allSettled
+============================>
+
+Purpose: Wait for all promises to settle (resolve or reject) and get their results in an array of objects with status and value/reason.
+
+Use case: When you want the result of every promise regardless of whether it resolved or rejected.
+
+
+
+const p = [
+    Promise.resolve(10),
+    Promise.reject('Error occurred'),
+    Promise.resolve(30)
+];
+
+Promise.allSettled(p)
+    .then(results => {
+        console.log('Results:', results);
+        // [
+        //   { status: 'fulfilled', value: 10 },
+        //   { status: 'rejected', reason: 'Error occurred' },
+        //   { status: 'fulfilled', value: 30 }
+        // ]
+    });
+
+
+
+# Promise.any
+=========================>
+
+Purpose: Wait for the first promise to resolve and return its result. If all promises reject, it throws an AggregateError.
+
+Use case: When you need only one promise to succeed.
+
+
+const p = [
+    Promise.reject('Error 1'),
+    Promise.resolve(20),
+    Promise.resolve(30)
+];
+
+Promise.any(p)
+    .then(result => {
+        console.log('First resolved:', result); // 20
+    })
+    .catch(error => {
+        console.error('All promises rejected:', error);
+    });
+
+
+# Promise.race
+================================>
+
+Purpose:  Wait for the first promise to settle (resolve or reject) and return its result or error.
+
+Use case:  When you only care about the first promise that settles
+
+const promises = [
+     new Promise(resolve => setTimeout(() => resolve(10), 100)),
+    new Promise((reject) => setTimeout(() => reject('Error'), 50)),
+    Promise.resolve(30)
+];
+
+Promise.race(promises)
+    .then(result => {
+        console.log('First settled:', result); // 'Error' (rejected after 50ms)
+    })
+    .catch(error => {
+        console.error('First settled error:', error);
+    });
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,152 @@
+Closures concept in the JAVASCRIPT:
+
+
+
+function Outerfunction(){
+    count=0
+
+    function Innerfunction(){
+        count++
+        console.log(`counts:${count}`)
+    }
+
+    return Innerfunction;
+
+}
+
+const c=Outerfunction();
+
+c()
+c()
+c()
+
+========================================================
+
+function Outfun(a,b){
+
+let c=a+b
+
+function disp(){
+    console.log(a,b,c)
+}
+
+disp()
+}
+
+Outfun(1,11)
+
+
+
+======
+==================================================
+========================================================
+========================================================
+
+HIGHER ORDER FUNCTION IN JS:
+
+
+let radius=[5,6,7,8]
+let ac=(r)=>{
+    return 3.14*r*r
+}
+let pc=(r)=>{
+   return  3.14*2*r
+}
+function hf(radius,fun){
+    result=[]
+    for(let i=0;i<radius.length;i++){
+        result.push(fun(radius[i]))
+    }
+    return result
+}
+let x=hf(radius,ac)
+let y=hf(radius,pc)
+
+console.log(x)
+
+console.log(y)
+
+
+
+
+================================================================================================================================================================================================================================
+
+
+MAP FUNCTION IN JS
+============================>
+
+
+
+let a=[5,7,8,2,3,4,12]
+
+
+let fun=(e,i)=>{
+
+    if(true){
+        return ({e,i})
+    }
+    
+}
+
+let r=a.map(fun)
+
+console.log(r)
+
+
+FILTER FUNCTION IN JS
+============================>
+
+
+
+let b=[1,2,3,4,5,6]
+
+let r1=b.filter( (e)=>e%2==0)
+
+console.log(r1)
+
+
+
+
+
+
+REDUZER  FUNCTION IN JS
+============================>
+
+let a1=[1,2,3,4,5]
+
+let r2=a1.reduce((ac,e)=>ac+e,0)
+
+console.log(r2)
+
+
+
+EVERY  FUNCTION IN JS
+============================>
+
+let a=[2,4,23,4,6,78,90]
+
+let s=a.every( (e)=>e>0)
+
+console.log(s)
+
+
+
+SOME FUNCTION IN JS
+============================>
+let a=[90,3,5,-1,54,23]
+
+let s=a.some((e)=> e<0)
+
+console.log(s)
+
+================================================================================================================================================================================================================================
+
+
+
+
+
+
+
+
+
+

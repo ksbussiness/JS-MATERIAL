@@ -1,0 +1,724 @@
+THIS KEYWORD IN THE  JS :
+----------------------------- >
+
+
+..>  The this keyword in JavaScript is fundamental and can be complex. It is a dynamic keyword whose behavior varies depending on how and where it is used in the code.
+
+..> The this keyword refers to the context in which a function or object is executed.
+
+..> It's points to the "owner" of the code being executed.
+
+..> The value of this depends on where and how the function is invoked. rather then how the function defined and where it is used .
+
+..> 
+
+
+Scenarios and Usage :
+
+1) 1. Global Context :
+
+...>  When this is used in the global context (outside any function or object), its value depends on the environment:
+
+.> In the browser, this refers to the window object.
+
+.> In strict mode, this will be undefined. 
+
+
+ex: 
+console.log(this); // In the browser, logs the `window` object
+
+"use strict";
+console.log(this); // Logs `undefined` in strict mode
+
+
+
+2) 2. Inside Functions :
+
+
+..> The value of this inside a function depends on how the function is invoked or called but not how the functions is defined.
+
+..> Default Binding: In non-strict mode, this refers to the global object. In strict mode, this is undefined.
+
+..> Explicit Binding: Using methods like call(), apply(), or bind() allows you to explicitly set the value of this.
+
+..> 
+
+
+-----------------------------------------.>
+ex: 
+
+// Default Binding
+function showThis() {
+  console.log(this); // Window or undefined (in strict mode)
+}
+showThis();
+
+-----------------------------------------.>
+ex2 : why here see it gg
+function fun(){
+    var a="sai";
+    console.log(this);
+    console.log(this.a);
+
+}
+fun();
+
+VM755:3 Window {0: Window, window: Window, self: Window, document: document, name: '', location: Location, …}
+VM755:4 undefined
+
+
+-----------------------------------------.>
+ex3: 
+
+var p=90;
+
+function func(){
+    console.log(this.p);
+    console.log(this);
+}
+
+func();
+
+ 90
+ Window {0: Window, window: Window, self: Window, document: document, name: '', location: Location, …}
+
+... here in this normal function invokation, when the variable is declared out side of the function iam able to assess it , when the varible is inside iam not able to access it.
+
+..> 
+
+
+-----------------------------------------.>
+ex4 : here this is working differently how the function  is invoked.
+// Explicit Binding
+
+
+function fun1(){
+    console.log(`This is ${this.name} and my age is ${this.age}. iam doing good`);
+}
+
+const obj={ name :"sachin", age:89};
+
+fun1(obj); 
+VM1060:2 This is  and my age is undefined. iam doing good // when diretly invoked iam getting the undefiedn and empty.
+
+
+fun1.call((obj)); 
+VM1060:2 This is sachin and my age is 89. iam doing good // woking fine when we use the call()  method
+
+
+-----------------------------------------.>
+
+
+3)  3. Object Context :
+
+...> When this is used inside an object, it refers to the object itself.
+
+...> 
+
+
+ex1:
+
+const obj={
+    name:"sachin",
+    greet:function(){
+        console.log(`this is me ${this.name} and my age is ${this.age}`) // refres to name , age
+    },
+    age:676
+};
+
+obj.greet(); 
+
+This is me sachin and my age is 676
+
+
+
+
+================================================ > :
+
+...>  This ref
+erence is typically the only way to access an anonymous func
+tion’s object from inside itself. 
+
+...> how the this works in the anonymous functions, and what are the self reference functions, 
+
+..> Anonymous functions, how they are invoked , and where does this refres here.
+
+..> 
+
+
+NOTE : 
+
+....> To be clear, this does not, in any way, refer to a function’s lexical scope { WHY } .
+
+....> To be clear, this does not, in any way, refer to a function’s lexical scope.
+ It is true that internally, scope is kind of like an object with properties
+ for each of the available identifiers. But the scope “object” is not ac
+cessible to JavaScript code. It’s an inner part of the engine’s implemen
+tation.
+
+
+....>  You cannot use a this reference to look some
+thing up in a lexical scope. It is not possible { why } 
+
+
+...>  Every time you feel yourself trying to mix lexical scope look-ups with
+ this, remind yourself: there is no bridge.
+
+...>  this is not an author-time binding but a runtime
+ binding.
+
+...> This binding has nothing to do with where a function is
+ declared, but has instead everything to do with the manner in which
+ the function is called.
+
+
+...>  When a function is invoked, an activation record, otherwise known
+ as an execution context, is created. 
+
+...> This record contains information about where the function was called from (the call-stack), how the function was invoked, what parameters were passed, etc. 
+
+...> One of the properties of this record is the this reference, which will be used for the duration of that function’s execution.
+
+...> 
+
+NOTE 2: ...>  This is neither a reference to the function itself, nor is it a reference to the function’s lexical scope
+
+
+...>** This is actually a binding that is made when a function is invoked, and what it references is determined entirely by the call-site where the function is called 
+ (how the function is called).
+
+...> 
+
+
+What’s important is to think about the call-stack (the stack of functions
+ that have been called to get us to the current moment in execution).
+ The call-site we care about is in the invocation before the currently
+ executing function
+
+
+EX1: 
+
+function foo(){
+    var a=90;
+      console.log(this.a) // undefied why 
+    //this.bar(); // this.bar is not a function 
+    console.log(this.a)
+};
+
+function bar(){
+    console.log(this.a)
+}
+
+foo();
+
+
+difference between the call-stack and call-site:
+
+...> what is the use of it , how we can relatde the concept of this keywords with these two things, 
+...> what is the use of call-site , 
+
+
+
+ex : examlpe for seeing the call stack :
+------------------------------------------ >
+
+function baz(){
+    console.log("baz 1");
+    bar();
+}
+function bar(){
+    console.log("bar 2")
+    foo();
+}
+
+function foo(){
+    console.log("foo 3")
+    con()
+}
+
+function con(){
+    console.log("con 4")
+}
+
+baz();
+
+
+
+
+DEFAULT Bindling :
+
+..> 
+
+ex1:  WHY 
+
+var a=90;
+function foo(){
+ console.log(this.a)
+
+}
+
+foo() // 90
+
+....>  the default binding for this
+ applies to the function call, and so points this at the global object.
+
+
+
+.> WHAT IS TEH DEFAULT binding here , what it is attached to the , 
+
+.> were it will be attached , how to use, 
+.> for what it will be attached , 
+.> is it attached to every object amd functions in js :
+.> where we ca see  or access the default binding
+.> what is the relations ship between the THIS keyword and default binding , 
+.> is that though the overall this binding rules are entirely based on the call-site,
+
+NOTE :  foo() is called, this.a resolves to our global variable a. Why? Because in this case, the default binding for this
+ applies to the function call, and so points this at the global object.
+
+ex2: 
+
+
+DEFAULT BINDING :
+------------------- > 
+
+1. Default binding | Direct invocation
+
+...> This in Default Binding points to the global object. Default binding is applied for standalone functions and is the fallback option for all other types.
+
+...> what is the standalone functions : with the different examples:
+
+
+
+# Implicit Binding :
+
+
+
+
+...> Implicit Binding is applied when you invoke a function in an Object using the dot notation. 
+
+...> This in such scenarios will point to the object using which the function was invoked. Or simply the object on the left side of the dot.
+
+...> 
+
+
+
+EX1 :
+
+function fun(){
+    console.log(this);
+    console.log(this.aa);
+    
+};
+
+const obj={
+    aa:"sai",
+    fun:fun
+};
+
+
+obj.fun();
+output:
+
+{aa: 'sai', fun: ƒ}
+sai
+
+EX2 :
+
+2.a Nested Function
+
+..> When a function is nested inside a method of an object, the context of the inner function depends only on its invocation type and not on the outer function’s context.
+
+const obj={
+    
+    name:"sai",
+    outer:function(){
+        console.log(this,"iam from outer"); // here this refers to the obj itself  {{ name: 'sai', outer: [Function: outer] } iam from outer}
+
+        console.log(this.name,"iam fomr the outer"); // sai
+        
+        function inner(){
+
+            console.log(this,"iam from inner"); // here this refres to the window object.
+
+            console.log(this.name,"iam from inner") // undefined.
+        };
+        inner();
+    }
+}
+
+obj.outer();
+
+2.b : function assigned to a variable:
+
+function myFunction() {
+  console.log(this);
+}
+
+const obj = {
+  someKey: 1,
+  myFunction: myFunction,
+}
+
+const newFunction = obj.myFunction;
+newFunction();    // Window {}
+
+
+...> In this example, even though outer was called using implicit binding, inner was called using default binding. Hence, this points to the Window Object.
+
+
+
+
+...> Only the top/last level of an object property reference chain matters
+ to the call-site.  so thats why here iam only able to see the a , but not the b result
+
+
+...>  And the value of this depends on how the function is called, something known as runtime binding.
+
+function foo()
+
+ {
+
+ console.log(this.b); // undefined 
+ console.log( this.a ); //42
+
+ }
+
+ var obj2 = {
+
+ a: 42,
+ foo: foo
+
+ };
+
+ var obj1 = {
+
+ a: 2,
+ b:25,
+ obj2:obj2
+
+ };
+
+obj1.obj2.foo();
+
+
+.........> 
+
+
+
+
+# explicit binding:  WHAT is the use of the call() , bind(), apply() , methods , and when wo use them and in which situations we need to use them , what is the difference between them.
+
+..> JavaScript is a powerful language that provides several ways to bind this to a specific object. 
+
+..> One such way is explicit binding, which allows developers to explicitly set the value of this for a function.
+
+..> By default, this refers to the global object in non-strict mode and undefined in strict mode. 
+
+..> The value of this can be changed by using different binding methods.
+
+..> Explicit binding refers to the process of explicitly setting the value of this for a function. 
+
+..> This can be done by using the call, bind, or apply methods provided by JavaScript.
+
+..> 
+
+
+
+NOTE R1 : new and call/apply cannot be used together, so new foo.call(obj1) is not allowed to test new binding directly against explicit binding. But we can still use a hard binding to test the precedence of the two rules.
+
+NOTE R2: So, explicit binding takes precedence over implicit binding, which means you should ask first if explicit binding applies before checking for implicit binding.
+
+
+
+NOTE R3: 
+
+
+
+
+
+CALL....! 
+
+..> Pass in the required object as the first parameter during the function call. The actual parameters are passed after the object.
+
+ex2:
+
+function myFunction(param1, param2) {
+    console.log(this)     
+  }
+ 
+const obj = {
+  someKey: 1, 
+}
+
+const param1 = 1, param2 = 2;
+myFunction.call(obj, param1, param2)       // {someKey: 1}
+myFunction.apply(obj, [param1, param2])    // {someKey: 1}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+EX1 : with out call method :
+
+const person={
+    name:"sai",
+    age:45,
+    greet:function (){
+        console.log(`my name is ${this.name} and my age is ${this.age}`) // my name is sai and my age is 45
+    }
+};
+
+const anperson={
+    name:"sachin",
+    age:90
+    }
+
+person.greet();
+
+
+EX2: WITH THE CALL METHOD : we can referes to the anperson obj properties using the call() method 
+
+const person={
+    name:"sai",
+    age:45,
+    greet:function (){
+        console.log(`my name is ${this.name} and my age is ${this.age}`)
+    }
+};
+
+const anperson={
+    name:"sachin",
+    age:90
+    }
+
+person.greet.call((anperson)) // my name is sachin and my age is 90
+
+
+
+
+BIND...!
+
+..> The bind method creates a new function with a given this value and arguments provided as an array. 
+
+..> bindPerson is essentially a new function that calls greet, but the this keyword inside greet will be set to anotherPerson, not person.
+
+..> “bind ”and “call ”methods work exactly the same, but “bind ”creates a copy of a function which we can use later and “call” executes the function immediately.
+
+
+..> bind(): In this method, you create a new function with a fixed this. These types of functions created using bind() are commonly known as bound functions.
+
+
+EX0 :
+
+function myFunction() {
+    console.log(this)     
+  }
+ 
+const obj = {
+  someKey: 1, 
+}
+
+const boundFunction = myFunction.bind(obj)
+boundFunction();      // {someKey: 1}
+
+
+
+
+
+
+
+EX3:
+
+const person={
+    name:"sai",
+    age:45,
+    greet:function (){
+        console.log(`my name is ${this.name} and my age is ${this.age}`)  // my name is sachin and my age is 90
+    }
+};
+
+const anperson={
+    name:"sachin",
+    age:90
+    }
+
+const bindPerson=person.greet.bind((anperson));
+
+bindPerson() // my name is sachin and my age is 90
+
+NOTE R1 :  One of the capabilities of bind(..) is that any arguments passed after the first this binding argument are defaulted as standard arguments to the underlying function
+
+bindPerson("sanju",900) // my name is sachin and my age is 90 here even i passed some values explicity whay it is not taking here.
+
+
+APPLY....! 
+
+...> It takes two arguments: the first argument is the value of this that you want to set for the function.
+
+...> The second argument is an array of arguments to pass to the function.
+
+...> It does not create the new array objects.
+
+EX 4:
+
+const person={
+    name:"sai",
+    age:45,
+    greet:function (a,b){
+        console.log(a+" my name is " +this.name+ " and my age is "+ this.age +" " +b)
+    }
+};
+
+const anperson={
+    name:"sachin",
+    age:90
+    }
+
+person.greet.apply(anperson,["hello!","!Bye iam going...!"]); // hello! my name is sachin and my age is 90 !Bye iam going...!
+
+..> 
+
+NOTE :These methods are particularly useful when dealing with objects and methods that have a dynamic context or when we need to reuse a function with different arguments and contexts.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Arrow Functions :
+Normal functions in JS abide by the 4 rules mentioned above. But ES6 introduces a special kind of function that does not use these rules, known as arrow functions.
+
+
+....> They go on to the enclosing scope if they are unable to identify it in the current scope. As a result, rather than binding their own this, the arrow functions inherit the "this" from the parent scope. This process is called lexical scoping.
+
+
+Arrow functions use “lexical scoping” to figure out what the value of this should be. Lexical scoping is a fancy way of saying it uses “this” from the outer function in which it is defined.
+
+.> Simply put, when an arrow function is invoked, JS literally takes the this value from the outer function where the arrow function is declared. 
+.> I repeat, the outer function, NOT the outer object in which it is defined.
+
+a. If the outer function is a normal function, this depends upon the type of binding of the outer function.
+
+b. If the outer function is an arrow function, JS again checks for the next outer function and this process continues till the global object.
+
+
+
+EX1:
+
+
+
+
+const obj={
+    
+    name:"sai",
+    outer:function(){
+        console.log(this,"iam from outer");    //  { name: 'sai', outer: [Function: outer] } iam from outer
+
+        console.log(this.name,"iam fomr the outer"); // sai iam fomr the outer
+        
+        let inner=()=>{
+            console.log(this,"iam from inner"); // { name: 'sai', outer: [Function: outer] } iam from outer
+
+            console.log(this.name,"iam from inner")  // sai iam fomr the outer
+        };
+        inner();
+    }
+}
+
+obj.outer();
+
+..> here in the inner function is Arrow so , its checks for the outer function , so the outer function is normal function so its depends on the binding , so its give me the , this : the OBJECT only.
+
+..> if here we use the normal functions then it THIS refers to the window.
+
+..>
+
+
+
+in 
+
+
+THIS IN CLASS CONTEXT :
+
+.... In classes , this refres to the instance of the class being created.
+
+
+class Student{
+    
+    constructor(name,age){
+        this.name=name;
+        this.age=age;
+    }
+    
+    sayHello(){
+        console.log(`hello iam ${this.name} and age is ${this.age}`)
+    }
+}
+
+const p=new Student("sachni",90);
+const n=new Student("sai",20);
+n.sayHello();
+p.sayHello();
+
+
+THIS IN CONSTRUCTOR FUNCTION;
+
+..> In a constructor function, this refers to the object in which it being constructed.
+
+Example:
+
+javascript
+function Animal(type) {
+  this.type = type;
+}
+const dog = new Animal("Dog");
+console.log(dog.type); // Logs "Dog"
+
+
+THIS WHEN USE THE PROTOTYPES:
+
+..> this can refer to the specific object calling a prototype method.
+
+function Auto(name){
+    this.name=name;
+    
+}
+
+Auto.prototype.getName=function(){
+    console.log(`My auto name is ${this.name}`);
+}
+
+
+const auto= new Auto("bajaj")
+
+const auto1= new Auto("jio")
+
+auto.getName();
+
+auto1.getName();
+
+
+
+
+THIS IN EVENTS :
+
+..> In the case of an event, the element that received the event is referred to as this.
+
+..>

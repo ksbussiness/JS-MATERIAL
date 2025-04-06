@@ -1,0 +1,55 @@
+/ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+ // TRUST ISSUSES With the SETTimeOUT():
+ 
+ console.log("Start")
+ 
+ setTimeout(function cb(){
+     console.log("callback....!");
+     
+ });
+ 
+
+ console.log("END...!");
+ 
+// 10 million lines of code: it takes the 10 sec to to complete execution
+//
+ 
+ ..> here when this line hits console.log("Start"), then
+ 
+ GEC in call stack will be created and executes it .
+ 
+ .> next this line hits setTimeout(function cb())  then in side the WEB API it will be stored and added a delay of the 5sec
+ 
+ ..>  console.log("END...!"); this line hits next it will be executed , by the time 5 sec complited, but it will not executes the setTimeout functions
+ 
+ ..> it will wait for the 10 millions to execuet and the GEC will be removed from the CallStack.
+ 
+ ..> the only the CallBackQueue willbe executed
+ 
+ 
+ 
+ console.log("start");
+ 
+ setTimeout(function cb(){
+     console.log("callBack");
+ },0);
+
+console.log("end...!");
+
+o/p: 
+
+start
+end...!
+callBack
+
+
+ 
+ 
+ 
+ /// &&&&& /// &&&&&&&&&&&&&&&&&&&&&&&&&&&$$$$$$$$$$$$$$$$$&&&&&&&&&&&&&&&&&&&&&&&&&&&$$$$$$$$$$$$$$$$$
+ /// &&&&&&&&&&&&&&&&&&&&&&&&&&&$$$$$$$$$$$$$$$$$
+&&&&&&&&&&&&&&&&&&&&&&$$$$$$$$$$$$$$$$$
+
+

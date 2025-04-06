@@ -1,0 +1,27 @@
+different console messages in JS:
+
+1 ) console.error(" iam not ok");
+2 ) console.info("hai iam ok");
+
+
+3 ) console.log(" for direct message");
+4 ) console.warn(" for warning messages");
+
+
+const obj=[ { name:"ramu",age:90,  roll:"p9" } , {  name:"sai",   age:98, roll:"w2" } ];
+
+5 ) console.table(obj); we get here table.
+
+6 ) 
+
+console.group("CSE TOPICS");
+
+console.log("c++");
+console.log("html");
+console.log("python");
+console.groupEnd();
+
+
+By default, JavaScript will use the browser's time zone and display a date as a full text string:
+
+Wed Apr 02 2025 14:39:09 GMT+0530 (India Standard Time)

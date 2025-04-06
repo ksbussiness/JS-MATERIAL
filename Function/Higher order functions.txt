@@ -1,0 +1,235 @@
+/// &&&&&&&&&&&&&&&&&&&&&&&&&&&$$$$$$$$$$$$$$$$$
+&&&&&&&&&&&&&&&&&&&&&&$$$$$$$$$$$$$$$$$
+
+
+HIGHER ORDER FUNCTION :
+
+
+//function x(){
+//     console.log("sachin")
+// }
+
+// function y(x){
+//     x();
+    
+// }
+
+// ..> here x is the CallBack function, 
+
+// ..> Y is the high order function.
+
+
+..> a function which takes another functions has input  to it is called has the higher order function.
+
+
+const radius=[3,1,2,4];
+
+
+// const calculateArea=function(radius){
+    
+//     const output=[];
+//     for(let i=0;i<radius.length;i++){
+//         output.push(Math.PI*radius[i]*radius[i]);
+//     }
+//     return output;
+    
+// }
+
+// console.log(calculateArea(radius));
+
+
+
+const area=function (radius){
+    return Math.PI*radius*radius;
+};
+
+const cicumference=function (radius){
+    return Math.PI*2*radius
+};
+
+const diameter=function (radius){
+    return 2* radius;
+};
+
+
+const calculate=function (radius,logic){
+    const output=[];
+    for(let i=0;i<radius.length;i++){
+        output.push(logic(radius[i]));
+    }
+    return output;
+};
+
+
+console.log(radius.map(area)):  // this map gives us same  output has the what the calculate function gives the output.
+
+console.log(calculate(radius,area));
+
+console.log(calculate(radius,cicumference));
+
+console.log(calculate(radius,diameter));
+
+
+..> here thefunction calculate is the highOrder function
+
+
+
+/ Map funtion is used to transform the functions
+
+const arr=[5,1,3,2,6];
+
+//Double --> [10,2,6,4,12]
+
+// triple--> [15,3,9,6,18]
+
+// binary--> ["101","1","11","10","110"]
+
+
+function double(x){
+    return x*2
+}
+
+
+function triple(x){
+    return 3*x
+}
+
+
+
+function binary(x){
+    return x.toString(16);
+}
+
+
+
+const output=arr.map(triple)
+console.log(output)
+
+
+const output1=arr.map(binary);
+console.log(output1)
+
+
+..> map function will tranform every element from the given array and store them in the new array.
+
+
+const arr=[5,1,3,2,6];
+
+
+function odd(x){
+return x%2!=0    
+}
+
+const output=arr.filter(odd)
+console.log(output)
+console.log(2%6)
+
+
+function sum(arr){
+    let sum=0;
+    for (let i=0;i<arr.length;i++){
+        sum=sum+arr[i]
+    }
+    return sum
+}
+sum(arr)
+
+console.log(sum(arr));
+
+
+// ..> here the function which we pass inside the reduce , will iterated over every element 
+
+// ..> here the curr represents the current element in the array, when iterating
+
+// ..> acc will , accumulate the results.
+
+// ..> we need to pass an intial value to the second argument for the reduce function.
+
+
+// REDUCE FOR FINDING THE SUM OF ARRAY
+//const arr=[5,1,3,2,6]
+// const output=arr.reduce(function(acc,curr){
+//     acc=acc+curr;
+//     return acc;
+    
+// },0);
+
+// console.log(output)
+
+
+// REDUCE FOR FINDING THE MAX element in the array
+const arr=[5,1,3,2,6]
+const output=arr.reduce(function(max,curr){
+    if(curr>max){
+        max=curr;
+    }
+    return max;
+    
+},0);
+
+console.log(output)
+
+
+
+const users=[
+    
+    { firstName:"sachin",lastName:"reddy",age:26},
+    
+    { firstName:"virat",lastName:"reddy",age:90},
+    
+    { firstName:"naredra",lastName:"modi",age:26},
+    
+    { firstName:"dell",lastName:"laptop",age:75}
+    
+    ]
+    
+    
+    function findN(x){
+        
+        return x.firstName+" "+x.lastName
+        
+        
+        
+    }
+
+
+const output=users.map(findN);
+
+
+console.log(output)
+
+
+
+// {26:2,75:1,90:1}
+
+
+const output=users.reduce(function(acc,curr){
+    
+    if(acc[curr.age]){
+        acc[curr.age]=++acc[curr.age];
+    }
+    else{
+        acc[curr.age]=1;
+    }
+    return acc;
+},{});
+
+console.log(output)
+
+
+
+// here first i need to filter the obj where , age<26 and next i need to get the firstname fomr these output.
+
+function agg(x){
+    return x.age<30
+}
+
+function ahh(x){
+    return x.firstName
+    
+}
+
+const output=users.filter(agg).map(ahh)
+
+console.log(output)
+
