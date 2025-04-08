@@ -1,0 +1,69 @@
+// Online Javascript Editor for free
+// Write, Edit and Run your Javascript code using JS Online Compiler
+
+
+// here this represnt the this object only
+let name={
+    firstname:"Akshay",
+    lastname:"reddy"
+};
+
+let  printFullName=function(hometown,state){
+        console.log(this.firstname+ " "+this.lastname+ "from" + hometown+","
+        +state);
+    }
+    
+printFullName.call(name,"thatel","gj") // Akshay reddy
+
+// here in the call method the first , name is refering the this object, and next parameters refering the formal paramter , in the function.
+
+// 
+
+printFullName.apply(name,["thaltej","ts"]);
+
+// the only difference between the apply, call is the in apply we pass the parametres in teh foam of the array list
+
+// bind method:
+
+here it will be similer to the call method only, here the bind method will crete a new function returns it ,
+
+let printMyName=printFullName.bind(name2,"telangana","nkd");
+
+console.log(printMyName);
+printMyName();
+
+
+
+
+
+let name2={
+    firstname:"Sachin",
+    lastname:"reddy",
+    printFullName:function(){
+        console.log(this.firstname+ " "+this.lastname);
+    }
+}
+
+name2.printFullName();  // Sachin reddy
+
+
+/// in this way we can wrote many object:
+//but every time writing the call method like this is not good.
+
+
+let name3={
+    
+   firstname:"Dhoni",
+    lastname:"reddy",
+},
+
+
+//FUNCTION BORROWING : we can borrow the functionsn adn we can use them where ever we want them 
+// in js every object has the accesc to the special method called Call()
+
+// which takes the object has input and refere to the this in the main object  function
+
+//printFullName.call(name3);
+
+
+
