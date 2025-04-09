@@ -1,0 +1,13 @@
+booking.forEach(async function demo(x) {
+    console.log(x.productid, x.Noofitems);
+    
+    const productInfo = await Products.findById(x.productid);
+    
+    productInfo.Bookedproducts = productInfo.Bookedproducts + x.Noofitems;
+    productInfo.quantityAvailable = productInfo.quantityAvailable - x.Noofitems;
+
+    await productInfo.save();
+}); /// in this code iam getting error:
+
+
+
