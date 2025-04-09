@@ -65,5 +65,93 @@ let name3={
 
 //printFullName.call(name3);
 
+POLYFILL IN JS:
+--------------------- >
+
+.> A polyfill in JavaScript is a piece of code (usually JavaScript itself) that implements a feature that is not natively supported by older browsers. It allows you to use modern JavaScript features (e.g., Promise, fetch, Array.prototype.includes, etc.) in environments that do not support them.
+
+Use a polyfill when: 
+---------------------- >
+
+Use a polyfill when:
+
+You're using modern JavaScript (ES6+) but need to support older browsers.
+
+A feature is not yet implemented in all environments, but you want consistency.
+
+You want your app to work gracefully on legacy systems (e.g., corporate systems stuck on old browsers).
+
+You're working in a cross-browser web app and want reliable, predictable behavior.
+
+What is .bind() in JavaScript?
+The bind() method creates a new function that, when called, has its this keyword set to a specific object.
+EX:
+const person = {
+  name: "Sachin"
+};
+
+function greet() {
+  console.log("Hello " + this.name);
+}
+
+const sayHello = greet.bind(person);
+sayHello(); // Hello Sachin
+
+// Without bind, this.name might be undefined.
+
+If bind() doesn’t exist in a browser, the polyfill adds it manually using apply().
+
+This helps in making your code work everywhere, even in old browsers.
+
+..> In js every function have the access to the bind function, 
+
+
+
+.>when we write any method has the 
+Function.prototype.mybind() : here mybind is my method then this method will be accessable to every method in js 
+
+
+
+let name={
+firstname="Sachin",
+lastname="reddy"
+
+}
+
+let printName=function(hometown,state){
+console.log(this.firstname+ " "+this.lastname+ "," +hometown+","+state)
+}
+
+let printMyName=printName.bond(name,"narayamkhed");
+
+
+printMyName("Telangana");
+
+Funtion.Prototype.mybind=function(...args){
+// here this refres to the printName function
+
+let obj=this ,
+params=args.slice(1);
+return function (...arsg2) {
+obj.apply(args[0],[...params,...args2]);
+
+}
+}
+
+let printMyName2=printName.mybind(name,"naramkhed");
+printMyName("Telangana")
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
