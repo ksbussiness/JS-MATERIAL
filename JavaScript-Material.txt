@@ -1428,6 +1428,23 @@ Promise.all(p)
 
 
 
+EX: use for the Promise.All() in Js code:
+-------------------------------------------------- .>
+try {
+    const [user, orders, cart] = await Promise.all([
+        User.findById(userId),
+        Order.find({ userId }),
+        Cart.findOne({ userId }),
+    ]);
+    res.status(200).json({ user, orders, cart });
+} catch (err) {
+    res.status(500).json({ message: "Something failed", error: err });
+}
+
+If queries are dependent on each other, go with await one by one.
+
+If they are independent, prefer Promise.all for better performance.
+
 
 # Promise.allSettled
 ============================>
