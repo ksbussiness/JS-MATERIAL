@@ -17,4 +17,50 @@ const getUserRole = (role) => userRoles[role] || "No Access";
 
 console.log(getUuserRole("admin")) //Full Access
 console.log(getUuserRole()) // No Access
-======================================================================================================================
+
+use case:
+-> Easier to read
+.> No repetitive conditions
+
+====================================================================================================================== >
+tip-2:
+
+If you have the if else condition then replase it with the Ternary Opretaor:
+
+const isAdult=(age)=> age>=18 ? "Adult":"Minor";
+console.log(isAdult(20));
+
+use case:
+.> one liner, easier code
+
+====================================================================================================================== >
+tip-3:
+
+For multiple conditions a switch statement is often better than long if-else chains:
+
+function getDiscount(day){
+    
+    switch(day){
+        case "Monday":return "10% off";
+        case "Friday": return "15% off";
+        case "sunday": return "30% off"
+        default: return "No discount";
+    }
+}
+
+console.log(getDiscount("sunday"))
+
+use case :
+.> 
+
+====================================================================================================================== >
+tip-4:
+
+const Weekend=["sunday", "saturday"];
+
+const isWeekend=(day)=>Weekend.includes(day) ? "Yes, it's weekend" : "No, keep,  working!";
+
+console.log(isWeekend("sunday"));
+
+
+
