@@ -1,0 +1,20 @@
+tip-1:
+
+const userRoles={
+    
+    admin:"Full Access",
+    editor:"Edit Access",
+    viewer:"Read-Only Access"
+}
+
+function getUuserRole(x){
+    return userRoles[x] || "No Access";
+    
+}
+
+const getUserRole = (role) => userRoles[role] || "No Access";
+
+
+console.log(getUuserRole("admin")) //Full Access
+console.log(getUuserRole()) // No Access
+======================================================================================================================
