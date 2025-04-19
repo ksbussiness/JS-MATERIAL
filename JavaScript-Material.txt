@@ -1518,8 +1518,74 @@ Promise.race(promises)
     });
 
 
+=====================================================================================================================================================================================================================================================================================================================================================================================================================
 
 
+
+// call back hell: One call back inside another call back is called has the,
+
+//Her the code look's like  the Payramid of Dom
+
+// Asynchronous programming exits here because of the existance of the callBacks
+
+
+const cart=["shoes","pants","kurta"];
+
+console.log(cart)
+
+api.createOrder(Cart,function(){
+    
+    api.proceedToPayment(function (){
+        
+    api.showOrderSummary(function (){
+    api.updateWallet()
+})
+    
+})
+})
+
+// Inversion of Controller :
+
+
+
+const cart=["shoes","pants","kurta"];
+
+console.log(cart)
+
+api.createOrder(Cart,function(orderId){
+    
+    api.proceedToPayment(orderId,function (paymentid){
+        
+    api.showOrderSummary(paymentid,function (){
+    api.updateWallet()
+});
+});
+});
+
+createOrder(cart)
+.then( (orderid)=>api.proceedToPayment(orderId))
+.then( (paymentid)=> api.showOrderSummary(paymentid))
+.then((paymentid)=>   api.updateWallet(paymentid))
+
+
+
+
+
+Promises are used to handle the Asynchronous in the javascript 
+
+..>    fetch returns the promise
+
+
+const GITHUB_API="https://api.github.com"
+
+
+const user=fetch(GITHUB_API); // it will return the promise
+
+console.log(user) // here we get teh promise has the pending state
+// because here, fetch will call the api and next, here, it takes the time to fetch teh api, and next , when i print here, it will showa has the pending here, it is not resolved, and js not waits until the promise , to resloved here, 
+
+
+//  when ever you have the multiple promises them use the chaining of the promises, instead of  writing teh individula promises
 
 
 
