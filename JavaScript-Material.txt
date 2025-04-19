@@ -1649,6 +1649,56 @@ function validateCart(cart){
 
 
 
+//                           PROMISE.ALL()
+
+
+//Here in this .all() it will take the iterables in side it has the arguments here
+
+// Here .all() it used to makke the 3 paralle api calls here, 
+
+// Promise.all([p1,p2,p3])
+
+// Here it will wait for all of the 3 api calls to finish here , after that only it will be give the results.
+
+
+// It wil give the array of teh outputs here.
+
+// promise.all , here if any one of the 3 promises  encounter with th error then it will be give error only here, it will not wait for the others to execute her.
+
+// here it wil give us the array of the objects here
+
+
+//                              PROMISE.ALLSETTELED()
+
+// ..> here it is also used to make the paralle api calls here
+
+// / Promise.all([p1,p2,p3])
+
+// Here it will wait for all of the 3 api calls to finish here , like wheather the promises are resloveed or rejected no matter here ,after that only it will be give the results.
+
+// after all the promises are the setteled then it will give results 
+
+
+//                                 PROMISE.RACE()
+ 
+// ..> here it will be used make the paralle api calls but 
+
+// ..> here if any of the promise is rejected first  then immediately it will give us the error message and. stops there because here it is the race between the all the promises here
+
+// ..> here if any of the first promise is resolved then it will , give us the result back, has successfull here and it will stops the others, because here it only give us teh first promises only { whather it will be failed here ot resolved here  } do not matther here.
+
+
+
+//                                   PROMISE.ANY()
+
+..> here also it will be take the array of the promises has inputs here
+
+..> here it will wait for any of the promises to resolve firt , which means here you need to wait for teh first successfully promises to be resolved here.
+
+..> if all the promises here is failed then we get the Aggregated error here
+
+...> 
+
 
 
 
