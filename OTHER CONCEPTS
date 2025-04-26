@@ -1,0 +1,42 @@
+What is FormData?
+FormData is a built-in JavaScript object that helps you easily create and send form data (like input values, files, etc.) through HTTP requests, especially POST requests.
+
+Think of it as a container to hold data you want to submit to a server.
+
+
+const formData = new FormData();
+
+ Why use FormData?
+When you want to submit a form, upload files, or send complex data using fetch, axios, or XMLHttpRequest.
+
+It automatically sets the correct Content-Type (multipart/form-data) — you don't need to manually set headers.
+
+4. Common Methods of FormData
+
+Method	Purpose	Example
+append(name, value)	Add a new field.	formData.append('username', 'Sachin')
+set(name, value)	Same as append, but replaces if it already exists.	formData.set('email', 'test@example.com')
+delete(name)	Removes a field.	formData.delete('username')
+get(name)	Gets the value of a field.	formData.get('username')
+has(name)	Checks if a field exists.	formData.has('username')
+
+ex:
+const formData = new FormData();
+formData.append('username', 'Sachin');
+formData.append('email', 'sachin@example.com');
+
+console.log(formData.get('username')); // Sachin
+console.log(formData.get('email'));    // sachin@example.com
+
+
+Use {} (normal object) when sending simple JSON data without any files.
+ Use FormData when you are submitting forms or uploading files — it handles everything (encoding, headers) automatically.
+
+
+
+
+===================
+============================================================================================================================================================================================================================================================
+=========================================================================================================================================================================================================================================
+
+
