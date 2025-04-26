@@ -25,8 +25,29 @@ const formData = new FormData();
 formData.append('username', 'Sachin');
 formData.append('email', 'sachin@example.com');
 
+
+
+
+console.log(formData.name) // we get here undefined
+
+Because name is not a direct property of the FormData object.
+In JavaScript, objects normally have properties you can access with . operator.
+FormData is different — it's a special object where data is internally stored in a private structure.
+You have to use methods like .get('name') to access the value!
+
+
 console.log(formData.get('username')); // Sachin
 console.log(formData.get('email'));    // sachin@example.com
+
+
+
+note : 
+In JavaScript, everything that is not a primitive (string, number, boolean, null, undefined, symbol, bigint) is an object.
+
+Even FormData, Array, Date, Map, etc., all show typeof as "object".
+
+typeof does NOT show the class/type name like FormData.
+
 
 
 Use {} (normal object) when sending simple JSON data without any files.
