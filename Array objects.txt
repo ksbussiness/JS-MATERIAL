@@ -798,6 +798,35 @@ console.log(s1.some((fun))) // false ,
 ..> The default sort order is ascending.
 
 
+let w2 = [3, 33, 44, 1, 45, 7, 90];
+console.log(w2.sort()); // [1, 3, 33, 44, 45, 7, 90]
+
+This isn't numerically sorted — why is 7 after 45?
+
+🧠 The Reason:
+By default, Array.prototype.sort() converts elements to strings and sorts them lexicographically (i.e., dictionary order).
+
+["1", "3", "33", "44", "45", "7", "90" ]
+
+And in string comparison:
+"33" comes before "7"
+"45" comes before "7"
+"7" comes after "4" but before "90" (because it's just comparing digits like characters)
+
+Pass a compare function
+To sort numbers correctly, give .sort() a callback that compares them numerically:
+console.log(w2.sort((a, b) => a - b));
+a - b returns:
+< 0 → a comes before b
+> 0 → b comes before a
+0 → order doesn’t change
+
+
+Descending order: -
+Use this:
+w2.sort((a, b) => b - a);
+
+
 30 # Array.prototype.splice() :
 
 ..> he splice() method of Array instances changes the contents of an array by removing or replacing existing elements and/or adding new elements .
