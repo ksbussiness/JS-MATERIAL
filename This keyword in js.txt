@@ -653,7 +653,31 @@ obj.outer();
 
 
 in 
+const stock = {
+  name: 'TATA',
+  status: function() {
+    console.log(`${this.name} is booming.`);
+  }
+};
 
+const car = {
+ name: 'BMW',
+ status: () => {
+   console.log(`${this.name} is running.`);
+ }
+}
+stock.status(); // Outputs: TATA is booming
+car.status(); // Outputs: undefied is running
+
+
+
+
+car.status.call(car);  // Still: "undefined is running"
+
+const boundStatus = car.status.bind(car);
+boundStatus();  // Still: "undefined is running"
+
+NOTE: Because arrow functions ignore .bind(), .call(), and .apply() — they capture this at definition time, not at call time.
 
 THIS IN CLASS CONTEXT :
 
