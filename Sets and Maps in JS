@@ -61,5 +61,50 @@ let w1=new Set([1,2,3]);
 let w2= new Set([2,3,4,5]);
 console.log(w1.difference(w2)) // only gives left set elements 
 
+// /////////////// ///////////////////// ////////////////////// /////////////////////////////////////////////// ///////////////////////////////////////////////// 
+
+Map collection in the JavaScript:
+---------------------------------- >
+
+Map is an ES6 feature (JavaScript 2015).
+
+
+You can create a JavaScript Map by:
+Passing an Array to new Map()
+Create a Map and use Map.set()
+
+
+
+let f= new Map([
+["a",100],
+["b",200],
+["c",300]
+]
+)
+
+console.log(f)
+// Map(3) { 'a' => 100, 'b' => 200, 'c' => 300 }
+
+// Adding of the elements to a Map
+f.set("d",400)
+console.log(f)
+
+// To update the existing elemnts
+f.set("c",3000)
+console.log(f)
+
+// To get the elements from the Map
+
+console.log(f.get("c"))
+
+console.log(typeof(f)) // object
+console.log(f instanceof Map) // true
+console.log(f.size) // gives the length of the map
+console.log(f.delete("c")) // deletes and return the boolean
+//console.log(f.clear()) // clears the complete map
+console.log(f.has("c")) // return boolean , flase is not there
+
+
+
 
 
