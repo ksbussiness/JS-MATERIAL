@@ -54,12 +54,76 @@ All other public properties do not have this restriction — you can have multip
 and the last one overwrites the others. This is the same behavior as in object initializers.
 
 
+Constructor :
+.> The constructor method is a special method for creating and initializing an object .
+.> There can only be one special method with the name "constructor" in a class — a SyntaxError 
+is thrown if the class contains more than one occurrence of a constructor method.
+
+.> A constructor can use the super keyword to call the constructor of the super class.
+To make this we need to use the snigle inheritence :
+// JavaScript version (no type annotations)
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+
+  speak() {
+    console.log(`${this.name} makes a sound.`);
+  }
+}
+
+class Dog extends Animal {
+  constructor(name, breed) {
+    super(name);
+    this.breed = breed;
+  }
+
+  speak() {
+    console.log(`${this.name} the ${this.breed} barks.`);
+  }
+}
+
+const myDog = new Dog("Buddy", "Labrador");
+myDog.speak(); // Output: Buddy the Labrador barks.
 
 
+example of the class with the diff methods:
+class Rectangle {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
 
+  // Getter for area — accessed like a property (not a method)
+  get area() {
+    return this.calcArea();
+  }
 
+  // Regular method to calculate area
+  calcArea() {
+    return this.height * this.width;
+  }
 
+  // Generator function: returns height and width 4 times (in a cycle)
+  *getSides() {
+    yield this.height;
+    yield this.width;
+    yield this.height;
+    yield this.width;
+  }
+}
 
+const square = new Rectangle(10, 10);
+
+console.log(square.area);               // Output: 100
+console.log([...square.getSides()]);   // Output: [10, 10, 10, 10]
+
+What is *getSides()?
+The * indicates a generator function.
+A generator function:
+Returns an iterator, not a final value.
+You call it like a function (getSides()), but you use yield to return values one at a time.
+You can iterate over it using a loop or spread operator ([...iterator]).
 
 
 
