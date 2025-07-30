@@ -1,1 +1,122 @@
+The static keyword defines a static method or field for a class.
+.> The static keyword in JavaScript is used to define a method or property on the class itself, 
+rather than on instances of the class.
+.> Static methods/properties are accessed on the class, not on the instances of the class.
+
+class MyClass {
+  static myStaticProperty = 'I belong to the class';
+
+  static myStaticMethod() {
+    return 'I can be called on the class, not instances';
+  }
+
+  instanceMethod() {
+    return 'I can be called on an object of the class';
+  }
+}
+
+console.log(MyClass.myStaticProperty);     // OK
+console.log(MyClass.myStaticMethod());     // OK
+
+const obj = new MyClass();
+console.log(obj.myStaticProperty);         // ❌ undefined
+console.log(obj.myStaticMethod());         // ❌ TypeError
+console.log(obj.instanceMethod());         // ✅
+
+The static properties are belogs to teh class , because these are common for all the instances 
+These are common functions that don’t rely on instance data.
+
+.> 	Static methods/properties cannot be accessed using this from an instance.
+.>  this in static method	Refers to the class itself.
+.>  Can be inherited	Static methods are inherited by subclasses
+
+1@) Static Blocks (ES2022+):
+class Logger{
+    static logs=[];
+    
+    static {
+        Logger.logs.push("Logger is good for me");
+    }
+}
+
+console.log(Logger.logs); // [ 'Logger is good for me' ]
+
+2@) Using Static in Inheritance :
+
+class Animal {
+    static category="Lion iam king of the animals";
+    
+    static info() {
+        return "Animals are good ,and live in the Forest"
+    }
+}
+
+class Dog extends Animal {}
+
+console.log(Dog.category); // "Lion iam king of the animals"
+console.log(Dog.info()); // "Animals are good ,and live in the Forest"
+
+
+@3 )
+
+class Appconfig{
+    static appName="disco";
+    static version="2222";
+}
+
+console.log(Appconfig.appName); // disco
+console.log(Appconfig.version); // 2222
+
+
+Creation of the Factory Methods:
+------------------------------------- >
+class User{
+    constructor(name,role){
+        this.name=name;
+        this.role=role;
+    }
+    
+    static createAdmin(name){
+        return new User(name,"admin");
+    }
+    
+}
+
+const admin = User.createAdmin("sachin");
+console.log(admin)
+
+What is a Factory Method in JavaScript?
+A Factory Method is a design pattern where a function (often a static method) is used to create and return objects — 
+often with some preset values or logic — instead of calling the constructor directly.
+.> A factory method is a function that creates and returns an object.
+.> Usually defined as a static method inside a class.
+class User {
+    constructor(name,role){
+        this.name=name;
+        this.role=role;
+    }
+    
+    // factory method 
+    static createAdmin(name){
+        return new User(name,"admin")
+    }
+    
+    static createGuest(name) {
+        return new User(name,"guest")
+    }
+    
+}
+
+const admin = User.createAdmin("Sachin");
+const guest = User.createGuest("Ravi");
+
+console.log(admin);
+console.log(guest);
+
+
+
+
+
+
+
 
