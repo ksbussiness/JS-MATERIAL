@@ -1,1 +1,74 @@
+Classes are a template for creating objects. 
+They encapsulate data with code to work on that data. 
+
+Class: Classes are in fact "special functions", and just as you can define function expressions and function declarations,
+a class can be defined in two ways: a class expression or a class declaration.
+
+Normal class declaration :
+-------------------------------- >
+
+class restangel{
+     constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+  
+  getDetails(){
+      return ` the heigth ${this.height} and the width ${this.width}`
+  }
+  
+}
+
+const p= new restangel(10,20);
+console.log(p.getDetails())
+
+Expression class declaration:
+-------------------------------------- >
+
+const  restangel=class{
+     constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+  
+  getDetails(){
+      return ` the heigth ${this.height} and the width ${this.width}`
+  }
+  
+}
+const p= new restangel(10,20);
+console.log(p.getDetails())
+
+NOTE :
+.> class declarations have the same temporal dead zone restrictions as let or const
+and behave as if they are not hoisted.
+
+Class body
+.> The body of a class is the part that is in curly braces {}. This is where you define class members,
+such as methods or constructor.
+.> The body of a class is executed in strict mode even without the "use strict" directive.
+
+Note point :
+.> Note: Private elements have the restriction that all private names declared in the same class must be unique.
+All other public properties do not have this restriction — you can have multiple public properties with the same name, 
+and the last one overwrites the others. This is the same behavior as in object initializers.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
