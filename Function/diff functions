@@ -1,0 +1,91 @@
+1. Regular Function (Normal Function)
+Definition:
+..> A normal function declared using function keyword.
+ex: 
+function add(a, b) {
+  return a + b;
+}
+
+Key Features :
+------------------- >
+Feature	Behavior
+Has its own this	Yes — this depends on how the function is called
+Can be used as constructor	Yes → new User()
+Can have arguments object	Yes
+Hoisted	Yes (function declarations only)
+
+What is the arguments object ?
+The arguments object is a built-in object available inside regular functions.
+It contains all the arguments passed to that function — even if you didn’t define parameters.
+ex:
+function test() {
+  console.log(arguments);
+}
+test(10, 20, 30);
+[10, 20, 30]
+
+
+
+ex2:
+function sum() {
+  let total = 0;
+  for (let value of arguments) {
+    total += value;
+  }
+  return total;
+}
+
+console.log(sum(1, 2, 3, 4)); // 10
+
+
+
+2. Arrow Function (=>)
+Definition:
+..> A modern, short-hand function syntax introduced in ES6.
+ex: const add = (a, b) => a + b;
+
+
+Key Features:
+--------------------- >
+Feature	Behavior
+Has own this?	❌ No — it “inherits” this from surrounding scope (lexical this)
+Can be used as constructor?	❌ No
+Has arguments object?	❌ No
+Hoisted?	❌ No
+
+function Person() {
+  this.age = 0;
+
+  setInterval(() => {
+    this.age++;   // arrow function inherits 'this' from Person
+  }, 1000);
+}
+
+
+❌ Arrow Functions DO NOT HAVE arguments
+Arrow functions do not create their own arguments object.
+
+
+const test = () => {
+  console.log(arguments);
+};
+test(10, 20, 30);  // we gert error ReferenceError: arguments is not defined
+
+ex 2:
+How to fix this in an arrow function?
+If you want to handle unlimited parameters in arrow functions, you must use rest parameters:
+const test = (...args) => {
+  console.log(args);
+};
+
+test(10, 20, 30);  // [10, 20, 30]
+
+
+
+3. Callback Function
+Definition:
+
+A function passed as an argument to another function.
+
+✔️ Not a special type of function
+❗ It can be a regular function OR an arrow function
