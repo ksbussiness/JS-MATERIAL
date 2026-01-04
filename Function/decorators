@@ -1,0 +1,59 @@
+
+
+Generators:
+> A generator is a special function in JavaScript that can pause and resume execution.
+> 
+
+
+ex:
+  function* numbers() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+
+const gen = numbers();
+
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2
+console.log(gen.next().value); // 3
+
+function* → creates a generator
+yield → pauses the function
+.next() → resumes execution
+Generator does not run fully at once
+
+
+Decorators:
+> A decorator is a function that wraps another function to add extra behavior.
+> A decorator is a function that modifies or enhances another function, method, or class without changing its original code.
+>
+  Decorators are not part of standard JavaScript yet.
+  They are commonly used in TypeScript and Babel (experimental).
+
+> Decorators are functions that enhance classes or methods by wrapping them with additional behavior without modifying their original implementation.
+
+EX:
+  function log(fn) {
+  return function () {
+    console.log("Function is called");
+    return fn();
+  };
+}
+
+function sayHello() {
+  console.log("Hello");
+}
+
+const decoratedHello = log(sayHello);
+decoratedHello();
+
+OUTPUT:-
+--------------------->
+Function is called
+Hello
+
+log wraps sayHello
+Adds extra logic before calling the original function
+Original function is unchanged
+  
