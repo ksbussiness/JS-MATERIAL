@@ -1,9 +1,60 @@
 ASYNCHRONOUS JAVASCRIPT $$ EVENT LOOP :
 --------------------------------------------- >
 
-..> 
+EVENT LOOP IN JS:-
+--------------------- >
+.> The Event Loop is the mechanism in JavaScript that allows non-blocking, asynchronous code to run by continuously checking the Call Stack and the Task Queues, and pushing tasks to the Call Stack when it is empty.
+
+.> JavaScript is single-threaded, meaning it can do one thing at a time.
+The event loop helps JS handle async operations like setTimeout, promises, and API calls without blocking the main thread.
+
+## ## ## ::--> 
+        Call Stack – Executes functions
+        Web APIs – Handles async operations (timers, fetch, DOM events)
+        Microtask Queue – Promises (.then, await)
+        Task (Callback) Queue – setTimeout, setInterval
+        Event Loop – Coordinates everything
 
 
+EX:
+        console.log("Start");
+        setTimeout(() => {
+          console.log("Timeout");
+        }, 0);
+        Promise.resolve().then(() => {
+          console.log("Promise");
+        });
+        console.log("End");
+
+ANSWERS: 
+        Start
+        End
+        Promise
+        Timeout
+
+        console.log("Start") → Call Stack → prints Start
+        setTimeout → sent to Web API
+        Promise.then → goes to Microtask Queue
+        console.log("End") → Call Stack → prints End
+        Call Stack is empty
+        Event Loop runs Microtasks first → prints Promise
+        Then Task Queue → prints Timeout
+
+NOTE:-
+    > Microtasks always execute before Tasks
+    > The event loop ensures that asynchronous JavaScript code runs efficiently by executing microtasks first, then tasks, when the call stack is empty.
+
+await does NOT block JavaScript
+It only pauses the async function, not the entire program.
+    >  await pauses the async function and schedules the rest of the code as a microtask, which runs before any setTimeout callbacks.
+    >  No. await only pauses the async function. The rest of JavaScript continues to execute.
+
+  async → Promise-based function
+  await → “pause here, continue later as microtask”
+  Microtasks → always before setTimeout
+
+
+==============================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
 function a(){
     console.log("a");
     
