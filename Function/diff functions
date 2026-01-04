@@ -89,3 +89,21 @@ A function passed as an argument to another function.
 
 ✔️ Not a special type of function
 ❗ It can be a regular function OR an arrow function
+
+4.  Currying Function :- 
+    ..> Function currying is a technique in JavaScript where a function with multiple arguments is transformed into a sequence of functions, each taking one argument at a time.
+      Instead of calling a function like fn(a, b, c),
+      we call it like fn(a)(b)(c).
+
+ex:-
+    function add(a) {
+      return function (b) {
+        return a + b;
+      };
+    }
+    
+    add(2)(3); // 5
+
+ex:- 
+  const add = a => b => a + b;
+  add(2)(3); // 5
