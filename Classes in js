@@ -127,6 +127,54 @@ You can iterate over it using a loop or spread operator ([...iterator]).
 
 
 
+----------------------------------------------------------------------------------------------------------------------- >
+Single inheritance notable point in js:
+
+class Child extends Parent {
+    constructor() {
+        super(); // MUST come first
+        this.x = 10;
+    }
+}
+
+In a child class, you MUST call super() before using this.
+
+You cannot access this in a derived class until super() is called.In a derived class, the parent constructor must be called using super(...)
+before accessing this.
+
+ex: class Rectangle {
+    constructor(w, h) { ... }
+    area() { ... }
+}
+Call	What it does
+super(a, a)	calls Rectangle.constructor
+super.area()	calls Rectangle.prototype.area
+switch  cases only having the === equality function
+
+---------------------------------------------------------------------------------------------------------- >
+Explain Singleton Design Pattern in JS
+.> A Singleton ensures that a class creates only one instance and returns the same instance every time it’s requested.
+
+
+
+
+
+let printer=null;
+function getPrinter() {
+    if (printer===null) {
+        printer= {pages:0};
+    }
+    return printer;
+}
+const p1 = getPrinter();
+const p2 = getPrinter();
+
+p1.pages++;
+p2.pages++;
+console.log(p1.pages); // 2
+console.log(p1 === p2); // true
+
+
 
 
 
