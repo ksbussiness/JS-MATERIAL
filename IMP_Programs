@@ -1,0 +1,109 @@
+
+# 1.Reverse a String without using the built-in reverse() method :
+let dd ="sachin";
+let res=""
+for ( let i=0; i<=dd.length-1;i++) {
+    
+    res=dd[i]+res
+};
+console.log(res);
+
+................................................................................................................................. >
+# 2. Max and Min of the array
+
+function findMax(arr) {
+    if( arr.length===0){
+return { min: undefined, max: undefined };
+    }
+    let min=arr[0];
+    let max=arr[0];
+    
+    for ( let i=0;i<=arr.length;i++){ 
+        if (arr[i]<min) {
+            min=arr[i]
+        }
+        else if (arr[i]>max) {
+            max=arr[i]
+        }
+    }
+    return { min, max};
+}
+console.log(findMax([3,4,12,1,6,7,8,90,9888]));
+
+................................................................................................................................. >
+# 3. Factorial of a number :
+
+function Fact(ar) {
+    let res=1
+    for ( let i=1;i<=ar;i++) {
+        res=res*i
+    }
+    return res;
+}
+console.log(Fact(6));
+
+................................................................................................................................. >
+# 4. Return Unique elements from the array
+console.log(Array.from(new Set(aaa)));
+
+let res=[]
+for ( let i=0; i<aaa.length;i++) {
+    if ( !res.includes(aaa[i]) ) {
+        res.push(aaa[i])
+    }
+}
+
+console.log(res)
+
+................................................................................................................................. >
+# 5. Given Number is prime or not.
+
+function isPrime(aa) {
+    if (aa<=1) return false
+    for ( let i=2;i<=Math.sqrt(aa);i++){
+        if (aa%i===0) return false 
+    }
+    return true   
+}
+console.log(isPrime(97));
+................................................................................................................................. >
+
+# 6. Check if the string is Palindrome
+function isPalindrome(str) {
+    let res=""
+    for ( let i=0;i<=str.length-1;i++) {
+        res=str[i]+res;
+    }
+    if (res===str) {
+        return "yes the string is palindrome"
+    }
+    return "no the string is not palindrome"
+}
+console.log(isPalindrome("mom"));
+
+
+const otherString = str.split(”).reverse().join(”); 
+return str === otherString;
+................................................................................................................................. >
+
+# 7.  I want to print 1 to 10 in descending order with a one-second delay
+function printN() {
+  for (let i= 10; i>= 1; i--) {
+    setTimeout(() => {
+      console.log(i);
+    }, (10 - i) * 1000);
+  }
+}
+printN();
+
+
+
+
+
+
+
+
+
+
+
+
