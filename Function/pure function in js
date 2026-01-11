@@ -1,0 +1,32 @@
+Pure Functions:
+> Pure function is an function that always produces the same output for the same input 
+> Does not change anything outside itsself.
+
+Ex of the PURE function:
+---------------------------- >
+function purefunction(a,b) {
+    return a+b
+}
+
+console.log(purefunction(10,20));
+console.log(purefunction(14,21));
+
+NOT THE Examples of the Pure functions:
+------------------------------------------------- >
+# Uses outside variable:
+  let count = 10;
+  
+  function addCount(x) {
+    return x + count;
+  }
+# Changes something outside
+  let total = 0;
+  
+  function addToTotal(x) {
+    total += x;
+  }
+# Depends on time / random
+    function getRandom() {
+      return Math.random();
+    }
+
