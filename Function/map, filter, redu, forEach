@@ -1,0 +1,118 @@
+
+ Map:
+> It will take an call function has argument. This call back function will receive 3 arguments.
+> That call back will be executed automatically when daat is ready, or specific event is happened, we wil not call explicity.
+> will return the array only.
+
+let dd=[22,33,44,55,66];
+let p=dd.map((e,i,a)=>{
+    console.log(e,i,a)
+    if (e%2==0) {
+        return e
+    }
+})
+
+console.log(p)
+
+output :
+22 0 [ 22, 33, 44, 55, 66 ]
+33 1 [ 22, 33, 44, 55, 66 ]
+44 2 [ 22, 33, 44, 55, 66 ]
+55 3 [ 22, 33, 44, 55, 66 ]
+66 4 [ 22, 33, 44, 55, 66 ]
+[ 22, undefined, 44, undefined, 66 ]
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------
+
+Filter:
+> filter done not chnage the original array.
+> filter will recive a callback fun has an arguments.
+> call fun will take 3 argumens element, index, array.
+> if the call return true then element will be included in the result.
+> if the call return false then element will not be included in the result.
+
+let dd=[22,33,44,55,66];
+let p=dd.filter((e,i,a)=>{
+    console.log(e,i,a)
+    if (e%2==0) {
+        return e
+    }
+})
+
+console.log(p)
+
+output:
+22 0 [ 22, 33, 44, 55, 66 ]
+33 1 [ 22, 33, 44, 55, 66 ]
+44 2 [ 22, 33, 44, 55, 66 ]
+55 3 [ 22, 33, 44, 55, 66 ]
+66 4 [ 22, 33, 44, 55, 66 ]
+[ 22, 44, 66 ]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------
+
+Reduce:
+
+> It is used to reduce entire array in to single valuse based on some functionality.
+> reduce() : It will only takes 2 arguments , 
+   callback function, initial value of teh accumulator
+> and the callback will take the 4 arguments,
+  accumulator, element, index, array
+> It will return the updated value of teh accumulator
+
+
+let dd=[22,33,44,55,66];
+let p = dd.reduce((acc, e, i, a) => {
+  console.log(acc, e, i, a);
+  return acc + e;
+}, 0);
+
+console.log(p); // 220
+
+output:
+0 22 0 [ 22, 33, 44, 55, 66 ]
+22 33 1 [ 22, 33, 44, 55, 66 ]
+55 44 2 [ 22, 33, 44, 55, 66 ]
+99 55 3 [ 22, 33, 44, 55, 66 ]
+154 66 4 [ 22, 33, 44, 55, 66 ]
+220
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------
+
+ForEach():
+> map and foreach both work in the same way.
+> map will return the updated array.
+> forEach does not return teh  updated array.
+
+
+let dd=[22,33,44,55,66];
+let p = dd.forEach(( e, i, a) => {
+  console.log( e, i, a);
+
+});
+
+console.log(p); 
+
+output:
+22 0 [ 22, 33, 44, 55, 66 ]
+33 1 [ 22, 33, 44, 55, 66 ]
+44 2 [ 22, 33, 44, 55, 66 ]
+55 3 [ 22, 33, 44, 55, 66 ]
+66 4 [ 22, 33, 44, 55, 66 ]
+undefined
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------
+Every ():
+> In an given array for evebry element call back function is returing True, then evenry function will return true otherwise, false
+
+Some():
+> In a given Array for any element, if call function is returning true, then some() will return true
+> If all teh elements returning false, then some will return false, 
