@@ -104,7 +104,7 @@ let c=159
 a>b && a>c ? console.log("The A is greatest",a): b>c ? console.log("The B is greatest",b): console.log("The C is greatest",c);
 
 ................................................................................................................................. >
-# 8. Sorting of 3 Numbers using the nested if 
+# 9. Sorting of 3 Numbers using the nested if 
 
 let a=87
 let b=45
@@ -136,9 +136,128 @@ else {
 
 ................................................................................................................................. >
 
-9. 
+# 10  Fibonacci sequence:
+ function fibonacciSer(n) {
+     let a=-1;
+     let b=1
+     
+    for (let i=1;i<=n;i++) {
+        let c=a+b
+        console.log(c)
+        a=b
+        b=c
+        
+    }
+     
+ }
+ fibonacciSer(10)
+
+................................................................................................................................. >
+
+#.11 Sum of an individual Number of a Numbers:-  // 6753==> 21
+function individualSum(n)  {
+
+let s=0
+while (n!=0) {
+   let d=n%10
+   s=s+d
+   n=parseInt(n/10)
+}
+console.log("The sum of numbers of an number",s);
+}
+
+individualSum(675)
 
 
+................................................................................................................................. >
+
+#.12. finding of the Nth prime number from teh given numbers:
+
+    
+// // Sorting of 3 Numbers using the nested if 
+
+// let a=87
+// let b=45
+// let c=77
+// if ( a>b&& a>c) {
+//     if (b>c) {
+//         console.log("First console:",a,b,c)
+//     }
+//     else {
+//         console.log("second console:",a,c,b)
+//     }
+// }
+// else if ( b>c) {
+//     if (a>c) {
+//         console.log("third console:",b,a,c)
+//     }
+//     else {
+//         console.log('fourth console:',b,c,a)
+//     }
+// }
+// else {
+//     if (a>b){
+//         console.log('fifth console:',c,a,b)
+//     }
+//     else {
+//         console.log('sixth console:',c,b,a)
+//     }
+// }
+
+ // Fibonacci sequence:
+//  function fibonacciSer(n) {
+//      let a=-1;
+//      let b=1
+     
+//     for (let i=1;i<=n;i++) {
+//         let c=a+b
+//         console.log(c)
+//         a=b
+//         b=c
+        
+//     }
+     
+//  }
+//  fibonacciSer(10)
+
+// // Sum of an individual Number of a Numbers:-  // 6753==> 21
+// function individualSum(n)  {
+
+// let s=0
+// while (n!=0) {
+//   let d=n%10
+//   s=s+d
+//   n=parseInt(n/10)
+// }
+// console.log("The sum of numbers of an number",s);
+// }
+
+// individualSum(675)
+
+
+function nthPrimenumber() {
+    let i=2,c=0
+    for (;;) {
+        let f=true
+        for ( let j=2;j<i;j++) {
+            if(i%j)==0{
+                f=false
+                break
+            }
+        }
+        if (f) {
+            c=c+1
+        }
+    if (n==c) {
+        console.log('The nth Prime number is :',i);
+        break
+    }
+    
+    }
+    i++
+}
+
+nthPrimenumber(6)
 
 
 
