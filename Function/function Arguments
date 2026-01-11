@@ -1,0 +1,21 @@
+Note: If a function is called with missing argumeents, then the missing, values,
+are set to undefined.
+// 
+function aa(a,b) {
+    console.log(a); // 12
+    console.log(b)  // undefined
+}
+aa(12)
+
+------------------------------------------------------------------------------------------ >
+// Varaibles length arguments:
+rest operand: It is used in Varaibles length arguments, and it is used to pass, 
+more then one values, has a array.
+
+
+function fun(a,...b){
+    console.log(a); // 10
+    console.log(b);  // [11,22,33,44]
+}
+
+fun(10,11,22,33,44)
