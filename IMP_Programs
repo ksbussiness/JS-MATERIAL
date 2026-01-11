@@ -237,6 +237,7 @@ individualSum(675)
 
 function nthPrimenumber() {
     let i=2,c=0
+// infinite loop
     for (;;) {
         let f=true
         for ( let j=2;j<i;j++) {
@@ -245,18 +246,19 @@ function nthPrimenumber() {
                 break
             }
         }
+
         if (f) {
             c=c+1
         }
-    if (n==c) {
-        console.log('The nth Prime number is :',i);
-        break
-    }
+
+        if (n==c) {
+            console.log('The nth Prime number is :',i);
+            break
+        }
+        i=i+1
     
     }
-    i++
 }
-
 nthPrimenumber(6)
 
 
