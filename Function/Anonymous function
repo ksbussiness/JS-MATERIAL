@@ -1,0 +1,7 @@
+// Anonymous functions
+// IIFE { Immediately invoked funtion expression }
+
+(function(a,b) {
+    console.log(a);
+    console.log(b);
+})(21,22)
