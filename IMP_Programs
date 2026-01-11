@@ -272,3 +272,15 @@ function repatedCount(arr,e) {
 repatedCount([2,3,9,4,9,9,],9)
 
 ................................................................................................................................. >
+
+# 17. get the day from the date
+
+function getTheDay(date) {
+    let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    let p= new Date(date);
+    console.log(days[p.getDay()]);
+}
+
+getTheDay("01/10/2026");
+................................................................................................................................. >
+
