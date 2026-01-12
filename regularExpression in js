@@ -133,6 +133,50 @@ let r=/b.a/g
 console.log(r.test(s))  // true
 console.log(s.match(r)) // [ 'bca', 'bca' ]
 
+--------------------------------------------------------------------------------------- >
+let s="abcda"
+
+let r=/[a,e,i,o,u]/g
+
+console.log(r.test(s[0]))
+console.log(r.test(s[s.length]))
+
+
+catpuring in the RE:
+When I write ([aeiou]), how long is that value stored?
+> A capture group stores its value only for the duration of ONE regex match attempt.
+After that match finishes, it’s gone.
+> What ([aeiou]) actually does
+    Matches ONE vowel
+    Captures that vowel
+    Stores it in group 1 (\1)
+    Storage lasts only while the regex engine is matching the current string.
+> const re = /^([aeiou]).*\1$/i;
+re.test("abira");
+
+Regex engine flow:
+
+^ → start
+([aeiou]) → matches a
+group 1 = "a" ✅
+.* → matches "bir"
+\1 → must match "a" again
+$ → end
+✔ Match succeeds
+✔ Group 1 existed only during this test
+
+After test() finishes:
+❌ group value is discarded
+
+
+Match attempt starts
+→ Capture group stores value
+→ Backreference (\1) uses it
+→ Match attempt ends
+→ Capture group destroyed
+
+
+
 
 
 
