@@ -1,0 +1,138 @@
+Regular expressions:
+> A RE is a pattern of characters.The patterns is used for searching , replacing characters in string.
+> To validate an string  or input we use the RE
+
+Some imp Rules in the RE:
+------------------------------- >
+[ aeiou ] : any one symbol from th given list.
+[^aeiou] : expect the aeiou any other symbols are allowed.
+[a-z A-Z] : any alphabets.
+[a-z A-Z 0-9]:  any alpha-numeric characters.
+[ @$+-/^] : any symbol from the list.
+^ : starts with.
+$ : ends with.
+. => referes any character.
+* => zero or more occurance.
++ => one or more occurance.
+? => zero or one occurance.
+
+
+Some imp Expressions in RE:
+------------------------------------ >
+exp{m} => exactly m occurances
+exp{m,} => minimum m occurances
+exp{m,n} => minimum m occurance & maximum n occurances
+\s => refers to teh space characters.
+\S => refers to non-space characters.
+
+\w => refers to word characters.
+\W => refers to the non word characters.
+
+\d => refers to digit characters.
+\D => refers to non-digit characters.
+
+(abc|zyz|cdf) => referes to Any one word from teh given list.
+
+
+
+Syntax:  let r= new RegExp( reg, flagSymbol)
+      > flagSymbol:{
+          i: ignore case
+          g: global search 
+          m: multiline matching 
+        }
+> We can use the RE in two ways:
+i)   reg.test(str)   // it will retuen boolean
+     reg.exec(str)   // it will retun the array
+
+ii)  str.match(reg)    // it will retun the array
+     str.search(reg)   // it will retuen boolean
+
+
+EX: basic concept :
+------------------------------ >
+
+let s='Hello to all';
+let r=/to/
+
+console.log(s.search(r)) // 6
+console.log(r.test(s))   // true
+console.log(r.test(/TO/)) // false
+
+// Note Point :
+/* 
+    > Regex flags apply to the regex being executed — NOT the input
+    > Always flags ""i to the testing regex only.
+    
+    so this is the correct way
+    let r = /to/i;
+    console.log(r.test("TO")); // true
+*/
+console.log(r.test(/TO/i)) // flase
+
+
+
+// Some basic Questions:
+------------------------------ >
+# check given string contains vowl or not
+let r=/[aeiou]/i
+
+let s="sachin"
+console.log(r.test(s))  // true
+let b='bbby'
+console.log(r.test(b)) // false
+
+# check given string contaims ok has a substring ?
+let s='This is an book'
+let r=/ok/
+console.log(r.test(s));  // true
+
+# check given string starting with the lower case alphatbet or not ?
+let s='This is an book'
+let r=/^[a-z]/
+console.log(r.test(s));  // false
+
+# check given string ends with the digit or not ?
+let r=/[0-9]$/
+
+let s='This is an book11'
+console.log(r.test(s));  // true
+
+let ff='This is book';
+console.log(r.test(ff))   //  false
+
+# check given string contains only lower case alphatbets or not.
+let r=/^[a-z]$/
+let s='This is an book11'
+console.log(r.test(s));  // false
+
+# check given string contains only lower case alphatbets with min length 5
+let r=/^[a-z]{5,}$/
+let s='This is an book11'
+console.log(r.test(s));  // false
+
+let s1='babyq';
+console.log(r.test(s1));  // true
+
+#**** Extract all the given digits from the given string
+
+let s= "This61 is good4 but6 that9 is 7";
+
+let r=/\d/g
+
+console.log(r.test(s));  // true
+console.log(s.match(r))  // [ '6', '1', '4', '6', '9', '7' ]
+
+let r1=/\d+/g
+console.log(s.match(r1)) // [ '61', '4', '6', '9', '7' ]
+
+# 
+let s="acbcamrcatbcam"
+
+let r=/b.a/g
+console.log(r.test(s))  // true
+console.log(s.match(r)) // [ 'bca', 'bca' ]
+
+
+
+
