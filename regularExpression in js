@@ -47,6 +47,15 @@ i)   reg.test(str)   // it will retuen boolean
 
 ii)  str.match(reg)    // it will retun the array
      str.search(reg)   // it will retuen boolean
+Note points:
+if you want to use . in the reg vlidation use ist has \.
+and for the qunyter like,  +, * . ? always use them after the string 
+like
+ex: [aeior]*
+\.+ which means
+.
+..
+...
 
 
 EX: basic concept :
