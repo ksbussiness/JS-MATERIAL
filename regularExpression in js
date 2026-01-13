@@ -57,6 +57,21 @@ ex: [aeior]*
 ..
 ...
 
+➡️ one or more dots
+
+Matches:
+
+.
+..
+...
+
+A quantifier (+, *, ?, {}) applies ONLY to the token immediately before it.
+To get the numbers from given string
+let r=/\d+/g
+
+
+let r=/^(Mr|Mrs|Ms|Dr|Er).+[a-zA-Z]$/i
+
 
 EX: basic concept :
 ------------------------------ >
@@ -183,6 +198,7 @@ Match attempt starts
 → Backreference (\1) uses it
 → Match attempt ends
 → Capture group destroyed
+
 
 
 
