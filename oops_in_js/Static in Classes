@@ -30,6 +30,10 @@ These are common functions that don’t rely on instance data.
 .>  this in static method	Refers to the class itself.
 .>  Can be inherited	Static methods are inherited by subclasses
 
+Note:
+When we try to access the static method/properties using the obj we get undefined.
+In same way when we try to access the normal methods using the class name we get undefined.
+
 1@) Static Blocks (ES2022+):
 class Logger{
     static logs=[];
