@@ -284,3 +284,93 @@ function getTheDay(date) {
 getTheDay("01/10/2026");
 ................................................................................................................................. >
 
+
+========================================== >
+
+# 18. on function call returns 1 more than the previous value every subsequent time it is called (n, n + 1, n + 2, etc).
+
+var createCounter = function(n) {
+    let count=0
+    
+    return function() {
+        let res=n+count;
+         count=count+1
+         return res
+       
+    };
+};
+ 
+//  const counter = createCounter(10)
+//   counter() // 10
+//   counter() // 11
+//   counter() // 12
+
+
+................................................................................................................................. >
+
+
+# 19.  array chunk Given an array arr and a chunk size size, return a chunked array.
+
+ex:
+Input: arr = [1,2,3,4,5], size = 1
+Output: [[1],[2],[3],[4],[5]]
+
+
+function arrayAchunk(arr,n) {
+    // if (arr.length===0) {
+    //     return []
+    // }
+    // else if (arr.length===1) {
+    //     return [arr]
+    // }
+    // else {
+    //         if(arr.length>n){
+    //             let res=[],i=0
+    //             let cc= parseInt( (arr.length)/n);
+    //               while (i<cc) {
+    //                 res.push(arr.slice(0,n))
+    //                 arr.splice(0,n)
+    //                 i++
+    //         }
+    //          if (n===1) {
+    //             res.pop()
+    //          }
+    //          return res
+    //         }
+    //         else {
+    //             return arr
+    //         }
+    //     }
+    
+    
+    // let res = [];
+    // for (let i = 0; i < arr.length; i += n) {
+    //     res.push(arr.slice(i, i + n));
+    // }
+    // return res;
+    
+    let res=[];
+    for ( let i=0;i<arr.length;i=i+n) {
+            res.push(arr.slice(i,i+n))
+    }
+    
+    return res;
+}
+
+console.log(arrayAchunk(["5","7","2","1","0","-5"],3))
+
+................................................................................................................................. >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
