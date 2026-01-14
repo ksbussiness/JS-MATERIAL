@@ -107,8 +107,54 @@ class B {}
 class C extends A, B {} // ❌ SyntaxError
 
 “JS avoids multiple inheritance to prevent ambiguity and uses composition instead.”
-what is tehe main problem here in this case
-and what is teh soltion here in this case
+The MAIN problem "AMBIGUITY"
+Specifically called the Diamond Problem
+
+ex:
+class A {
+  show() {
+    return "From A";
+  }
+}
+
+class B extends A {}
+class C extends A {}
+
+//  D wants to extend BOTH B and C
+class D extends B, C {}
+If D calls show()…
+d.show()
+👉 Which show() should run?
+  
+From A → B path?
+From A → C path?
+⚠️ No clear answer → ambiguity
+> JavaScript uses prototype chains, not true classes.
+> “JavaScript does not support multiple inheritance because its prototype-based model requires a single, predictable prototype chain.”
+
+ex:
+Solution 1: Composition using Objects.
+
+const A = {
+  greet() {
+    return "From A";
+  }
+};
+
+const B = {
+  greet() {
+    return "From B";
+  }
+};
+
+class C {}
+Object.assign(C.prototype, A, B);
+
+const c = new C();
+console.log(c.greet()); // "From B"
+
+> Last assigned wins.
+> Silent override → interviewer favorite trap.
 
 
 
