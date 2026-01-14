@@ -360,10 +360,27 @@ function arrayAchunk(arr,n) {
 console.log(arrayAchunk(["5","7","2","1","0","-5"],3))
 
 ................................................................................................................................. >
+ # 20. Super recuing of the string 
 
+IP: abccba
+OP: aca
+function superReduce(s) {
+    let j=0;
+    while (j<s.length-1) {
+        if (s[j]===s[j+1]) {
+            s=s.replace(s[j],"");
+            s=s.replace(s[j],"");
+            j=0
+        }
+        else {
+            j++
+        }
+    }
+    console.log(s)
+}
+superReduce("abccbca");
 
-
-
+................................................................................................................................. >
 
 
 
