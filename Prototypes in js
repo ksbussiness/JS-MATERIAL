@@ -1,1 +1,98 @@
-This is an prototype in js
+
+# Prototypes:
+...> In JavaScript, objects can inherit properties and methods from other objects. 
+...> It is a mechanism by which object inherit properties, methods from the other objects.
+...> Prototype is an object that is associated with every function and object by default. 
+NOTE: Prototype is just a hidden link between objects.
+..> Prototype is just a backup object that JavaScript looks at when something is missing.
+
+# Why JavaScript needs Prototype ?
+--------------------------------------- >
+JavaScript does NOT have classical inheritance like Java or C++.
+Instead, it uses prototype-based inheritance.
+This gives:
+Memory efficiency
+
+
+
+# The core rule (MOST IMPORTANT) :
+----------------------------------------- >
+Every JavaScript object has a prototype (except one special case).
+
+When you access a property
+JavaScript checks the object itself
+If not found → checks its prototype
+If not found → checks prototype’s prototype
+Continues until null
+This process is called the Prototype Chain.
+
+
+# The hidden [[Prototype]]
+..> Internally, every object has a hidden property:
+  You can access it using:
+  __proto__ 
+  Object.getPrototypeOf(obj)
+
+ex :
+let obj={
+    name:"sachin",
+    roll:23
+}
+
+console.log(obj)   // { name: 'sachin', roll: 23 }
+console.log(obj.__proto__);  // [Object: null prototype] {}
+console.log(  Object.getPrototypeOf(obj));  // [Object: null prototype] {}
+
+NOTE : Object.prototype is the top-level prototype for almost everything.
+
+
+ex: 
+function Person(name, job, yearOfBirth) {   
+    this.name= name;
+    this.job= job;
+    this.yearOfBirth= yearOfBirth;
+}
+
+console.log(Person.prototype);  // This will show Person's prototype property. {}   // we get this {}. // { constructor: Person }
+
+What is Person here?
+Person is a function
+In JavaScript, functions are objects
+👉 Because it’s a function, JavaScript automatically gives it a property called: Person.prototype
+👉 This object will be used as a shared parent for all objects created using new Person().
+
+Creating an object using new
+let p1 = new Person("sachin", "engineer", 2002);   This step will do 4 things internally
+  >> Create an empty object: {}
+  >> Attach a hidden link:  p1.__proto__ = Person.prototype
+  >> Run the constructor:  
+       this.name = "sachin"
+       this.job = "engineer"
+       this.yearOfBirth = 2002
+  >> Return the object automatically // console.log(p1) returns the result.
+
+.> Prototype is linked, not copied
+.> 
+
+..> he prototype is used to share properties and methods among instances 
+
+..> This allows for efficient memory usage
+
+
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+
+Person.prototype.greet = function() {
+  console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+};
+
+
+
+const alice = new Person('Alice', 30);
+const bob = new Person('Bob', 25);      
+
+alice.greet(); // Output: Hello, my name is Alice and I am 30 years old.
+bob.greet();   // Output: Hello, my name is Bob and I am 25 years old.
