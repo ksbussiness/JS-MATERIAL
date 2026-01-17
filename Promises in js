@@ -1,75 +1,96 @@
 
+Therory concepts about the promise:
+-------------------------------------- >
 
-..> A Promise is basically an object which represents the completion (or failure) of an asynchronous operation along with its result. 
+simple : A Promise represents a value that, is not available yet, but will be available in the future or may fail
 
-
-The promise constructor takes only one argument which is a callback function
-The callback function takes two arguments, resolve and reject
-Perform operations inside the callback function and if everything went well then call resolve.
-If desired operations do not go well then call reject.
-
-..> Promise method is invoked when a promise is either resolved or rejected.
-
-...>
-
-let promise = new Promise(function (resolve, reject) {
-    resolve('Geeks For Geeks');
-})
-
-promise
-    .then(function (successMessage) {
-        //success handler function is invoked 
-        console.log(successMessage);
-    })
-    .catch(function (errorMessage) {
-        console.log(errorMessage);
-    }); 
-
-
-PROMISES in JavaScript:
-
+..> A Promise is basically an object which represents the completion (or failure) of an asynchronous operation along with its result. OR
 ..> A promise is an object that keep track about whether a certain event has happened already or not.
-
-..>Promises are used to handle asynchronous operations in javascript.
+..> Promise constructor takes only one argument which is a callback function.
+..> The callback function takes two arguments, resolve and reject.
+..> And the promise perform operation's inside the callback function and if everything went well then call resolve, if an error happens then call reject.
+..> Promise method is invoked when a promise is either resolved or rejected.
+..> Promises are used to handle asynchronous operations in javascript.
 ..> They are easy to manage when dealing with multiple asynchronous operations where callbacks can create callback hell leading to unmanageable code.
 
-..>
+synatx of te promise :
+----------------------------- >
+new Promise( callBcFun(resolve,reject) )
+note: In order to create the new promise we use the new keyword.
+
+ex:
+------- >
+let pp = new Promise(function (resolve, reject) {
+    resolve('Ok everything is good');
+})
+console.log(pp)  // Promise { 'Ok everything is good' }
 
 
-A promise has 3 states:
+ex: Using a Promise (then, catch, finally)
 
+let pp= new Promise( function(resolve, reject) {
+    resolve("Ok everything is good")
+})
+
+pp.then(result =>{
+    console.log(result)
+}).catch(error=>{
+    console.log(error)
+}).finally(d=>{
+    console.log("done")
+}) 
+
+Ok everything is good
+done
+
+Use cases of the promise :
+------------------------------- >
+
+# API calls >> Fetching data from a server and Waiting for a response.
+# Timers and delays >> Waiting for some time and Retry mechanisms.
+# Database operations >> Querying data and Saving records.
+# Multiple async operations >> Run tasks in parallel, Run tasks in sequence and Wait until all tasks finished.
+# Prevents callback hell >> Cleaner and more maintainable code.
+# 
+
+Cons of the promise :
+-------------------------------- >
+
+# No cancellation (by default) >> Once started, a promise cannot be stopped.
+# Missing a .catch() can cause silent failures.
+# Harder debugging
+
+States in the promise :
+------------------------- >
+..> A promise has 3 states:
 pending:
 resolve:
 reject:
 
-..> in order to create the new promise we use the new keyword:
-
 ..> The methods promise.then(), promise.catch(), and promise.finally() are used to associate further action with a promise that become settled.
+..> Fetch returns the promise.
 
-..> 
+Example Explanation of an Promise:
+------------------------------------------ >
 
-
-
-
-Promises are used to handle the Asynchronous in the javascript 
-
-..>    fetch returns the promise
-
-
-const GITHUB_API="https://api.github.com"
-
-
+const GIT_HUB_API="https://api.github.com"
 const user=fetch(GITHUB_API); // it will return the promise
 
-console.log(user) // here we get teh promise has the pending state
-// because here, fetch will call the api and next, here, it takes the time to fetch teh api, and next , when i print here, it will showa has the pending here, it is not resolved, and js not waits until the promise , to resloved here, 
+
+console.log(user)  // Promise { <pending> } and after some time it will throw error becasue here it is not handled
+// here we get the promise has the pending state
+// because here, fetch will call the api and next, here, it takes the time to fetch the api data.
+// and next , when i print here, it will show has the pending here,becasue it is not resolved, and js not waits until the promise to get resloved.
 
 
-//  when ever you have the multiple promises them use the chaining of the promises, instead of  writing teh individula promises
+
+Promises Chaning In Js:
+--------------------------- >
+..>   when ever you have the multiple promises them use the chaining of the promises, instead of  writing the individula promises.
 
 
 
-// Promise Chning 
+// Promise Chaning 
 
 const cart=["shoes","pants","kurtas"];
 
@@ -104,9 +125,7 @@ function createOrder(cart){
         const orderId="1234";
         if(orderId){
             setTimeout( function(){
-                
              resolve(orderId)},5000)
-          
         }
     });
     return pr;
@@ -116,8 +135,6 @@ function createOrder(cart){
 function proceedToPayment(orderId){
     return new Promise(function (resolve,reject){
         resolve("Payment Succesfull");
-        
-        
     })
 }
 
@@ -126,10 +143,22 @@ function validateCart(cart){
    //return false
 }
 
+..> Promise chaining is the process of executing multiple asynchronous steps one after another, where:
+    >> Each step waits for the previous one
+    >> The output of one step becomes the input of the next
 
+How chaining works conceptually :
 
+...> A promise resolves with a value, That value is passed to the next .then()
+   >> If the next .then() returns:
+   >> a normal value → it becomes the next resolved value
+   >> a promise → the chain waits for it to resolve
+  >>  The chain continues until the end
+  >>  Each .then() always returns a new promise.
 
-//                           PROMISE.ALL()
+...> A .then() must return something if the next step depends on it.
+
+                        PROMISE.ALL()
 
 
 //Here in this .all() it will take the iterables in side it has the arguments here
