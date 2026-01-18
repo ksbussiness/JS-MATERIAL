@@ -96,3 +96,118 @@ const bob = new Person('Bob', 25);
 
 alice.greet(); // Output: Hello, my name is Alice and I am 30 years old.
 bob.greet();   // Output: Hello, my name is Bob and I am 25 years old.
+
+
+
+Prototypes in the class:
+-------------------------------- >
+
+
+class User {
+    constructor(name) {
+        this.name=name;
+    }
+    
+    sayHi() {
+        return "HI"+this.name;
+    }
+}
+
+
+const u1 = new User("Sachin");
+console.log(u1) // User { name: 'Sachin' }
+
+console.log(u1.hasOwnProperty("sayHi")); // false
+// here the Class methods do NOT live on the object
+
+
+console.log(User.prototype.hasOwnProperty('sayHi'))  // true
+// They relay on  on the prototype
+
+This will makes :
+------------------- >
+* Memory efficiency
+* One function shared by all instances.
+
+
+Prototypes in th classes for the static Methods:
+-------------------------------------------------- >
+
+class User {
+    constructor(name){
+        this.name=name
+    }
+    
+    sayHi() {
+        return "Hi"+this.name
+    }
+    
+    static isUser() {
+        return "This is my obj..@"
+    }
+}
+
+
+const u1= new User('sachin')
+
+console.log(u1)  // User { name: 'sachin' }
+console.log(User.prototype.hasOwnProperty('sayHi'))  // true
+
+console.log(User.prototype.hasOwnProperty('isUser'))  // flase
+ 
+ //Here we get the error becasue the the static methods are belogs to the class
+ // so, the prototype property oes not exits for the static.
+ 
+
+
+Adding of the methods for the classes and functions after defining:
+---------------------------------------------------------------------- >
+function User(name) {
+    this.name=name;
+}
+
+User.prototype.sayHi= function () {
+    return "Hi" +this.name;
+}
+
+
+const u1 = new User("Rahul");
+console.log(u1.sayHi()); // Hi Sachin
+
+console.log(User("sachin")) // undefined
+console.log(User.prototype.hasOwnProperty('sayHi')) // true
+
+
+
+In classes:
+----------------- >
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+User.prototype.sayHi= function() {
+    return "Hi"+" "+ this.name;
+};
+
+const u1 = new User("Sachin");
+console.log(u1.sayHi()); // Hi Sachin
+
+
+const u2 = new User("Rahul");
+User.prototype.sayBye = function () {
+  return "Bye " + this.name;
+};
+
+
+console.log(u1.sayBye()); // Bye Sachin
+console.log(u2.sayBye()); // Bye Rahul
+
+
+
+
+
+
+
+
