@@ -382,7 +382,58 @@ superReduce("abccbca");
 
 ................................................................................................................................. >
 
+# 21. Check Equal Arrays
+Difficulty: EasyAccuracy: 42.18%Submissions: 422K+Points: 2Average Time: 30m
+Given two arrays a[] and b[] of equal size, the task is to find whether the elements in the arrays are equal.
 
+Ans :Solution_1
+
+let a=[1,2,3,4,3]
+let b=[3,4,2,3,1]
+
+let w1=a.sort((a,b)=>a-b)
+let w2=b.sort((a,b)=>a-b)
+
+let ele = w1.length>w2.length ? w1 : w2
+let c=0
+ele.forEach( (e,i)=>{
+    let e1=w1.filter(num=>num===e).length;
+    let e2=w2.filter(num=>num===e).length;
+    if (e1!=e2) {
+        c++
+    } 
+} );
+
+if (c>0) {
+    console.log('the arrays are not equal')
+}
+else {
+    console.log("the arrays are equal")
+}
+
+Solution_2 :
+--------------- >
+let a=[1,2,3,4,3]
+let b=[3,4,2,3,1]
+
+if (a.length!=b.length) {
+    console.log("Th earrays are not equal")
+}
+
+
+   a.sort((x, y) => x - y);
+   b.sort((x, y) => x - y);
+
+
+ for (let i=0; i<a.length;i++) {
+     if ( a[i]!=b[i] ) {
+         console.log("The arrays are not equal")
+     }
+ }
+ 
+ console.log("The arrays are equal")
+
+................................................................................................................................. >
 
 
 
