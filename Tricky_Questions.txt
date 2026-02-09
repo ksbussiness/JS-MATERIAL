@@ -1,0 +1,85 @@
+Question : 1
+------------------ >
+  
+console.log([] == [])  // false
+becasue: Arrays are objects, Objects are compared by reference, not by value, So here this two values are 
+stored in different locations, 
+
+console.log( [] == ! [] )  // true
+
+console.log([] === []) false 
+console.log( []===![]) false
+
+
+Questions : 2 
+------------------ >
+
+let str = "hello";
+str[0] = "H";
+console.log(str);  // hello  
+> JavaScript, strings are immutable, meaning once created they cannot be modified. When we try to assign str[0] = "H", JavaScript ignores it because string characters are read-only. To modify a string, we must create a new string.
+
+
+Qustions: 3
+------------------ >
+
+async function test() {
+    return 5;
+}
+
+console.log(test())  // promise {5}
+>  Any function declared with async always returns a Promise.
+
+
+Questions: 4 
+------------------ >
+
+async function test() {
+  const x = await 5;
+  console.log(x);
+}
+
+> await works with Promises.
+But if you give it a non-Promise value (like 5), JavaScript automatically converts it into: Promise.resolve(5).
+Note: await always wraps non-promises into a resolved Promise.
+
+Questions : 5
+------------------ >
+
+async function test() {
+  console.log("A");
+  const x = await 5;
+  console.log("B");
+}
+
+console.log("C");
+test();
+console.log("D");
+
+C
+A
+D
+B
+
+
+Question : 6
+------------------ >
+
+find(): 
+Always returns the found element and, Stops early 
+forEach():
+Always return undefined
+
+Questions: 7
+------------------ >
+
+const a = { x: 1 };
+const b = a;
+
+b.x = 2;
+a.x = 3;
+
+console.log(a.x, b.x);  // 3, 3
+here, Because objects are stored by reference, not by value.
+So both a and b point to the same object in memory.
+
