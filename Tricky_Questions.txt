@@ -83,3 +83,135 @@ console.log(a.x, b.x);  // 3, 3
 here, Because objects are stored by reference, not by value.
 So both a and b point to the same object in memory.
 
+
+
+1) Question-1
+
+ console.log(typeof null);   // object
+here the null is the primitive typs, not an object but, 
+> null was also represented as 0 in memory.
+typeof null        // "object"
+typeof undefined   // "undefined"
+typeof {}          // "object"
+typeof []          // "object"
+
+
+2) Questions-2
+
+const obj ={ a:1, b:2 };
+  const copy = {..obj } ;
+copy.a=10;
+console.log(obj.a);  // 1
+
+> spread operator creates a shallow copy.
+> But shallow copy does NOT mean "same object".
+> It copies the first-level properties into a new object.
+> here for both these obj, copy there will be the separate memory in the, 
+so even if one modified, the pother will get the values.
+> Note when nestted are modified then it affects the both.
+> 
+Note: **
+Primitive Values (numbers, string, boolean );
+copied by value
+Objects inside objects:
+copied by reference
+Shared between original and copy.
+
+3) Questions-3
+
+class User {
+ constructor (name) {
+ this.name = name;
+}
+greet() {
+return this.name;
+ }
+}
+const user = new User( "JS");
+const greet = user.greet;
+Note ** = Here the greet will become the just normal function, it is no longer linked to the object called user.
+
+console.log( greet() ); 
+Note ** = Here in this case,  we do not have any object before the functions
+so, in this case the this ==> will become the undefined.
+
+Cannot read properties of undefined (reading 'name')
+
+
+4) Questions:
+
+const obj = {
+   value = 10;
+  getValue() {
+  return this.value;
+ }
+};
+
+const fn = obj.getValue;
+Note ** Here, also,  the fn now, will become the normal fn only.
+
+console.log( fn() );
+..> Here there is no, object the functions call.
+ So we get the answer has "undefined".
+
+5) Questions :
+
+const obj = {
+  value: 10,
+  getValue() {
+    return this.value;
+  }
+};
+
+ console.log( obj.getValue() );
+Note : ** here this is not an normal function call, here 
+. before function all there is an object.
+
+
+6) Questions:
+------------------ >
+1️⃣ Call Stack (Synchronous code)
+
+Runs immediately, top to bottom.
+
+2️⃣ Microtask Queue
+
+Promise.then
+queueMicrotask
+MutationObserver , 
+> Runs after current sync code
+> Runs before any setTimeout
+
+3️⃣ Macrotask Queue
+
+setTimeout
+setInterval
+setImmediate (Node)
+I/O
+> Runs after microtasks are empty.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
