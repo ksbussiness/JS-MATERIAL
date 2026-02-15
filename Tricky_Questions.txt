@@ -191,13 +191,37 @@ I/O
 > Runs after microtasks are empty.
 
 
+-------------------------------------------------------------------------------- 
+------------------------------------------------------------------------- 
+------------------------------------------------------------------ 
+10)  what is the Output of this file:
+
+   setTimeout(() => console.log("setTimeout"), 0);
+   setImmediate(() => console.log("setImmediate"));
+   process.nextTick(() => console.log("nextTick"));
+   console.log("Normal");
+
+
+out :
+------------------ >
+Normal
+nextTick
+setTimeout
+setImmediate
 
 
 
+| Function           | Priority   |
+| ------------------ | ---------- |
+| process.nextTick() | 🔥 Highest |
+| Promise.then()     | High       |
+| setTimeout()       | Medium     |
+| setImmediate()     | Medium     |
 
 
-
-
+-------------------------------------------------------------------------------- 
+------------------------------------------------------------------------- 
+------------------------------------------------------------------ 
 
 
 
