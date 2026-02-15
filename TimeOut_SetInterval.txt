@@ -1,0 +1,29 @@
+1) setTimeout() : Runs an function after a specified delay.
+ Syantax: setTimeout(callback, delay, ...args)
+
+EX:- 
+setTimeout(() => {
+  console.log("Hello after 2 seconds");
+}, 2000);
+ex: Hello after 2 seconds
+
+# ) clearTimeout:
+const timer = setTimeout(() => {
+  console.log("Will not run");
+}, 2000);
+
+clearTimeout(timer);
+
+2) setInterval() : Runs a function repeatedly after every given delay.
+setInterval(() => {
+  console.log("Runs every 1 second");
+}, 1000);
+
+# ) ClearInterval:
+const interval = setInterval(() => {
+  console.log("Running...");
+}, 1000);
+
+3) setImmediate() : Runs a function after the current event loop cycle finishes.
+
+
