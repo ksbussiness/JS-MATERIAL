@@ -827,6 +827,22 @@ Object.is(NaN, Number.NaN); // true
 
 
 8) Object.isExtensible() :
+Object.isExtensible() :
+...> It is an modern js object, it will take the one parameters
+...> parameter type : Object
+
+...> Return : Boolean
+      True → If new properties can be added to the object.
+ False → If new properties cannot be added.
+ 
+const user =  {
+     name = 'sachin'
+}
+console.log(Object.isExtensible(user)); // true ,Because by default js objects are extensible.
+
+Object.preventExtensions(user) // this will stops the extension
+
+console.log(Object.isExtensible(user));
 
 The Object.isExtensible() static method determines if an object is extensible (whether it can have new properties added to it).
 
