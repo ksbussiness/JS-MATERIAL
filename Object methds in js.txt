@@ -850,6 +850,34 @@ Object.isExtensible(1);
 9) Object.entries() :
 
 ================================= >
+5) Object.entries()
+...> This is an modern js object, it will take the one parameters.
+...> parameter type : Object
+...> It will return array of key, valuse pairs, where each pair is it self an array.
+
+[
+  [key, value ],
+  [key, value ]
+]
+
+
+const user = {
+  name: "Sachin",
+  age: 25,
+  city: "Hyderabad"
+};
+
+const result = Object.entries(user);
+
+console.log(result);
+
+result :
+[
+  ["name", "Sachin"],
+  ["age", 25],
+  ["city", "Hyderabad"]
+]
+
 
 
 ...> The Object.entries() static method returns an array of a given object's own enumerable string-keyed property key-value pairs.
@@ -916,6 +944,37 @@ console.log(map); // Map(2) {"foo" => "bar", "baz" => 42}
 
 
 10) Object.freeze() :
+) Object.freeze() :
+...> This is an modern js object, it will take the one parameters
+...> parameter type : Object
+...> It will return the same frozen object.
+
+what it does :
+-------------------- >
+
+❌ Existing properties cannot be modified.
+❌ New properties cannot be added.
+❌ Existing properties cannot be deleted.
+
+const user = {
+
+ name : 'sachin'
+ age: 12,
+ city : 'hyderabad'
+
+}
+
+const gg = Object.freeze(user);
+
+user.age=23 //NOT ALLOWED
+user.roll='19911A04L4'  // NOT ALLOWED
+delete user.city // NOT ALLOWED
+
+console.log(gg);
+
+retuns the same object only.
+
+
 
 The Object.freeze() static method freezes an object. Freezing an object prevents extensions and makes existing properties non-writable and non-configurable. A frozen object can no longer be changed: new properties cannot be added, existing properties cannot be removed, their enumerability, configurability, writability, or value cannot be changed, and the object's prototype cannot be re-assigned. freeze() returns the same object that was passed in.
 
