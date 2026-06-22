@@ -1409,6 +1409,38 @@ console.log(Object.getPrototypeOf("foo")) // {}
 
 19) Object.hasOwn() :
 
+Object.hasOwn() :
+...> It is the modern js object, it will take the two parameters.
+...> parameter type : Object , PropertyName
+...> This will return : Boolean
+      True, if the property exists directly on the object.
+ False, if the property does not exist on the object itself.
+
+Reason to use it :
+..> It checks whether a property belongs directly to the object, not to its prototype.
+
+const user = {
+   name: 'sachin',
+   age: 12
+}
+
+const check1 = Object.hasOwn(user,'name')
+console.log(check1) //  TRUE
+
+const check2 = Object.hasOwn(user, 'city');
+console.log(check2)  // FALSE
+
+
+const user1 = Object.create(user)
+
+user1.city='amc'
+
+console.log(user1.name)  //sachin
+
+const check3 = Object.hasOwn(user1, 'name');
+console.log(check3) // False
+
+
 ....> The Object.hasOwn() static method returns true if the specified object has the indicated property as its own property.
 
 NOTE:  If the property is inherited, or does not exist, the method returns false.
