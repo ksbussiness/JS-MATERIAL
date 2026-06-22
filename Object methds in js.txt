@@ -568,7 +568,21 @@ console.log(obj2.age);  // Output: 25
 
 
 3) Object.value():
+-------------------------- >
+...> This is an modern js object, it will take the one parameters
+...> parameter type :Object
+...> It will return the array of valus of that object.
 
+const user = {
+ name :'sachin',
+ age: 20,
+ city :'Hyderabad'
+}
+
+const gg= Object.values(user)
+console.log(gg);
+
+result : [ 'sachin', 20, 'Hyderabad' ]
 
 
 // Array-like object with random key ordering
@@ -600,6 +614,33 @@ console.log(object1.property1);
 
 
 ..>  Private properties cannot be added or removed from the object, whether the object is sealed or not.
+
+4) Object.seal()
+-------------------------- >
+...> This is an modern js object, it will take the one parameters
+...> parameter type :Object
+...> It will return the same sealed object
+
+what it does:
+✅ Existing properties can be modified.
+❌ New properties cannot be added.
+❌ Existing properties cannot be deleted.
+
+
+const user = {
+	 name: 'sachin',
+	 age: 12,
+	 city : 'hyderabad'
+}
+
+const gg= Object.seal(user);
+
+user.age=23   //ALLOWED
+user.roll=19911A04L4 // NOT ALLOWED
+
+delete user.name  // NOT ALLOWED
+
+console.log(gg);  { name: 'sachin', age: 23, city: 'hyderabad' }
 
 
 
