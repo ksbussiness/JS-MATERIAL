@@ -231,6 +231,21 @@ console.log(typeof numberObj); // returns object
 
 
 1) Object.assign(target, source1, source2, /* …, */ sourceN)
+>> It is an modern js Object, it will take the 2 or more parameters.
+>> parameters type: Object
+
+syntax: Object.assign( target, obj1 obj2 ) :
+
+target → Object that receives the copied properties.
+source1, source2, ... → Objects whose properties will be copied.
+
+Returns : The target object after copying properties from the source object(s).
+
+What it does : 
+--------------------- >
+✅ Copies properties from source object(s) to target object.
+✅ Merges multiple objects.
+✅ Overwrites existing properties if keys are the same.
 
 The Object.assign() static method copies all enumerable own properties from one or more source objects to a target object. It returns the modified target object.
 
@@ -242,12 +257,12 @@ console.log(m1); object
 const m2={b:2};
 
 const res=Object.assign(m1,m2);
-
 console.log(res); object {a: 1, b: 2}
 
 console.log(res==m1); // returns true
-
 console.log(res==m2); // return false
+
+>> m1 becomes { a: 1, b: 2 }, res points to the same object as m1
 
 
 const res=Object.assign("sai",m1,m2,m3);
@@ -280,6 +295,55 @@ console.log(o3); // {  c: 3},
 
 
 ...> All JavaScript objects inherit properties and methods from a prototype.
+
+
+ex:1
+    const user = {
+      name :'sachin',
+      age: 12,
+      adds: 'amc'
+   }
+
+    const userSchool =  {
+          rollId : '12345',
+          schoolName : 'ABC School',
+          schoolId : '123',
+    }
+
+    const includeMeta1 = true;
+
+    const result = Object.assign(user, userSchool, includeMeta1)
+    console.log('result', result);
+
+result:
+
+result {
+ name: 'sachin',
+ age: 12,
+ adds: 'amc',
+ rollId: '12345',
+ schoolName: 'ABC School',
+ schoolId: '123'
+}
+
+ ex:2 :
+ ---------- >
+ 
+ const obj1 = { name: "Sachin" };
+ const obj2 = { age: 25 };
+ const obj3 = { city: "Hyderabad" };
+
+ const result = Object.assign({}, obj1, obj2, obj3);
+ console.log(result);
+ 
+ {
+  name: "Sachin",
+  age: 25,
+  city: "Hyderabad"
+}
+
+
+
 
 
 Prototype Inheritance :
