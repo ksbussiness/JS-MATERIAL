@@ -607,7 +607,21 @@ Object.seal(1);
 // 1  
 
 
-5) Object.keys()
+5) Object.keys() : 
+	..> This is an modern js object it will take the one parameters
+	..> parameter type: Object
+	..> It will return the array of strings, which are nothig but the objects keys only.
+ex:
+const user =  {
+   name: 'Sachin',
+   age: 20,
+   city: 'Hyderabad'
+}
+
+const gg = Object.keys(user)
+console.log(gg);
+
+result : [ 'name', 'age', 'city' ]
 
 ..> The Object.keys() static method returns an array of a given object's own enumerable string-keyed property names.
 
