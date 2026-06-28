@@ -1509,31 +1509,6 @@ Object.hasOwn(fruits, 4); // false - not defined
 
 
 
-20) Object.groupBy() :
-..> This is an modern js object, which takes two parameters,
-the first one is an array and the second one is the an call back functions
-..> This function is used to make the group the based on the key
-
-let obj1= [
-		{name: 'laptop', category : 'electronics'},
-		{name: 'phone', category : 'electronics'},
-		{name: 'tshirt', category : 'clothes'}
-]
-
-let gg = Object.groupBy( obj1, x =>x.category);
-console.log(gg)
-
-result :
-{
-  electronics: [
-    { name: 'laptop', category: 'electronics' },
-    { name: 'phone', category: 'electronics' }
-  ],
-  clothes: [ { name: 'tshirt', category: 'clothes' } ]
-}
-
-
-
 
 21) Object.hasOwnProperty():
 
