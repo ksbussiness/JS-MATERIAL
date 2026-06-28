@@ -590,32 +590,6 @@ console.log(obj2.name); // Output: Bob
 console.log(obj2.age);  // Output: 25
 
 
-
-3) Object.value():
--------------------------- >
-...> This is an modern js object, it will take the one parameters
-...> parameter type :Object
-...> It will return the array of valus of that object.
-
-const user = {
- name :'sachin',
- age: 20,
- city :'Hyderabad'
-}
-
-const gg= Object.values(user)
-console.log(gg);
-
-result : [ 'sachin', 20, 'Hyderabad' ]
-
-
-// Array-like object with random key ordering
-// When using numeric keys, the values are returned in the keys' numerical order
-const arrayLikeObj2 = { 100: "a", 2: "b", 7: "c" };
-console.log(Object.values(arrayLikeObj2)); // ['b', 'c', 'a']
-
-
-
 4) Object.seal()
 
 ..> The Object.seal() static method seals an object.
