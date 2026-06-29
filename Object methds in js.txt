@@ -683,66 +683,6 @@ Object.preventExtensions(1);
 // 1    
 
 
-8) Object.isExtensible() :
-Object.isExtensible() :
-...> It is an modern js object, it will take the one parameters
-...> parameter type : Object
-
-...> Return : Boolean
-      True → If new properties can be added to the object.
- False → If new properties cannot be added.
- 
-const user =  {
-     name = 'sachin'
-}
-console.log(Object.isExtensible(user)); // true ,Because by default js objects are extensible.
-
-Object.preventExtensions(user) // this will stops the extension
-
-console.log(Object.isExtensible(user));
-
-The Object.isExtensible() static method determines if an object is extensible (whether it can have new properties added to it).
-
-
-
-const object1 = {};
-
-console.log(Object.isExtensible(object1));
-// Expected output: true
-
-Object.preventExtensions(object1);
-
-console.log(Object.isExtensible(object1));
-// Expected output: false
-
-
-Object.isExtensible(obj) :
-
-Objects are extensible by default: they can have new properties added to them, and their [[Prototype]] can be re-assigned. An object can be marked as non-extensible using one of Object.preventExtensions(), Object.seal(), Object.freeze(), or Reflect.preventExtensions().
-
-
-
-// New objects are extensible.
-const empty = {};
-Object.isExtensible(empty); // true
-
-// They can be made un-extensible
-Object.preventExtensions(empty);
-Object.isExtensible(empty); // false
-
-// Sealed objects are by definition non-extensible.
-const sealed = Object.seal({});
-Object.isExtensible(sealed); // false
-
-// Frozen objects are also by definition non-extensible.
-const frozen = Object.freeze({});
-Object.isExtensible(frozen); // false
-
-
-Object.isExtensible(1);
-// false     
-
-
 
 9) Object.entries() :
 
