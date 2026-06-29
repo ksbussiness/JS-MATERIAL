@@ -631,58 +631,7 @@ for (let i in object) {
  console.log(i)
  console.log(object[i])
 
-
-
-
 ===================== >
-
-6) Object.preventExtensions() :
-
-..> The Object.preventExtensions() static method prevents new properties from ever being added to an object (i.e. prevents future extensions to the object). It also prevents the object's prototype from being re-assigned.
-
-
-
-const obj1={}
-
-Object.preventExtensions(obj1);
-
-Object.defineProperty(obj1,"name",{
-    value:"sai"
-});
-
-console.log(obj1) /// error 
-
-..> Note that the properties of a non-extensible object, in general, may still be deleted. Attempting to add new properties to a non-extensible object will fail, either silently or, in strict mode, throwing a TypeError.
-
-
-..> 
-Object.preventExtensions() only prevents addition of own properties. Properties can still be added to the object prototype.
-
-
-$$$$$$$ : 
-This method makes the [[Prototype]] of the target immutable; any [[Prototype]] re-assignment will throw a TypeError. This behavior is specific to the internal [[Prototype]] property; other properties of the target object will remain mutable.
-
-
-// Object.preventExtensions returns the object
-// being made non-extensible.
-const obj = {};
-const obj2 = Object.preventExtensions(obj);
-obj === obj2; // true
-
-// Objects are extensible by default.
-const empty = {};
-Object.isExtensible(empty); // true
-
-// They can be made un-extensible
-Object.preventExtensions(empty);
-Object.isExtensible(empty); // false
-
-
-
-Object.preventExtensions(1);
-// 1    
-
-
 
 9) Object.entries() :
 
