@@ -832,40 +832,6 @@ console.log(Object.getPrototypeOf("foo")) // {}
 
 
 
-
-21) Object.hasOwnProperty():
-
- 
-
-..> The hasOwnProperty() method of Object instances returns a boolean indicating whether this object has the specified property as its own property or not.
-..> The hasOwnProperty() method returns true if the specified property is a direct property of the object — even if the value is null or undefined. 
-..> The method returns false if the property is inherited, or has not been declared at all.
-
-
-const object1 = {};
-object1.p1 = 42
-
-console.log(object1.hasOwnProperty("p1")) // true
-console.log(object1.hasOwnProperty(" ")) // false
-console.log(object1.hasOwnProperty({})) // false
-console.log(object1.hasOwnProperty("tostring")) // false
- 
-
-
-const example = {};
-example.prop = "exists";
-
-// `hasOwnProperty` will only return true for direct properties:
-example.hasOwnProperty("prop"); // true
-example.hasOwnProperty("toString"); // false
-example.hasOwnProperty("hasOwnProperty"); // false
-
-// The `in` operator will return true for direct or inherited properties:
-"prop" in example; // true
-"toString" in example; // true
-"hasOwnProperty" in example; // true
-
-
 22) Object.prototype.isPrototypeOf():
 
 ..> The isPrototypeOf() method of Object instances checks if this object exists in another object's prototype chain.
