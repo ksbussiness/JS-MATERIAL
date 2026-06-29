@@ -473,48 +473,6 @@ Object.defineProperties(obj2, {
 console.log(obj2.name); // Output: Bob
 console.log(obj2.age);  // Output: 25
 
-
-5) Object.keys() : 
-	..> This is an modern js object it will take the one parameters
-	..> parameter type: Object
-	..> It will return the array of strings, which are nothig but the objects keys only.
-ex:
-const user =  {
-   name: 'Sachin',
-   age: 20,
-   city: 'Hyderabad'
-}
-
-const gg = Object.keys(user)
-console.log(gg);
-
-result : [ 'name', 'age', 'city' ]
-
-..> The Object.keys() static method returns an array of a given object's own enumerable string-keyed property names.
-
-An array of strings representing the given object's own enumerable string-keyed property keys.
-
-
-
-const object = { a: 1, b: 2, c: 3 };
-
-for (const property in object) {
-  console.log(`${property}: ${object[property]}`);
-}
-
-// Expected output:
-// "a: 1"
-// "b: 2"
-// "c: 3"
-
-const object = { a: 1, b: 2, c: 3 };
-
-for (let i in object) {
- // console.log(`${property}: ${object[property]}`);
- 
- console.log(i)
- console.log(object[i])
-
 ===================== >
 
 9) Object.entries() :
